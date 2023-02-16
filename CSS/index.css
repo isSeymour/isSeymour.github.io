@@ -1,0 +1,197 @@
+/* CSS样式 */
+/* 通用 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-decoration: none;
+    font-family: 得意黑,微软雅黑,sans-serif;
+}
+/* 顶部固定导航 */
+.nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(56,72,113);
+    text-align: center;
+    z-index: 1;
+}
+.nav span{
+    margin-right: 100px;
+    width: 100px;
+    color: white;
+    font: 30px/50px 得意黑,sans-serif;
+    transition: all 300ms;
+}
+.nav ul{
+    display: inline-block;
+    text-align: center;
+    list-style: none;
+}
+.nav li{
+    display: inline-block;
+}
+.nav .nav1{
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    font: 20px/50px 得意黑,sans-serif;
+    transition: all 300ms;
+}
+.nav .nav1:hover{
+    width: 120px;
+    height: 60px;
+    color: rgb(56,72,113);
+    background-color: white;
+}
+/* 回到顶部 */
+.gotop{
+    position: fixed;
+    right: 30px;
+    bottom: 100px;
+    width: 70px;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(134,148,178);
+    z-index: 1;
+}
+.gotop a{
+    display: inline-block;
+    width: 70px;
+    height: 50px;
+    font: 20px/50px 得意黑,sans-serif;
+    color: white;
+}
+.gotop:hover a{
+    background-color: rgb(56, 72, 113);
+}
+/* 联系我-固定 */
+.aboutme{
+    position: fixed;
+    right: 30px;
+    bottom: 180px;
+    width: 70px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    background-color: rgb(134,148,178);
+    font: 20px/50px 得意黑,sans-serif;
+    cursor: pointer;
+    z-index: 1;
+}
+.aboutme:hover{
+    background-color: rgb(56, 72, 113);
+}
+.aboutme .me{
+    position: absolute;
+    right: 80px;
+    top: -150px;
+    width: 250px;
+    display: none;
+}
+.aboutme:hover .me{
+    display: block;
+}
+/* 版心居中 */
+.mid{
+    margin: 0 auto;
+    width: 1200px;
+    /* height: 9150px; */
+    background-color: #f8f8f8;
+}
+/* 首页封面 */
+.one{
+    padding-top: 50px;
+}
+.one img{
+    width: 100%;
+}
+/* 内容部分 */
+.main{
+    position: relative;
+}
+.main h2{
+    margin-left: 50px;
+    font: normal normal 40px/2 得意黑,sans-serif;
+}
+.vdver{
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 10px solid rgb(96, 116, 162);
+    position: relative;
+    height: 560px;
+}
+/* 视频 */
+.main .vd{
+    position: absolute;
+    left: 40px;
+    top: 100px;
+    width: 700px;
+}
+/* 版本更新说明 */
+.ver{
+    position: absolute;
+    right: 30px;
+    top: 100px;
+    width: 400px;
+    height: 400px;
+    display: inline-block;
+}
+.ver .ver1{
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 400px;
+}
+.ver .ver2{
+    font-size: 24px;
+}
+.ver .txt{
+    text-indent: 2em;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    line-height: 21px;
+}
+/* 角色介绍 */
+.role{
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 10px solid rgb(96, 116, 162);
+    position: relative;
+}
+.role h2{
+    margin-left: 50px;
+    font: normal normal 40px/2 得意黑,sans-serif;
+}
+.role ul li{
+    list-style: none;
+    text-align: center;
+}
+.role img{
+    margin: 30px auto;
+    width: 1000px;
+}
+/* 末尾 */
+.last{
+    margin-top: 50px;
+}
+.last h2{
+    margin-left: 100px;
+    font: normal normal 40px/2 得意黑,sans-serif;
+}
+.last p{
+    margin: 20px 100px;
+    font-size: 24px;
+    text-indent: 2em;
+}
+.web{
+    height: 60px;
+    margin-top: 50px;
+    text-align: center;
+}
