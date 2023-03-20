@@ -1,4 +1,9 @@
 /* CSS样式 */
+/*字体*/
+@font-face {
+    font-family: 得意黑;
+    src: url("../font/SmileySans-Oblique.otf");
+}
 /* 通用 */
 *{
     margin: 0;
