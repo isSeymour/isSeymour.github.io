@@ -3844,89 +3844,6 @@
       </tags>
   </entry>
   <entry>
-    <title>《Cisco计网实验》速查助记</title>
-    <url>/butterflyblog/2023/08/12/%E3%80%8ACisco%E8%AE%A1%E7%BD%91%E5%AE%9E%E9%AA%8C%E3%80%8B%E9%80%9F%E6%9F%A5%E5%8A%A9%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="《Cisco计网实验》速查助记"><a href="#《Cisco计网实验》速查助记" class="headerlink" title="《Cisco计网实验》速查助记"></a>《Cisco计网实验》速查助记</h1><h2 id="【速查助记】"><a href="#【速查助记】" class="headerlink" title="【速查助记】"></a>【速查助记】</h2><h3 id="1-查看配置"><a href="#1-查看配置" class="headerlink" title="1. 查看配置"></a>1. 查看配置</h3><ul>
-<li><p>查看信息</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show running-config			查看配置信息</span><br><span class="line">show ip route				查看路由信息</span><br><span class="line">show ip protocols			查看路由协议信息</span><br><span class="line">show vlan					查看vlan信息</span><br><span class="line">show int vlan 1				查看vlan 1 详细信息</span><br><span class="line">show ip nat translations	查看NAT转换情况</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-配置IP"><a href="#2-配置IP" class="headerlink" title="2. 配置IP"></a>2. 配置IP</h3><ul>
-<li><p>交换机的 ip 设置是设置在vlan里的（创建vlan，划分vlan端口，设置vlan的IP，开启）</p>
-<p>所以说，一般来说，交换机（二层、三层交换机）都是需要划分vlan的（默认全在vlan 1 内）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vlan 10</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">int fa 0/1</span><br><span class="line">switchport access vlan 10</span><br><span class="line">exit</span><br><span class="line">int vlan 10</span><br><span class="line">ip address 192.168.1.1 255.255.255.0</span><br><span class="line">no shutdown</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>路由器的 ip 设置是设置在端口上的（进入端口，设置端口的IP，开启）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int fa 1/0</span><br><span class="line">ip address 192.168.2.1 255.255.255.0</span><br><span class="line">no shutdown</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ip设置之后，都必须开启<code>no shutdown</code></p>
-</li>
-</ul>
-<h3 id="3-配置路由"><a href="#3-配置路由" class="headerlink" title="3. 配置路由"></a>3. 配置路由</h3><ul>
-<li><p>三层交换机需要自行开启路由模块<code>ip routing</code></p>
-</li>
-<li><p>静态路由</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip route 172.16.4.0 255.255.255.0 172.16.3.2	网段 掩码 下一跳</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 172.16.3.1		设置默认路由</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>动态路由</p>
-<p>配置RIP协议直连网段，只需要写网段IP，但要改版本号为2；</p>
-<p>配置OSPF协议直连网段，需要网段IP、反掩码、骨干区域。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">router rip</span><br><span class="line">verson 2</span><br><span class="line">network 192.168.2.0</span><br><span class="line"></span><br><span class="line">router ospf</span><br><span class="line">network 192.168.2.0 0.0.0.255 area 0</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="4-防火墙-ACL"><a href="#4-防火墙-ACL" class="headerlink" title="4. 防火墙 ACL"></a>4. 防火墙 ACL</h3><ul>
-<li><p>访问控制列表</p>
-<ul>
-<li>标准</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip access-list standard 1		这里1的意思是编号，可以为1-99</span><br><span class="line">permit 172.16.1.0 0.0.0.255 	注意要用反掩码</span><br><span class="line">deny 172.16.2.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">int fa 0/0</span><br><span class="line">ip access-group 1 out</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>扩展</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">access-list 访问控制列表号 &#123;deny/permit&#125; 协议类型 源网络地址 [通配符掩码(反掩码)] 目的网络地址 [通配符掩码] [运算符 端口号]</span><br><span class="line"></span><br><span class="line">access-list 100 permit tcp any host 172.16.4.2 eq 80 </span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="5-内外网-NAT"><a href="#5-内外网-NAT" class="headerlink" title="5. 内外网 NAT"></a>5. 内外网 NAT</h3><ul>
-<li><p>网络地址转换NAT</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置静态NAT</span><br><span class="line">ip nat inside 		指定内部端口（int下）</span><br><span class="line">ip nat outside 		指定外部端口（int下）</span><br><span class="line">ip nat inside source static 192.168.1.2 222.0.1.2	配置静态网络地址映射（config下）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>网络端口地址转换NAPT</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip nat inside 		指定内部端口（int下）</span><br><span class="line">ip nat outside 		指定外部端口（int下）</span><br><span class="line">access-list 1 permit 192.168.1.0 0.0.0.255 			创建访问列表（config下）</span><br><span class="line">ip nat pool mypool 200.0.1.3 200.0.1.3 netmask 255.255.255.0 	创建IP地址池（config下）</span><br><span class="line">ip nat inside source list 1 pool mypool overload 	配置NAPT：从访问列表映射到IP地址池（config下）</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="6-碎碎念"><a href="#6-碎碎念" class="headerlink" title="6. 碎碎念"></a>6. 碎碎念</h3><ul>
-<li><p>连线</p>
-<ul>
-<li>与交换机连线：直连线 Copper Straight-Through</li>
-<li>与路由器连线：交叉线 Copper Cross-Over</li>
-<li>路由器之间：串口线 Serial DCE</li>
-<li>串口线的 DCE 端需要设置时钟频率<code>clock rate 64000</code></li>
-</ul>
-</li>
-<li><p>两个地方会用反掩码，而不是掩码</p>
-<ol>
-<li>动态路由协议OSPF协议直连网段设置</li>
-<li>访问控制列表ACL配置IP设置</li>
-</ol>
-</li>
-<li><p>计算机网络实验无非就是两件事</p>
-<ul>
-<li>配置 IP：主机IP、服务器IP、端口IP</li>
-<li>配置 路由：直连网段（自动）、静态路由（含默认路由）、动态路由（RIP&#x2F;OSPF）</li>
-</ul>
-<p>做完上面两个内容，就能ping通了。</p>
-<p>另外，就是配置 访问控制列表ACL、网络地址转换NAT。</p>
-</li>
-<li><p>忘记命令，记住一些重要简称</p>
-<p>善用 tab 补全键，善用 ? 进行提示</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>计网实验</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《Django》入门 Notes（上）</title>
     <url>/butterflyblog/2023/06/01/%E3%80%8ADjango%E3%80%8B%E5%85%A5%E9%97%A8%20Notes%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
     <content><![CDATA[<h1 id="《Django》入门-Notes（上）"><a href="#《Django》入门-Notes（上）" class="headerlink" title="《Django》入门 Notes（上）"></a>《Django》入门 Notes（上）</h1><p>@Seymour0314 来源官方文档<code>https://docs.djangoproject.com/zh-hans/4.2/intro/</code></p>
@@ -5003,6 +4920,89 @@
       </tags>
   </entry>
   <entry>
+    <title>《Cisco计网实验》速查助记</title>
+    <url>/butterflyblog/2023/08/12/%E3%80%8ACisco%E8%AE%A1%E7%BD%91%E5%AE%9E%E9%AA%8C%E3%80%8B%E9%80%9F%E6%9F%A5%E5%8A%A9%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="《Cisco计网实验》速查助记"><a href="#《Cisco计网实验》速查助记" class="headerlink" title="《Cisco计网实验》速查助记"></a>《Cisco计网实验》速查助记</h1><h2 id="【速查助记】"><a href="#【速查助记】" class="headerlink" title="【速查助记】"></a>【速查助记】</h2><h3 id="1-查看配置"><a href="#1-查看配置" class="headerlink" title="1. 查看配置"></a>1. 查看配置</h3><ul>
+<li><p>查看信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show running-config			查看配置信息</span><br><span class="line">show ip route				查看路由信息</span><br><span class="line">show ip protocols			查看路由协议信息</span><br><span class="line">show vlan					查看vlan信息</span><br><span class="line">show int vlan 1				查看vlan 1 详细信息</span><br><span class="line">show ip nat translations	查看NAT转换情况</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-配置IP"><a href="#2-配置IP" class="headerlink" title="2. 配置IP"></a>2. 配置IP</h3><ul>
+<li><p>交换机的 ip 设置是设置在vlan里的（创建vlan，划分vlan端口，设置vlan的IP，开启）</p>
+<p>所以说，一般来说，交换机（二层、三层交换机）都是需要划分vlan的（默认全在vlan 1 内）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vlan 10</span><br><span class="line">exit</span><br><span class="line"></span><br><span class="line">int fa 0/1</span><br><span class="line">switchport access vlan 10</span><br><span class="line">exit</span><br><span class="line">int vlan 10</span><br><span class="line">ip address 192.168.1.1 255.255.255.0</span><br><span class="line">no shutdown</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>路由器的 ip 设置是设置在端口上的（进入端口，设置端口的IP，开启）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int fa 1/0</span><br><span class="line">ip address 192.168.2.1 255.255.255.0</span><br><span class="line">no shutdown</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ip设置之后，都必须开启<code>no shutdown</code></p>
+</li>
+</ul>
+<h3 id="3-配置路由"><a href="#3-配置路由" class="headerlink" title="3. 配置路由"></a>3. 配置路由</h3><ul>
+<li><p>三层交换机需要自行开启路由模块<code>ip routing</code></p>
+</li>
+<li><p>静态路由</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip route 172.16.4.0 255.255.255.0 172.16.3.2	网段 掩码 下一跳</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 172.16.3.1		设置默认路由</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态路由</p>
+<p>配置RIP协议直连网段，只需要写网段IP，但要改版本号为2；</p>
+<p>配置OSPF协议直连网段，需要网段IP、反掩码、骨干区域。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">router rip</span><br><span class="line">verson 2</span><br><span class="line">network 192.168.2.0</span><br><span class="line"></span><br><span class="line">router ospf</span><br><span class="line">network 192.168.2.0 0.0.0.255 area 0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-防火墙-ACL"><a href="#4-防火墙-ACL" class="headerlink" title="4. 防火墙 ACL"></a>4. 防火墙 ACL</h3><ul>
+<li><p>访问控制列表</p>
+<ul>
+<li>标准</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip access-list standard 1		这里1的意思是编号，可以为1-99</span><br><span class="line">permit 172.16.1.0 0.0.0.255 	注意要用反掩码</span><br><span class="line">deny 172.16.2.0 0.0.0.255</span><br><span class="line"></span><br><span class="line">int fa 0/0</span><br><span class="line">ip access-group 1 out</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>扩展</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">access-list 访问控制列表号 &#123;deny/permit&#125; 协议类型 源网络地址 [通配符掩码(反掩码)] 目的网络地址 [通配符掩码] [运算符 端口号]</span><br><span class="line"></span><br><span class="line">access-list 100 permit tcp any host 172.16.4.2 eq 80 </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-内外网-NAT"><a href="#5-内外网-NAT" class="headerlink" title="5. 内外网 NAT"></a>5. 内外网 NAT</h3><ul>
+<li><p>网络地址转换NAT</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置静态NAT</span><br><span class="line">ip nat inside 		指定内部端口（int下）</span><br><span class="line">ip nat outside 		指定外部端口（int下）</span><br><span class="line">ip nat inside source static 192.168.1.2 222.0.1.2	配置静态网络地址映射（config下）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>网络端口地址转换NAPT</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip nat inside 		指定内部端口（int下）</span><br><span class="line">ip nat outside 		指定外部端口（int下）</span><br><span class="line">access-list 1 permit 192.168.1.0 0.0.0.255 			创建访问列表（config下）</span><br><span class="line">ip nat pool mypool 200.0.1.3 200.0.1.3 netmask 255.255.255.0 	创建IP地址池（config下）</span><br><span class="line">ip nat inside source list 1 pool mypool overload 	配置NAPT：从访问列表映射到IP地址池（config下）</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="6-碎碎念"><a href="#6-碎碎念" class="headerlink" title="6. 碎碎念"></a>6. 碎碎念</h3><ul>
+<li><p>连线</p>
+<ul>
+<li>与交换机连线：直连线 Copper Straight-Through</li>
+<li>与路由器连线：交叉线 Copper Cross-Over</li>
+<li>路由器之间：串口线 Serial DCE</li>
+<li>串口线的 DCE 端需要设置时钟频率<code>clock rate 64000</code></li>
+</ul>
+</li>
+<li><p>两个地方会用反掩码，而不是掩码</p>
+<ol>
+<li>动态路由协议OSPF协议直连网段设置</li>
+<li>访问控制列表ACL配置IP设置</li>
+</ol>
+</li>
+<li><p>计算机网络实验无非就是两件事</p>
+<ul>
+<li>配置 IP：主机IP、服务器IP、端口IP</li>
+<li>配置 路由：直连网段（自动）、静态路由（含默认路由）、动态路由（RIP&#x2F;OSPF）</li>
+</ul>
+<p>做完上面两个内容，就能ping通了。</p>
+<p>另外，就是配置 访问控制列表ACL、网络地址转换NAT。</p>
+</li>
+<li><p>忘记命令，记住一些重要简称</p>
+<p>善用 tab 补全键，善用 ? 进行提示</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计网实验</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《Django》入门 Notes（中）</title>
     <url>/butterflyblog/2023/06/02/%E3%80%8ADjango%E3%80%8B%E5%85%A5%E9%97%A8%20Notes%EF%BC%88%E4%B8%AD%EF%BC%89/</url>
     <content><![CDATA[<h1 id="《Django》入门-Notes（中）"><a href="#《Django》入门-Notes（中）" class="headerlink" title="《Django》入门 Notes（中）"></a>《Django》入门 Notes（中）</h1><p>@Seymour0314 来源官方文档<code>https://docs.djangoproject.com/zh-hans/4.2/intro/</code></p>
@@ -6058,6 +6058,151 @@
 <h3 id="2-12-自定义命令、环境"><a href="#2-12-自定义命令、环境" class="headerlink" title="2.12 自定义命令、环境"></a>2.12 自定义命令、环境</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 文本</span></span><br><span class="line"><span class="keyword">\newcommand</span>&#123;<span class="keyword">\PRC</span>&#125;&#123;People&#x27;s Republic of <span class="keyword">\emph</span>&#123;China&#125;&#125;</span><br><span class="line"><span class="comment">% 含参数</span></span><br><span class="line"><span class="keyword">\newcommand</span>&#123;<span class="keyword">\love</span>&#125;[2]&#123;<span class="params">#1</span> 喜欢 <span class="params">#2</span>&#125;</span><br><span class="line"><span class="keyword">\newcommand</span>&#123;<span class="keyword">\hate</span>&#125;[2]&#123;<span class="params">#2</span> 不喜欢 <span class="params">#1</span>&#125;</span><br><span class="line"><span class="comment">% 含默认参数</span></span><br><span class="line"><span class="keyword">\newcommand</span>&#123;<span class="keyword">\loves</span>&#125;[3][喜欢]&#123;<span class="params">#2</span><span class="params">#1</span><span class="params">#3</span>&#125;</span><br><span class="line"><span class="comment">% 定义环境</span></span><br><span class="line"><span class="keyword">\newenvironment</span>&#123;Quotation&#125;[1]</span><br><span class="line">&#123;   </span><br><span class="line">    <span class="keyword">\newcommand</span>&#123;<span class="keyword">\quotesource</span>&#125;&#123;<span class="params">#1</span>&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;quotation&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#123;   </span><br><span class="line">    <span class="keyword">\par</span><span class="keyword">\hfil</span>---《<span class="keyword">\textit</span>&#123;<span class="keyword">\quotesource</span>》&#125;</span><br><span class="line">    <span class="keyword">\end</span>&#123;quotation&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\section</span>&#123;我的摘要&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\PRC</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\love</span>&#123;猫儿&#125;&#123;鱼&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\hate</span>&#123;猫儿&#125;&#123;鱼&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\loves</span>&#123;猫儿&#125;&#123;鱼&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\loves</span>[爱]&#123;猫儿&#125;&#123;鱼&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;Quotation&#125;&#123;易经&#125;</span><br><span class="line">    初九，潜龙勿用。</span><br><span class="line"><span class="keyword">\end</span>&#123;Quotation&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/latex51.png"></p>
+]]></content>
+      <categories>
+        <category>通用知识</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《LaTeX》模板</title>
+    <url>/butterflyblog/2023/08/23/%E3%80%8ALaTeX%E3%80%8B%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="《LaTeX》模板"><a href="#《LaTeX》模板" class="headerlink" title="《LaTeX》模板"></a>《LaTeX》模板</h1><h2 id="一、总体架构"><a href="#一、总体架构" class="headerlink" title="一、总体架构"></a>一、总体架构</h2><h3 id="1-1-外壳模板"><a href="#1-1-外壳模板" class="headerlink" title="1.1 外壳模板"></a>1.1 外壳模板</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;ctexrep&#125;</span><br><span class="line"><span class="comment">% \usepackage&#123;ctex&#125;</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;pdfpages&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;float&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;geometry&#125;</span><br><span class="line"><span class="comment">% \geometry&#123;left=3cm,right=3cm&#125;</span></span><br><span class="line"><span class="keyword">\title</span>&#123;标题&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;作者&#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="comment">% 开始</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">% 结束</span></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="二、插入内容"><a href="#二、插入内容" class="headerlink" title="二、插入内容"></a>二、插入内容</h2><h3 id="2-1-章节结构"><a href="#2-1-章节结构" class="headerlink" title="2.1 章节结构"></a>2.1 章节结构</h3><ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">无需</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\chapter</span>&#123;我是一级标题&#125;</span><br><span class="line">我是一级标题的直接下属内容。</span><br><span class="line">    <span class="keyword">\section</span>&#123;我是二级标题&#125;</span><br><span class="line">    我是二级标题的直接下属内容。</span><br><span class="line">        <span class="keyword">\subsection</span>&#123;我是三级标题&#125;</span><br><span class="line">        我是三级标题的直接下属内容。</span><br><span class="line">        <span class="keyword">\subsubsection</span>&#123;我是四级标题&#125;</span><br><span class="line">        我是四级标题的直接下属内容，注意四级标题没有序号，也不会写入目录哦。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/latex2/image-20230823002224527.png" alt="image-20230823002224527" style="zoom:80%;" />
+
+
+
+<h3 id="2-2-表格"><a href="#2-2-表格" class="headerlink" title="2.2 表格"></a>2.2 表格</h3><ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;float&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[H]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;[center]&#123;c c c c&#125;</span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        学号 <span class="built_in">&amp;</span> 姓名 <span class="built_in">&amp;</span> 专业 <span class="built_in">&amp;</span> 联系方式 <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        001 <span class="built_in">&amp;</span> 小明 <span class="built_in">&amp;</span> 炒菜 <span class="built_in">&amp;</span> 10086 <span class="keyword">\\</span></span><br><span class="line">        002 <span class="built_in">&amp;</span> 小红 <span class="built_in">&amp;</span> 做饭 <span class="built_in">&amp;</span> 10087 <span class="keyword">\\</span></span><br><span class="line">        003 <span class="built_in">&amp;</span> 小蓝 <span class="built_in">&amp;</span> 打水 <span class="built_in">&amp;</span> 10088 <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;表格标题&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/latex2/image-20230823003353189.png" alt="image-20230823003353189" style="zoom:80%;" />
+
+
+
+<h3 id="2-3-图片"><a href="#2-3-图片" class="headerlink" title="2.3 图片"></a>2.3 图片</h3><ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;float&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[H] </span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>[width=0.9<span class="keyword">\textwidth</span>]&#123;图片路径&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;图片标题&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/latex2/image-20230823002715811.png" alt="image-20230823002715811" style="zoom:80%;" />
+
+
+
+<h3 id="2-4-代码"><a href="#2-4-代码" class="headerlink" title="2.4 代码"></a>2.4 代码</h3><ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;listings&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;lstlisting&#125;</span><br><span class="line">    <span class="params">#</span>include &lt;iostream&gt;</span><br><span class="line">    using namespace std;</span><br><span class="line">    </span><br><span class="line">    int main()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;hello&quot;&lt;&lt;endl;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;lstlisting&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/latex2/image-20230823003618293.png" alt="image-20230823003618293" style="zoom:80%;" /> 
+
+
+
+<h3 id="2-5-参考文献"><a href="#2-5-参考文献" class="headerlink" title="2.5 参考文献"></a>2.5 参考文献</h3><ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">无需</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;&#123;99&#125;</span><br><span class="line">    <span class="keyword">\bibitem</span>&#123;book1&#125;潘爱民[译],(美)安德鲁·S.特南鲍姆.计算机网络（第6版）,教材读本.</span><br><span class="line">    <span class="keyword">\bibitem</span>&#123;art1&#125;邓雅韫.政府办公网络的安全建设[J].现代计算机(专业版),2001(09):63-65.</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>前后文中，引用标使用下面语法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">这里是一个引用<span class="keyword">\cite</span>&#123;book1&#125;。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/latex2/image-20230823004538573.png" alt="image-20230823004538573" style="zoom:80%;" />
+
+
+
+<h3 id="2-6-插入封面"><a href="#2-6-插入封面" class="headerlink" title="2.6 插入封面"></a>2.6 插入封面</h3><ul>
+<li>原生写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\maketitle</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;pdfpages&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 插入封面</span></span><br><span class="line"><span class="comment">% \maketitle</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;titlepage&#125;	</span><br><span class="line">    <span class="comment">% 封面信息</span></span><br><span class="line">    <span class="keyword">\includepdf</span>[pages=&#123;1&#125;]&#123;cover.pdf&#125; <span class="comment">%曲线救国的思路，外界自建封面，然后调用</span></span><br><span class="line"><span class="keyword">\end</span>&#123;titlepage&#125;</span><br><span class="line"><span class="comment">% 封面</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>效果</p>
+<p>效果就是单独一页，显示为插入的页面。</p>
+<p>由于是封面，不会计入目录的页数计算。</p>
+</li>
+</ul>
+<h3 id="2-7-插入目录"><a href="#2-7-插入目录" class="headerlink" title="2.7 插入目录"></a>2.7 插入目录</h3><ul>
+<li>库包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line">无需</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>写法</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 目录</span></span><br><span class="line"><span class="keyword">\tableofcontents</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>效果</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/latex2/image-20230823005618237.png" alt="image-20230823005618237" style="zoom:80%;" />
+
+
+
 ]]></content>
       <categories>
         <category>通用知识</category>
