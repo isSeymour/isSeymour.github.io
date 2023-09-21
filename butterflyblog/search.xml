@@ -10356,4 +10356,127 @@
         <tag>原神</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数字逻辑实验Notes持续更新</title>
+    <url>/butterflyblog/2023/09/21/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E5%AE%9E%E9%AA%8CNotes%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<h1 id="数字逻辑实验Notes持续更新"><a href="#数字逻辑实验Notes持续更新" class="headerlink" title="数字逻辑实验Notes持续更新"></a>数字逻辑实验Notes持续更新</h1><blockquote>
+<p>@isSeymour</p>
+<p>2023.9.21</p>
+</blockquote>
+<h2 id="一、软件介绍"><a href="#一、软件介绍" class="headerlink" title="一、软件介绍"></a>一、软件介绍</h2><h3 id="1-logisim"><a href="#1-logisim" class="headerlink" title="1. logisim"></a>1. logisim</h3><ul>
+<li><p>画逻辑门图</p>
+<p>这是画图的，与后面的 Vivado 并无关系！</p>
+</li>
+<li><p>你可以不画图，也可以在脑子里画图，</p>
+<p>这个软件只是让你的逻辑门电路图变得清晰好看，仅此而已！</p>
+</li>
+</ul>
+<h3 id="2-ModelSim-PE"><a href="#2-ModelSim-PE" class="headerlink" title="2. ModelSim PE"></a>2. ModelSim PE</h3><ul>
+<li><p>模拟软件</p>
+<p>这是在你做好一个vivado工程，进行模拟仿真的。</p>
+</li>
+<li><p>与Vivado 关联，必须使用</p>
+</li>
+</ul>
+<h3 id="3-Vivado"><a href="#3-Vivado" class="headerlink" title="3. Vivado"></a>3. Vivado</h3><ul>
+<li><p><code>.xpr</code>文件的开发软件</p>
+<p>这是你所有工程文件的创建软件，需要在此新建设计文件，写入verilog 代码</p>
+</li>
+<li><p>核心，必须使用</p>
+</li>
+</ul>
+<h2 id="二、一般流程"><a href="#二、一般流程" class="headerlink" title="二、一般流程"></a>二、一般流程</h2><h3 id="1-logisim-画图"><a href="#1-logisim-画图" class="headerlink" title="1. logisim 画图"></a>1. logisim 画图</h3><ul>
+<li>先用loigim画图，画出你的逻辑门电路图。</li>
+</ul>
+<h3 id="2-Vivado-工程"><a href="#2-Vivado-工程" class="headerlink" title="2. Vivado 工程"></a>2. Vivado 工程</h3><ul>
+<li><p>新建工程</p>
+<ul>
+<li><p>打开 Vivado 2016.2 软件</p>
+</li>
+<li><p>点击新建工程 Create New Project，自行选择 保存路径</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注：若是打开已有工程，则是Open Project，找到工程文件夹下的<code>.xpr</code>文件，打开。</p>
+</blockquote>
+<ul>
+<li>新增源文件<ul>
+<li>点击左上方的 Add Sources</li>
+<li>选择 Add or create design sources，点击next</li>
+<li>点击 Create New File</li>
+<li>输入你的模块名作为文件名 File Name，点击Finish</li>
+<li>这里模块名可以不用改，I&#x2F;O端口自行添加、删除、命名、设置INPUT&#x2F;OUTPUT模式</li>
+<li>点击OK</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>若要删除源文件，右键选中文件，Remove，记得勾选Alse delete 来删除文件夹中的文件。</p>
+</blockquote>
+<ul>
+<li><p>写入verilog 代码</p>
+<ul>
+<li>在这里的<code>.v</code>文件可以写入你的 module 代码设置</li>
+</ul>
+</li>
+<li><p>模拟仿真</p>
+<ul>
+<li>都写好了<code>.v</code>文件，点击左侧栏的 Run Simulation 进行模拟</li>
+<li>进入模拟框，点击 Run all 按钮（中间上方的蓝色的播放按钮）</li>
+<li>查看模拟结果，模拟结束</li>
+</ul>
+</li>
+<li><p>综合</p>
+<ul>
+<li><p>选中模拟生成多出来的文件（一般在对应的<code>.v</code>文件下，多出来一个<code>.v</code>文件）</p>
+</li>
+<li><p>选中这个<code>.v</code>文件，选择 Set as top，作为顶层文件</p>
+</li>
+<li><p>点击左侧栏中的运行综合 Run Synthesis</p>
+</li>
+<li><p>综合结束后，弹出一个框，选择Open Synthesized Design</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/DigitLogic/image-20230921212239287.png" alt="image-20230921212239287" style="zoom: 80%;" /> 
+</li>
+<li><p>添加约束</p>
+<ul>
+<li>上方栏 layout 中改为 I&#x2F;O planning。</li>
+<li>在底线有一栏，找到 I&#x2F;O ports 点击打开，在这里选择每个端口对应的脚约束，如 J17、H15、M13等等。</li>
+</ul>
+<blockquote>
+<p>这里电平和标准显示有红色的默认值 Default，我们要自行选一下，仍然选那个默认的值即可。</p>
+<p>否则，后面会因为端口争用而报错。</p>
+</blockquote>
+<ul>
+<li>点击左上角的保存按钮（快捷键Crtl + S），会让你保存到已有<code>.xdc</code>文件，或新建。这里新建，命名文件。</li>
+</ul>
+</li>
+<li><p>生成下板</p>
+<ul>
+<li>Source栏的文件里，多了<code>.xdc</code>文件，双击查看。</li>
+<li>点击左侧栏的 Generate Bitstream</li>
+<li>等待一会，正在生成。完成后会弹出下图框。选择Open Implemented Design。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/DigitLogic/image-20230921212959247.png" alt="image-20230921212959247" style="zoom: 80%;" /> 
+
+<ul>
+<li>点击左侧栏的 Open Hardware Manager。</li>
+<li>关闭开关，把你的开发板连接到电脑，打开开关。</li>
+<li>正上方有浅绿色的提示连接，点击Open Target 后选择 Auto Connect自动连接。</li>
+<li>连接成功后，正上方会有浅绿色提示导入程序 Program device，按提示点下一步即可。</li>
+<li>导入结束，可以测试你的程序效果了。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数字逻辑</category>
+      </categories>
+      <tags>
+        <tag>数字逻辑实验</tag>
+      </tags>
+  </entry>
 </search>
