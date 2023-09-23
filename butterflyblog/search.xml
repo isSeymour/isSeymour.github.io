@@ -1,94 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AAMS-同济教务系统</title>
-    <url>/butterflyblog/2023/07/29/AAMS-%E5%90%8C%E6%B5%8E%E6%95%99%E5%8A%A1%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h1 id="AAMS-同济教务系统"><a href="#AAMS-同济教务系统" class="headerlink" title="AAMS-同济教务系统"></a>AAMS-同济教务系统</h1><blockquote>
-<p><font color=red>网址入口：</font><a class="btn-beautify blue larger" href="http://isseymour.cn/" 
-  title="AAMS-同济教务系统"><i class="far fa-hand-point-right"></i><span>AAMS-同济教务系统</span></a></p>
-<p><font color=red>说明：账号密码请询问站长，谢谢配合！</font></p>
-</blockquote>
-<h3 id="0x01-AAMS是什么？"><a href="#0x01-AAMS是什么？" class="headerlink" title="0x01 AAMS是什么？"></a>0x01 AAMS是什么？</h3><ul>
-<li>Academic Affairs Management System</li>
-<li>教务管理系统</li>
-</ul>
-<p>本次项目致力于搭建一个有数据库支持的、前后端分离的教务管理系统。</p>
-<h3 id="0x02-技术栈"><a href="#0x02-技术栈" class="headerlink" title="0x02 技术栈"></a>0x02 技术栈</h3><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams1.png" alt="aams技术栈"></p>
-<ul>
-<li>前端：Vue 2.x、Vue-Router、ElementUI、Axios</li>
-<li>后端：Django、DRF、JWT</li>
-<li>数据库：MySQL</li>
-</ul>
-<p>本次项目采用前后端分离的架构，前端采用 VUE 框架，后端采用Django 框架，前后端通过 AJAX 技术进行连接。</p>
-<p>后端主要管理数据库、数据查询、数据操作等功能，构建数据模型、与数据库交互、业务流程处理、网络请求接收并响应等功能。其中网络请求部分，通过传输 JSON 格式数据给前端，前端接收 JSON 格式数据后，把数据传给前端渲染的 data 进行渲染并呈现给用户。</p>
-<p>前端是 SPA 单页面应用，功能跳转通过 vue-router 来处理，本地身份认证与路由拦截也通过 vue-router 处理。其中关于网络请求有单独的文件结构，简洁明了。美化工作由 elementUI 和少量原生的 CSS 来处理。</p>
-<h3 id="0x03-效果展示"><a href="#0x03-效果展示" class="headerlink" title="0x03 效果展示"></a>0x03 效果展示</h3><h4 id="3-1-学生端"><a href="#3-1-学生端" class="headerlink" title="3.1 学生端"></a>3.1 学生端</h4><h5 id="3-1-1-首页"><a href="#3-1-1-首页" class="headerlink" title="3.1.1 首页"></a>3.1.1 首页</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams2.png" alt="学生端首页"></p>
-<p>说明：</p>
-<p>（1）登录成功提示；</p>
-<p>（2）主页分为头部信息、左侧菜单栏、中间主内容区域；</p>
-<p>（3）主页会自动获取最近的几条通知广告，进行自动播放；</p>
-<p>（4）右上角的“我的信息”可以退出登录；</p>
-<p>（5）“通知公告”处可以打开通知查看详情；</p>
-<p>（6）本学期进度是一些个人信息，其中进度圈是指当前的学期阶段（分为5阶段，2是开放选课阶段，未到选课阶段时，无法选课）。</p>
-<h5 id="3-1-2-全校课程"><a href="#3-1-2-全校课程" class="headerlink" title="3.1.2 全校课程"></a>3.1.2 全校课程</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams3.png" alt="全校课程"></p>
-<p>说明：</p>
-<p>（1）可以输入学期代码、下拉选择校区，再点击查询；</p>
-<p>（2）在右下角有每页几条、跳转数据、直接跳转数据的功能；</p>
-<p>（3）每次查询会给出查询结果，是否成功查询、网络出错等。</p>
-<h5 id="3-1-3-个人选课"><a href="#3-1-3-个人选课" class="headerlink" title="3.1.3 个人选课"></a>3.1.3 个人选课</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams4.png" alt="个人选课1"></p>
-<p>说明：</p>
-<p>（1）刚进入时，显示当前没有对您开放的选课，可以刷新；</p>
-<p>（2）刷新若有选课会展示选课的轮次，以供选择；</p>
-<p>（3）进入选课有确认阅读选课信息界面。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams5.png" alt="个人选课2"></p>
-<p>说明：</p>
-<p>（1）进入选课界面后，初始时，没有任何数据；</p>
-<p>（2）点击“添加课程”，会在选课列表里添加所有可选的课程；</p>
-<p>（3）下拉有在线课表的功能，可以查看；</p>
-<p>（4）选课列表里的每个课程可以查看，然后进行具体课程班级的选择；</p>
-<p>（5）前端自动进行选课是否冲突的判断，不冲突则选课成功，冲突会给出提示；</p>
-<p>（6）选好的课程后，可以刷新课表，在下拉课表里查看当前的课程表；</p>
-<p>（7）已选的课程会变成“深绿色”的课程序号，未选是“浅绿色”的课程序号；</p>
-<p>（8）再次点击已选的课程，会进行退课，退课前会先提示是否确认退课操作；</p>
-<p>（9）课程会自动排在课程表里对应时间位置，并写清楚课程名、教师、教室。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams6.png" alt="个人选课3"></p>
-<p>说明：</p>
-<p>（1）进入我的课表页面，点击左上角“学生课表”旁边的“刷新”；</p>
-<p>（2）下拉有表格的课程列表，信息更加全面。</p>
-<h5 id="3-1-4-成绩查询"><a href="#3-1-4-成绩查询" class="headerlink" title="3.1.4 成绩查询"></a>3.1.4 成绩查询</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams9.png" alt="成绩查询"></p>
-<p>说明：</p>
-<p>（1）会向后端查询当前账号的所有成绩单；</p>
-<p>（2）成绩会按照学期先后进行排序展示，你可以点击“学期编号”旁边的箭头，更改排序的先后顺序；</p>
-<p>教师端有录入成绩的功能（后面会展示）。</p>
-<h4 id="3-2-教师端"><a href="#3-2-教师端" class="headerlink" title="3.2 教师端"></a>3.2 教师端</h4><h5 id="3-2-1-首页"><a href="#3-2-1-首页" class="headerlink" title="3.2.1 首页"></a>3.2.1 首页</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams10.png" alt="教师端首页"></p>
-<p>说明：</p>
-<p>（1）该页面大体内容和学生端类似，为了作为区分，我更改了外围的主色调；</p>
-<p>（2）教师端的侧边菜单栏功能与学生端不同。</p>
-<p>（3）部分通知不一样，部分通知可能并不是发给教师，所以教师看不到。</p>
-<h5 id="3-2-2-我的授课"><a href="#3-2-2-我的授课" class="headerlink" title="3.2.2 我的授课"></a>3.2.2 我的授课</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams12.png" alt="我的授课"></p>
-<p>说明：</p>
-<p>（1）教师授课的课程都会在该页面显示。</p>
-<h5 id="3-2-3-录入成绩"><a href="#3-2-3-录入成绩" class="headerlink" title="3.2.3 录入成绩"></a>3.2.3 录入成绩</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams11.png" alt="录入成绩"></p>
-<p>说明：</p>
-<p>（1）教师可在该页面录入成绩；</p>
-<p>（2）录入成绩有学期阶段限制，不是处于第5阶段：学期结束阶段，无法录入；</p>
-<h3 id="0x04-杂谈"><a href="#0x04-杂谈" class="headerlink" title="0x04 杂谈"></a>0x04 杂谈</h3><h4 id="4-1-心得"><a href="#4-1-心得" class="headerlink" title="4.1 心得"></a>4.1 心得</h4><p>本次项目，我很早就开始准备了，也是最初一直学了好久的 B 站课程，我前端选的是 VUE，在 B 站上选了一个播放量比较大的，每天有空就学，也因为比较感兴趣，学的不算枯燥，会同时记录 notes，防止自己看了一遍就忘了，就白学了。（视频链接：<a href="https://www.bilibili.com/video/BV1Zy4y1K7SH/">b站尚硅谷Vue2.0+Vue3.0</a>）</p>
-<p>尤其计算机操作类的课程，都是很容易生疏，因此，我每天看完的内容，一定会总结一下。大概在 5 月初的样子，把 VUE 教程看完了，对前端感觉了解深刻了很多。同时因为有了这次的经历，对自学新的知识开始转变思想，也比较有信心通过自学能学会新技术。后端原本打算使用Java，但是由于我没有学过 Java，可能 5 月才开始学，会有点晚了。所以，转向使用已学过的 Python 做后端，在 Flask 和 Django 之间，选择了 Django，主要是看重他的框架比较成型，也好让我对后端基本框架有一个更加成熟完备的了解，便于以后更好的学习其他后端框架。同时比较好的是 Django 不需要我直接操作数据库，这点对于我这个还没有学过数据库的同学来说，无疑是最大的好处。我的后端学的不如前端扎实，毕竟学前端时间也长，而学后端的时间少不说，还缺乏比较全面的教程。</p>
-<p>在学完前端和后端基本框架之后，我开始着手做这个项目了。做项目的过程中，又引发很多问题。比如说遇到关于登陆后的认证问题，我就去学习了一下 JWT 认证，了解了原理，然后自己再编写；遇到关于后端规范化数据格式，我学习了 DRF，采用 APIView 和序列化器，使得交互数据非常简洁明了；遇到跨域请求问题，学习了解决跨域问题的前端、后端方法。</p>
-<p>经历这么一遭，最终也是做好了，也算是比较满意吧。其实我发现，热爱很重要，其实想想学习的这一路还是比较痛苦的，但是由于迫切希望看到结果，我也一直快马加鞭的学了下来。希望以后还能保持这份热爱，继续前行！</p>
-<h4 id="4-2-认知"><a href="#4-2-认知" class="headerlink" title="4.2 认知"></a>4.2 认知</h4><p>最后，关于分析国内外的 web 技术，我可能说不出太多认知。我仅说说我学过的这些技术中，我的一些看法吧。</p>
-<p>前端技术 vue 是尤雨溪开发出来的一套框架。我其实比较惊喜能够在计算机的某种技术里看到中国人的名字放在第一位。我的体会一直是中国在追赶国外的新兴技术，我们也能做到很好的使用，但是总是缺少开发新兴技术的人。所以，Vue 的出现，让我感到惊喜！</p>
-<p>其他 web 技术，我了解的不多，我目前听到的说法是：中国比较庞大的 web 技术生态是微信生态系统，微信提供了许多 API 和开发工具，允许开发人员在其平台上构建应用程序和服务。国外比较多用的也几乎都是类似微信的一些社交媒体，如 Twitter、Facebook、Instagram 等。</p>
-<p>我一直认为，能否推动某种技术大力发展取决于它的受众面是否广阔。希望今后能看到更多以中国人名字排头的 web 技术！</p>
-]]></content>
-      <categories>
-        <category>开发项目</category>
-      </categories>
-      <tags>
-        <tag>前后端分离</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C/C++ 必要记忆知识点</title>
     <url>/butterflyblog/2022/12/25/CC++%20%E5%BF%85%E8%A6%81%E8%AE%B0%E5%BF%86%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
     <content><![CDATA[<h3 id="C-x2F-C-必要记忆知识点"><a href="#C-x2F-C-必要记忆知识点" class="headerlink" title="C&#x2F;C++ 必要记忆知识点"></a>C&#x2F;C++ 必要记忆知识点</h3><h3 id="常用简记"><a href="#常用简记" class="headerlink" title="常用简记"></a>常用简记</h3><h4 id="一、头文件-主要针对C"><a href="#一、头文件-主要针对C" class="headerlink" title="一、头文件(主要针对C++)"></a>一、头文件(主要针对C++)</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//防止VS安全报错</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//C++ 输入输出流</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">cin &gt;&gt; a;</span><br><span class="line">cout &lt;&lt;  ...  &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">//C 方式输入输出流(包含文件流)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a);	<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);</span><br><span class="line"><span class="built_in">fopen</span>(...);		<span class="built_in">fcolse</span>(...);</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++ 输出格式控制符</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">5</span>) &lt;&lt; ...</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++ 文件输入输出流</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="function">ifstream <span class="title">in</span><span class="params">(<span class="string">&quot;a.txt&quot;</span>,ios::in)</span></span>;</span><br><span class="line"><span class="function">ofstream <span class="title">out</span><span class="params">(<span class="string">&quot;b.txt&quot;</span>,ios::out)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//字符数组处理函数库</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span><span class="comment">//C++</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span><span class="comment">//C 方式</span></span></span><br><span class="line"><span class="built_in">strcpy</span>(s1,s2);</span><br><span class="line"><span class="built_in">strcmp</span>(s1,s2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//数学函数库</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span><span class="comment">//C++ </span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span><span class="comment">//C 方式</span></span></span><br><span class="line"><span class="built_in">sqrt</span>(x);</span><br><span class="line"><span class="built_in">exp</span>(<span class="number">10</span>);	<span class="built_in">pow</span>(<span class="number">2.717</span>,<span class="number">10</span>);</span><br><span class="line"><span class="built_in">log</span>(<span class="number">2.717</span>);	<span class="built_in">log10</span>(<span class="number">100</span>);<span class="comment">//分别以e、10为底</span></span><br><span class="line"><span class="built_in">sin</span>(x);		<span class="built_in">asin</span>(x);</span><br><span class="line"><span class="built_in">abs</span>(n);		<span class="built_in">fabs</span>(x);</span><br><span class="line"><span class="built_in">floor</span>(x);	<span class="built_in">ceil</span>(x);<span class="comment">//向下取整、向上取整</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//控制台输入输出函数库</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;conio.h&gt;</span></span></span><br><span class="line"><span class="built_in">getchar</span>(ch);	_getche(ch);	_getch(ch);<span class="comment">//等待、有回显；不等，有回显；不等、无回显</span></span><br><span class="line"><span class="built_in">putchar</span>(ch);</span><br><span class="line"><span class="built_in">kbhit</span>();<span class="comment">//检查是否有键盘输入，有则非0，无则0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//时间函数库</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//辅助函数库</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span><span class="comment">//C 方式</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span><span class="comment">//C++</span></span></span><br><span class="line"><span class="built_in">malloc</span>(...);		<span class="built_in">free</span>(...);<span class="comment">//分配</span></span><br><span class="line"><span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="literal">NULL</span>));	<span class="built_in">rand</span>();<span class="comment">//随机数</span></span><br><span class="line"><span class="built_in">exit</span>(ret);			<span class="built_in">system</span>(...);<span class="comment">//系统</span></span><br><span class="line"><span class="built_in">atof</span>(<span class="string">&quot;3.14&quot;</span>);		<span class="built_in">atoi</span>(<span class="string">&quot;25&quot;</span>);<span class="comment">//转换。字符串-&gt;浮点数，并返回。字符串-&gt;整数，并返回。</span></span><br><span class="line"><span class="built_in">itoa</span>(<span class="number">25</span>,str,<span class="number">16</span>);<span class="comment">//以16进制，把整数25转换到字符串中并返回</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符类型函数库</span></span><br><span class="line"><span class="meta">#incldue <span class="string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="built_in">isdigit</span>(...);	<span class="built_in">isalpha</span>(...);<span class="comment">//是数字？是字母？是则返回非0，否则0</span></span><br><span class="line"><span class="built_in">islower</span>(...);	<span class="built_in">isupper</span>(...);<span class="comment">//是小写字母？是大写字母？是则返回非0，否则0</span></span><br><span class="line"><span class="built_in">isalnum</span>(...);	<span class="built_in">isxdigit</span>(...);<span class="comment">//数字字母？十六进制数？</span></span><br><span class="line"><span class="built_in">isspace</span>(...);	<span class="built_in">iscntrl</span>(...);<span class="comment">//white space?是DEL字符（0x7F）？</span></span><br><span class="line"><span class="built_in">tolower</span>(...);	<span class="built_in">toupper</span>(...);<span class="comment">//返回值转换大小写</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Windows基础函数库</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Window.h&gt;</span></span></span><br><span class="line"><span class="built_in">Sleep</span>(<span class="number">100</span>);<span class="comment">//当前程序睡眠100ms</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -2352,73 +2264,91 @@
       </tags>
   </entry>
   <entry>
-    <title>JWT身份认证原理</title>
-    <url>/butterflyblog/2023/07/26/JWT%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h1 id="JWT身份认证原理"><a href="#JWT身份认证原理" class="headerlink" title="JWT身份认证原理"></a>JWT身份认证原理</h1><blockquote>
-<h4 id="官网：Json-Web-Token"><a href="#官网：Json-Web-Token" class="headerlink" title="官网：Json Web Token"></a>官网：<a href="https://jwt.io/">Json Web Token</a></h4><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt1.png" alt="JWT官方"> </p>
+    <title>AAMS-同济教务系统</title>
+    <url>/butterflyblog/2023/07/29/AAMS-%E5%90%8C%E6%B5%8E%E6%95%99%E5%8A%A1%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="AAMS-同济教务系统"><a href="#AAMS-同济教务系统" class="headerlink" title="AAMS-同济教务系统"></a>AAMS-同济教务系统</h1><blockquote>
+<p><font color=red>网址入口：</font><a class="btn-beautify blue larger" href="http://isseymour.cn/" 
+  title="AAMS-同济教务系统"><i class="far fa-hand-point-right"></i><span>AAMS-同济教务系统</span></a></p>
+<p><font color=red>说明：账号密码请询问站长，谢谢配合！</font></p>
 </blockquote>
-<h3 id="0x01-认证原理"><a href="#0x01-认证原理" class="headerlink" title="0x01 认证原理"></a>0x01 认证原理</h3><p>JWT，Json Web Token。用户登陆成功后，服务端返回一个 jwt 的 token，服务端不储存，客户端储存。此后客户端每次请求，都带上 token。服务端会 jwt校验 token 的有效性。优点显而易见，是不需要在服务端储存 token，服务端只需要做校验有效性的工作即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt2.png" alt="JWT官方解释"></p>
-<p><strong>JWT 格式：</strong></p>
-<p>点分三段的字符串：</p>
-<p><strong>第一段：HEADER</strong></p>
-<p>base64url 加密的密文，可解密。</p>
-<p>jwt 头部，包含说明第三段不可解密的编码算法名 HS256、字段数据类型标识 JWT。</p>
-<p><strong>第二段：PAYLOAD</strong></p>
-<p>base64url 加密的密文，可解密。</p>
-<p>jwt 数据，包含自定义的数据。</p>
-<p><strong>第三段：VERIFY SIGNATURE</strong></p>
-<p>HS256 加密的密文，无法解密</p>
-<p>校验签名，第一段密文.第二段密文“盐”进行 HS256 加密，生成密文，再做base64url 加密。</p>
-<h3 id="0x02-代码实例"><a href="#0x02-代码实例" class="headerlink" title="0x02 代码实例"></a>0x02 代码实例</h3><p>为了实现用户登录之后的身份认证和授权管理，采用 JWT 认证。</p>
-<p><code>pip install pyjwt</code></p>
-<h4 id="颁发-token"><a href="#颁发-token" class="headerlink" title="颁发 token"></a>颁发 token</h4><p><code>release.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_token</span>(<span class="params">payload,timeout=<span class="number">30</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    创建token的部分</span></span><br><span class="line"><span class="string">    payload 外部传入payload，即用户信息在外部写，传入这里输出token即可</span></span><br><span class="line"><span class="string">    timeout 超时时间，默认30s</span></span><br><span class="line"><span class="string">    返回值：token</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 构造header</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;alg&quot;</span>:<span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">        <span class="string">&quot;typ&quot;</span>:<span class="string">&quot;jwt&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">#构造payload</span></span><br><span class="line">    payload[<span class="string">&#x27;exp&#x27;</span>] = datetime.datetime.utcnow() + datetime.timedelta(seconds=timeout)</span><br><span class="line">    token = jwt.encode(payload=payload,key=settings.SECRET_KEY,algorithm=<span class="string">&quot;HS256&quot;</span>,headers=headers)</span><br><span class="line">    <span class="keyword">return</span> token</span><br></pre></td></tr></table></figure>
-
-<h4 id="认证-token"><a href="#认证-token" class="headerlink" title="认证 token"></a>认证 token</h4><p><code>auth.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">from</span> rest_framework.authentication <span class="keyword">import</span> BaseAuthentication</span><br><span class="line"><span class="keyword">from</span> rest_framework.exceptions <span class="keyword">import</span> AuthenticationFailed</span><br><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="keyword">from</span> jwt <span class="keyword">import</span> exceptions</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">JwtAuthentication</span>(<span class="title class_ inherited__">BaseAuthentication</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">authenticate</span>(<span class="params">self, request</span>):</span><br><span class="line">        token = request.META.get(<span class="string">&quot;HTTP_AAMS_TOKEN&quot;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=<span class="string">&quot;HS256&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> exceptions.ExpiredSignatureError:</span><br><span class="line">            <span class="keyword">raise</span> AuthenticationFailed(&#123;<span class="string">&quot;code&quot;</span>: <span class="number">400</span>, <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;token已失效&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">except</span> jwt.DecodeError:</span><br><span class="line">            <span class="keyword">raise</span> AuthenticationFailed(&#123;<span class="string">&quot;code&quot;</span>: <span class="number">400</span>, <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;token认证失败&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">except</span> jwt.InvalidTokenError:</span><br><span class="line">            <span class="keyword">raise</span> AuthenticationFailed(&#123;<span class="string">&quot;code&quot;</span>: <span class="number">400</span>, <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;token无效&quot;</span>&#125;)</span><br><span class="line">        <span class="comment"># 这个return是会放行的，并不是直接返回。</span></span><br><span class="line">        <span class="comment"># 这里的意思是会把payload和token挂载在request上</span></span><br><span class="line">        <span class="comment"># payload:储存了username(用户账号)和exp(过期时间)，挂载在request.user</span></span><br><span class="line">        <span class="comment"># token:储存了token信息，挂载在request.auth上</span></span><br><span class="line">        <span class="keyword">return</span> (payload, token)</span><br></pre></td></tr></table></figure>
-
-<h4 id="配置在全局"><a href="#配置在全局" class="headerlink" title="配置在全局"></a>配置在全局</h4><p>若是要哪个请求需要认证才能进行后续业务，那么：</p>
-<p><code>views.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> myserver.mytoken.auth <span class="keyword">import</span> JwtAuthentication</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">aView</span>(...):</span><br><span class="line">	authentication_class = [JwtAuthentication,]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self,request</span>):</span><br><span class="line">        ..</span><br></pre></td></tr></table></figure>
-
-<p>因为基本上所有的请求，都是要认证再进行业务的。所以可以配置在</p>
-<p><code>settings.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">SECRET_KEY = <span class="string">&quot;xxxxxxxxxxxx自己设置即可xxxxxxxxxxxxx&quot;</span>	<span class="comment"># 前面设置的密钥（盐）</span></span><br><span class="line"></span><br><span class="line">REST_FRAMEWORK = [</span><br><span class="line">    <span class="string">&quot;DEFAULT_AUTHENTICATION_CLASS&quot;</span>:[</span><br><span class="line">        <span class="string">&quot;myserver.mytoken.JwtAuthentication&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>注意，要在登陆视图函数取消认证配置：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LoginView</span>(...):</span><br><span class="line">    authentication_class = [] <span class="comment">#这里设置的优先级会高于全局设置，所以最终Login会取消认证的操作，直接放行</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">...</span>):</span><br></pre></td></tr></table></figure>
-
-<h4 id="login视图函数"><a href="#login视图函数" class="headerlink" title="login视图函数"></a>login视图函数</h4><p><code>views.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> ensure_csrf_cookie</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> .mytoken.release <span class="keyword">import</span> create_token</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Major,User</span><br><span class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> CourseSerializer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Login</span>(<span class="title class_ inherited__">APIView</span>):</span><br><span class="line">    authentication_classes = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self,request</span>):</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;code&quot;</span>:<span class="number">400</span>, <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;后端没有login的get&quot;</span>&#125;,status=status.HTTP_200_OK)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">post</span>(<span class="params">self,request</span>):</span><br><span class="line">        username = request.POST.get(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">        password = request.POST.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line">        exists = User.objects.<span class="built_in">filter</span>(username=username,password=password).exists()</span><br><span class="line">        <span class="keyword">if</span> exists:</span><br><span class="line">            token = create_token(&#123;<span class="string">&quot;username&quot;</span>:username&#125;)</span><br><span class="line">            res = &#123;</span><br><span class="line">                <span class="string">&quot;code&quot;</span>:<span class="number">200</span>,</span><br><span class="line">                <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;登陆成功！&quot;</span>,</span><br><span class="line">                <span class="string">&quot;data&quot;</span>:&#123;</span><br><span class="line">                    <span class="string">&quot;aams-token&quot;</span>:token,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Response(res,status=status.HTTP_200_OK)</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;code&quot;</span>:<span class="number">400</span>, <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;登陆失败！&quot;</span>&#125;,status=status.HTTP_400_BAD_REQUEST)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>若想一天不失效，可以：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">token = create_token(&#123;<span class="string">&quot;username&quot;</span>:username&#125;,timeout=<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>)    <span class="comment">#一天不失效</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="0x03-认证测试"><a href="#0x03-认证测试" class="headerlink" title="0x03 认证测试"></a>0x03 认证测试</h3><p>正如前面所说，我们采用JWT认证，那么测试登录和认证十分重要。</p>
-<p>在第一次登录成功之后，应该由后端颁发一个token（我的系统命名为aams-token）。此后，每次网络请求必须带上这个aams-token作为请求头，后端会在请求头里取到aams-token，由中间件进行认证拦截，认证成功则会放行，否则请求失败。</p>
-<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><p>首先看一下能否在登录成功后得到一个正确的token：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt3.png" alt="登陆测试"></p>
-<h4 id="认证测试"><a href="#认证测试" class="headerlink" title="认证测试"></a>认证测试</h4><p>除登录API，随便选择一个API，发起请求，分别看在没有token和带有token的情况下，会收到什么响应：</p>
-<p>注：以下所有API的response都是自行设计的code和msg。</p>
-<p>为了方便测试，我只采用了少量的code（同时也尽量贴合状态码的原意）和msg。</p>
-<blockquote>
-<p>code 状态码：200 处理成功；400 处理失败；301 重定向；202 接收处理但等待创建。</p>
-<p>msg 状态信息：解释每种情况下的具体信息。</p>
-</blockquote>
-<h5 id="情况1：不带token"><a href="#情况1：不带token" class="headerlink" title="情况1：不带token"></a>情况1：不带token</h5><p>如下图，可见code状态码为400，msg状态信息为token认证失败。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt4.png" alt="情况1：不带token"></p>
-<h5 id="情况2：带失效的token"><a href="#情况2：带失效的token" class="headerlink" title="情况2：带失效的token"></a>情况2：带失效的token</h5><p>如下图，可见code状态码为400，msg状态信息为token已失效。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt5.png" alt="情况2：带失效的token"></p>
-<h5 id="情况3：带有效的token"><a href="#情况3：带有效的token" class="headerlink" title="情况3：带有效的token"></a>情况3：带有效的token</h5><p>如下图，可见code状态码为200，msg状态信息为获取成功。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt6.png" alt="情况3：带有效的token"></p>
+<h3 id="0x01-AAMS是什么？"><a href="#0x01-AAMS是什么？" class="headerlink" title="0x01 AAMS是什么？"></a>0x01 AAMS是什么？</h3><ul>
+<li>Academic Affairs Management System</li>
+<li>教务管理系统</li>
+</ul>
+<p>本次项目致力于搭建一个有数据库支持的、前后端分离的教务管理系统。</p>
+<h3 id="0x02-技术栈"><a href="#0x02-技术栈" class="headerlink" title="0x02 技术栈"></a>0x02 技术栈</h3><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams1.png" alt="aams技术栈"></p>
+<ul>
+<li>前端：Vue 2.x、Vue-Router、ElementUI、Axios</li>
+<li>后端：Django、DRF、JWT</li>
+<li>数据库：MySQL</li>
+</ul>
+<p>本次项目采用前后端分离的架构，前端采用 VUE 框架，后端采用Django 框架，前后端通过 AJAX 技术进行连接。</p>
+<p>后端主要管理数据库、数据查询、数据操作等功能，构建数据模型、与数据库交互、业务流程处理、网络请求接收并响应等功能。其中网络请求部分，通过传输 JSON 格式数据给前端，前端接收 JSON 格式数据后，把数据传给前端渲染的 data 进行渲染并呈现给用户。</p>
+<p>前端是 SPA 单页面应用，功能跳转通过 vue-router 来处理，本地身份认证与路由拦截也通过 vue-router 处理。其中关于网络请求有单独的文件结构，简洁明了。美化工作由 elementUI 和少量原生的 CSS 来处理。</p>
+<h3 id="0x03-效果展示"><a href="#0x03-效果展示" class="headerlink" title="0x03 效果展示"></a>0x03 效果展示</h3><h4 id="3-1-学生端"><a href="#3-1-学生端" class="headerlink" title="3.1 学生端"></a>3.1 学生端</h4><h5 id="3-1-1-首页"><a href="#3-1-1-首页" class="headerlink" title="3.1.1 首页"></a>3.1.1 首页</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams2.png" alt="学生端首页"></p>
+<p>说明：</p>
+<p>（1）登录成功提示；</p>
+<p>（2）主页分为头部信息、左侧菜单栏、中间主内容区域；</p>
+<p>（3）主页会自动获取最近的几条通知广告，进行自动播放；</p>
+<p>（4）右上角的“我的信息”可以退出登录；</p>
+<p>（5）“通知公告”处可以打开通知查看详情；</p>
+<p>（6）本学期进度是一些个人信息，其中进度圈是指当前的学期阶段（分为5阶段，2是开放选课阶段，未到选课阶段时，无法选课）。</p>
+<h5 id="3-1-2-全校课程"><a href="#3-1-2-全校课程" class="headerlink" title="3.1.2 全校课程"></a>3.1.2 全校课程</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams3.png" alt="全校课程"></p>
+<p>说明：</p>
+<p>（1）可以输入学期代码、下拉选择校区，再点击查询；</p>
+<p>（2）在右下角有每页几条、跳转数据、直接跳转数据的功能；</p>
+<p>（3）每次查询会给出查询结果，是否成功查询、网络出错等。</p>
+<h5 id="3-1-3-个人选课"><a href="#3-1-3-个人选课" class="headerlink" title="3.1.3 个人选课"></a>3.1.3 个人选课</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams4.png" alt="个人选课1"></p>
+<p>说明：</p>
+<p>（1）刚进入时，显示当前没有对您开放的选课，可以刷新；</p>
+<p>（2）刷新若有选课会展示选课的轮次，以供选择；</p>
+<p>（3）进入选课有确认阅读选课信息界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams5.png" alt="个人选课2"></p>
+<p>说明：</p>
+<p>（1）进入选课界面后，初始时，没有任何数据；</p>
+<p>（2）点击“添加课程”，会在选课列表里添加所有可选的课程；</p>
+<p>（3）下拉有在线课表的功能，可以查看；</p>
+<p>（4）选课列表里的每个课程可以查看，然后进行具体课程班级的选择；</p>
+<p>（5）前端自动进行选课是否冲突的判断，不冲突则选课成功，冲突会给出提示；</p>
+<p>（6）选好的课程后，可以刷新课表，在下拉课表里查看当前的课程表；</p>
+<p>（7）已选的课程会变成“深绿色”的课程序号，未选是“浅绿色”的课程序号；</p>
+<p>（8）再次点击已选的课程，会进行退课，退课前会先提示是否确认退课操作；</p>
+<p>（9）课程会自动排在课程表里对应时间位置，并写清楚课程名、教师、教室。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams6.png" alt="个人选课3"></p>
+<p>说明：</p>
+<p>（1）进入我的课表页面，点击左上角“学生课表”旁边的“刷新”；</p>
+<p>（2）下拉有表格的课程列表，信息更加全面。</p>
+<h5 id="3-1-4-成绩查询"><a href="#3-1-4-成绩查询" class="headerlink" title="3.1.4 成绩查询"></a>3.1.4 成绩查询</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams9.png" alt="成绩查询"></p>
+<p>说明：</p>
+<p>（1）会向后端查询当前账号的所有成绩单；</p>
+<p>（2）成绩会按照学期先后进行排序展示，你可以点击“学期编号”旁边的箭头，更改排序的先后顺序；</p>
+<p>教师端有录入成绩的功能（后面会展示）。</p>
+<h4 id="3-2-教师端"><a href="#3-2-教师端" class="headerlink" title="3.2 教师端"></a>3.2 教师端</h4><h5 id="3-2-1-首页"><a href="#3-2-1-首页" class="headerlink" title="3.2.1 首页"></a>3.2.1 首页</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams10.png" alt="教师端首页"></p>
+<p>说明：</p>
+<p>（1）该页面大体内容和学生端类似，为了作为区分，我更改了外围的主色调；</p>
+<p>（2）教师端的侧边菜单栏功能与学生端不同。</p>
+<p>（3）部分通知不一样，部分通知可能并不是发给教师，所以教师看不到。</p>
+<h5 id="3-2-2-我的授课"><a href="#3-2-2-我的授课" class="headerlink" title="3.2.2 我的授课"></a>3.2.2 我的授课</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams12.png" alt="我的授课"></p>
+<p>说明：</p>
+<p>（1）教师授课的课程都会在该页面显示。</p>
+<h5 id="3-2-3-录入成绩"><a href="#3-2-3-录入成绩" class="headerlink" title="3.2.3 录入成绩"></a>3.2.3 录入成绩</h5><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/aams11.png" alt="录入成绩"></p>
+<p>说明：</p>
+<p>（1）教师可在该页面录入成绩；</p>
+<p>（2）录入成绩有学期阶段限制，不是处于第5阶段：学期结束阶段，无法录入；</p>
+<h3 id="0x04-杂谈"><a href="#0x04-杂谈" class="headerlink" title="0x04 杂谈"></a>0x04 杂谈</h3><h4 id="4-1-心得"><a href="#4-1-心得" class="headerlink" title="4.1 心得"></a>4.1 心得</h4><p>本次项目，我很早就开始准备了，也是最初一直学了好久的 B 站课程，我前端选的是 VUE，在 B 站上选了一个播放量比较大的，每天有空就学，也因为比较感兴趣，学的不算枯燥，会同时记录 notes，防止自己看了一遍就忘了，就白学了。（视频链接：<a href="https://www.bilibili.com/video/BV1Zy4y1K7SH/">b站尚硅谷Vue2.0+Vue3.0</a>）</p>
+<p>尤其计算机操作类的课程，都是很容易生疏，因此，我每天看完的内容，一定会总结一下。大概在 5 月初的样子，把 VUE 教程看完了，对前端感觉了解深刻了很多。同时因为有了这次的经历，对自学新的知识开始转变思想，也比较有信心通过自学能学会新技术。后端原本打算使用Java，但是由于我没有学过 Java，可能 5 月才开始学，会有点晚了。所以，转向使用已学过的 Python 做后端，在 Flask 和 Django 之间，选择了 Django，主要是看重他的框架比较成型，也好让我对后端基本框架有一个更加成熟完备的了解，便于以后更好的学习其他后端框架。同时比较好的是 Django 不需要我直接操作数据库，这点对于我这个还没有学过数据库的同学来说，无疑是最大的好处。我的后端学的不如前端扎实，毕竟学前端时间也长，而学后端的时间少不说，还缺乏比较全面的教程。</p>
+<p>在学完前端和后端基本框架之后，我开始着手做这个项目了。做项目的过程中，又引发很多问题。比如说遇到关于登陆后的认证问题，我就去学习了一下 JWT 认证，了解了原理，然后自己再编写；遇到关于后端规范化数据格式，我学习了 DRF，采用 APIView 和序列化器，使得交互数据非常简洁明了；遇到跨域请求问题，学习了解决跨域问题的前端、后端方法。</p>
+<p>经历这么一遭，最终也是做好了，也算是比较满意吧。其实我发现，热爱很重要，其实想想学习的这一路还是比较痛苦的，但是由于迫切希望看到结果，我也一直快马加鞭的学了下来。希望以后还能保持这份热爱，继续前行！</p>
+<h4 id="4-2-认知"><a href="#4-2-认知" class="headerlink" title="4.2 认知"></a>4.2 认知</h4><p>最后，关于分析国内外的 web 技术，我可能说不出太多认知。我仅说说我学过的这些技术中，我的一些看法吧。</p>
+<p>前端技术 vue 是尤雨溪开发出来的一套框架。我其实比较惊喜能够在计算机的某种技术里看到中国人的名字放在第一位。我的体会一直是中国在追赶国外的新兴技术，我们也能做到很好的使用，但是总是缺少开发新兴技术的人。所以，Vue 的出现，让我感到惊喜！</p>
+<p>其他 web 技术，我了解的不多，我目前听到的说法是：中国比较庞大的 web 技术生态是微信生态系统，微信提供了许多 API 和开发工具，允许开发人员在其平台上构建应用程序和服务。国外比较多用的也几乎都是类似微信的一些社交媒体，如 Twitter、Facebook、Instagram 等。</p>
+<p>我一直认为，能否推动某种技术大力发展取决于它的受众面是否广阔。希望今后能看到更多以中国人名字排头的 web 技术！</p>
 ]]></content>
       <categories>
-        <category>Web技术</category>
+        <category>开发项目</category>
       </categories>
       <tags>
-        <tag>身份认证</tag>
+        <tag>前后端分离</tag>
       </tags>
   </entry>
   <entry>
@@ -2524,6 +2454,76 @@
       </categories>
       <tags>
         <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JWT身份认证原理</title>
+    <url>/butterflyblog/2023/07/26/JWT%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h1 id="JWT身份认证原理"><a href="#JWT身份认证原理" class="headerlink" title="JWT身份认证原理"></a>JWT身份认证原理</h1><blockquote>
+<h4 id="官网：Json-Web-Token"><a href="#官网：Json-Web-Token" class="headerlink" title="官网：Json Web Token"></a>官网：<a href="https://jwt.io/">Json Web Token</a></h4><p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt1.png" alt="JWT官方"> </p>
+</blockquote>
+<h3 id="0x01-认证原理"><a href="#0x01-认证原理" class="headerlink" title="0x01 认证原理"></a>0x01 认证原理</h3><p>JWT，Json Web Token。用户登陆成功后，服务端返回一个 jwt 的 token，服务端不储存，客户端储存。此后客户端每次请求，都带上 token。服务端会 jwt校验 token 的有效性。优点显而易见，是不需要在服务端储存 token，服务端只需要做校验有效性的工作即可。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt2.png" alt="JWT官方解释"></p>
+<p><strong>JWT 格式：</strong></p>
+<p>点分三段的字符串：</p>
+<p><strong>第一段：HEADER</strong></p>
+<p>base64url 加密的密文，可解密。</p>
+<p>jwt 头部，包含说明第三段不可解密的编码算法名 HS256、字段数据类型标识 JWT。</p>
+<p><strong>第二段：PAYLOAD</strong></p>
+<p>base64url 加密的密文，可解密。</p>
+<p>jwt 数据，包含自定义的数据。</p>
+<p><strong>第三段：VERIFY SIGNATURE</strong></p>
+<p>HS256 加密的密文，无法解密</p>
+<p>校验签名，第一段密文.第二段密文“盐”进行 HS256 加密，生成密文，再做base64url 加密。</p>
+<h3 id="0x02-代码实例"><a href="#0x02-代码实例" class="headerlink" title="0x02 代码实例"></a>0x02 代码实例</h3><p>为了实现用户登录之后的身份认证和授权管理，采用 JWT 认证。</p>
+<p><code>pip install pyjwt</code></p>
+<h4 id="颁发-token"><a href="#颁发-token" class="headerlink" title="颁发 token"></a>颁发 token</h4><p><code>release.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_token</span>(<span class="params">payload,timeout=<span class="number">30</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    创建token的部分</span></span><br><span class="line"><span class="string">    payload 外部传入payload，即用户信息在外部写，传入这里输出token即可</span></span><br><span class="line"><span class="string">    timeout 超时时间，默认30s</span></span><br><span class="line"><span class="string">    返回值：token</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 构造header</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;alg&quot;</span>:<span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">        <span class="string">&quot;typ&quot;</span>:<span class="string">&quot;jwt&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">#构造payload</span></span><br><span class="line">    payload[<span class="string">&#x27;exp&#x27;</span>] = datetime.datetime.utcnow() + datetime.timedelta(seconds=timeout)</span><br><span class="line">    token = jwt.encode(payload=payload,key=settings.SECRET_KEY,algorithm=<span class="string">&quot;HS256&quot;</span>,headers=headers)</span><br><span class="line">    <span class="keyword">return</span> token</span><br></pre></td></tr></table></figure>
+
+<h4 id="认证-token"><a href="#认证-token" class="headerlink" title="认证 token"></a>认证 token</h4><p><code>auth.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">from</span> rest_framework.authentication <span class="keyword">import</span> BaseAuthentication</span><br><span class="line"><span class="keyword">from</span> rest_framework.exceptions <span class="keyword">import</span> AuthenticationFailed</span><br><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line"><span class="keyword">from</span> jwt <span class="keyword">import</span> exceptions</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">JwtAuthentication</span>(<span class="title class_ inherited__">BaseAuthentication</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">authenticate</span>(<span class="params">self, request</span>):</span><br><span class="line">        token = request.META.get(<span class="string">&quot;HTTP_AAMS_TOKEN&quot;</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=<span class="string">&quot;HS256&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> exceptions.ExpiredSignatureError:</span><br><span class="line">            <span class="keyword">raise</span> AuthenticationFailed(&#123;<span class="string">&quot;code&quot;</span>: <span class="number">400</span>, <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;token已失效&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">except</span> jwt.DecodeError:</span><br><span class="line">            <span class="keyword">raise</span> AuthenticationFailed(&#123;<span class="string">&quot;code&quot;</span>: <span class="number">400</span>, <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;token认证失败&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">except</span> jwt.InvalidTokenError:</span><br><span class="line">            <span class="keyword">raise</span> AuthenticationFailed(&#123;<span class="string">&quot;code&quot;</span>: <span class="number">400</span>, <span class="string">&quot;msg&quot;</span>: <span class="string">&quot;token无效&quot;</span>&#125;)</span><br><span class="line">        <span class="comment"># 这个return是会放行的，并不是直接返回。</span></span><br><span class="line">        <span class="comment"># 这里的意思是会把payload和token挂载在request上</span></span><br><span class="line">        <span class="comment"># payload:储存了username(用户账号)和exp(过期时间)，挂载在request.user</span></span><br><span class="line">        <span class="comment"># token:储存了token信息，挂载在request.auth上</span></span><br><span class="line">        <span class="keyword">return</span> (payload, token)</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置在全局"><a href="#配置在全局" class="headerlink" title="配置在全局"></a>配置在全局</h4><p>若是要哪个请求需要认证才能进行后续业务，那么：</p>
+<p><code>views.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> myserver.mytoken.auth <span class="keyword">import</span> JwtAuthentication</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">aView</span>(...):</span><br><span class="line">	authentication_class = [JwtAuthentication,]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self,request</span>):</span><br><span class="line">        ..</span><br></pre></td></tr></table></figure>
+
+<p>因为基本上所有的请求，都是要认证再进行业务的。所以可以配置在</p>
+<p><code>settings.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">SECRET_KEY = <span class="string">&quot;xxxxxxxxxxxx自己设置即可xxxxxxxxxxxxx&quot;</span>	<span class="comment"># 前面设置的密钥（盐）</span></span><br><span class="line"></span><br><span class="line">REST_FRAMEWORK = [</span><br><span class="line">    <span class="string">&quot;DEFAULT_AUTHENTICATION_CLASS&quot;</span>:[</span><br><span class="line">        <span class="string">&quot;myserver.mytoken.JwtAuthentication&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>注意，要在登陆视图函数取消认证配置：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LoginView</span>(...):</span><br><span class="line">    authentication_class = [] <span class="comment">#这里设置的优先级会高于全局设置，所以最终Login会取消认证的操作，直接放行</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">...</span>):</span><br></pre></td></tr></table></figure>
+
+<h4 id="login视图函数"><a href="#login视图函数" class="headerlink" title="login视图函数"></a>login视图函数</h4><p><code>views.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> ensure_csrf_cookie</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> .mytoken.release <span class="keyword">import</span> create_token</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Major,User</span><br><span class="line"><span class="keyword">from</span> .serializers <span class="keyword">import</span> CourseSerializer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Login</span>(<span class="title class_ inherited__">APIView</span>):</span><br><span class="line">    authentication_classes = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self,request</span>):</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;code&quot;</span>:<span class="number">400</span>, <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;后端没有login的get&quot;</span>&#125;,status=status.HTTP_200_OK)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">post</span>(<span class="params">self,request</span>):</span><br><span class="line">        username = request.POST.get(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">        password = request.POST.get(<span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line">        exists = User.objects.<span class="built_in">filter</span>(username=username,password=password).exists()</span><br><span class="line">        <span class="keyword">if</span> exists:</span><br><span class="line">            token = create_token(&#123;<span class="string">&quot;username&quot;</span>:username&#125;)</span><br><span class="line">            res = &#123;</span><br><span class="line">                <span class="string">&quot;code&quot;</span>:<span class="number">200</span>,</span><br><span class="line">                <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;登陆成功！&quot;</span>,</span><br><span class="line">                <span class="string">&quot;data&quot;</span>:&#123;</span><br><span class="line">                    <span class="string">&quot;aams-token&quot;</span>:token,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Response(res,status=status.HTTP_200_OK)</span><br><span class="line">        <span class="keyword">return</span> Response(&#123;<span class="string">&quot;code&quot;</span>:<span class="number">400</span>, <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;登陆失败！&quot;</span>&#125;,status=status.HTTP_400_BAD_REQUEST)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若想一天不失效，可以：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">token = create_token(&#123;<span class="string">&quot;username&quot;</span>:username&#125;,timeout=<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>)    <span class="comment">#一天不失效</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="0x03-认证测试"><a href="#0x03-认证测试" class="headerlink" title="0x03 认证测试"></a>0x03 认证测试</h3><p>正如前面所说，我们采用JWT认证，那么测试登录和认证十分重要。</p>
+<p>在第一次登录成功之后，应该由后端颁发一个token（我的系统命名为aams-token）。此后，每次网络请求必须带上这个aams-token作为请求头，后端会在请求头里取到aams-token，由中间件进行认证拦截，认证成功则会放行，否则请求失败。</p>
+<h4 id="登录测试"><a href="#登录测试" class="headerlink" title="登录测试"></a>登录测试</h4><p>首先看一下能否在登录成功后得到一个正确的token：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt3.png" alt="登陆测试"></p>
+<h4 id="认证测试"><a href="#认证测试" class="headerlink" title="认证测试"></a>认证测试</h4><p>除登录API，随便选择一个API，发起请求，分别看在没有token和带有token的情况下，会收到什么响应：</p>
+<p>注：以下所有API的response都是自行设计的code和msg。</p>
+<p>为了方便测试，我只采用了少量的code（同时也尽量贴合状态码的原意）和msg。</p>
+<blockquote>
+<p>code 状态码：200 处理成功；400 处理失败；301 重定向；202 接收处理但等待创建。</p>
+<p>msg 状态信息：解释每种情况下的具体信息。</p>
+</blockquote>
+<h5 id="情况1：不带token"><a href="#情况1：不带token" class="headerlink" title="情况1：不带token"></a>情况1：不带token</h5><p>如下图，可见code状态码为400，msg状态信息为token认证失败。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt4.png" alt="情况1：不带token"></p>
+<h5 id="情况2：带失效的token"><a href="#情况2：带失效的token" class="headerlink" title="情况2：带失效的token"></a>情况2：带失效的token</h5><p>如下图，可见code状态码为400，msg状态信息为token已失效。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt5.png" alt="情况2：带失效的token"></p>
+<h5 id="情况3：带有效的token"><a href="#情况3：带有效的token" class="headerlink" title="情况3：带有效的token"></a>情况3：带有效的token</h5><p>如下图，可见code状态码为200，msg状态信息为获取成功。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/jwt6.png" alt="情况3：带有效的token"></p>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+      </categories>
+      <tags>
+        <tag>身份认证</tag>
       </tags>
   </entry>
   <entry>
@@ -8671,409 +8671,6 @@
       </tags>
   </entry>
   <entry>
-    <title>《Linux》Notes</title>
-    <url>/butterflyblog/2023/04/18/%E3%80%8ALinux%E3%80%8BNotes/</url>
-    <content><![CDATA[<h1 id="《Linux》Notes"><a href="#《Linux》Notes" class="headerlink" title="《Linux》Notes"></a>《Linux》Notes</h1><h2 id="Linux-命令-篇"><a href="#Linux-命令-篇" class="headerlink" title="Linux 命令 篇"></a>Linux 命令 篇</h2><h3 id="0、基础目录"><a href="#0、基础目录" class="headerlink" title="0、基础目录"></a>0、基础目录</h3><h4 id="清空当前命令行信息"><a href="#清空当前命令行信息" class="headerlink" title="清空当前命令行信息"></a>清空当前命令行信息</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="1、文件命令"><a href="#1、文件命令" class="headerlink" title="1、文件命令"></a>1、文件命令</h3><h4 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h4><ul>
-<li><p>蓝色</p>
-<p>文件夹<code>d</code></p>
-</li>
-<li><p>青色</p>
-<p>软链接<code>l</code>，通过 <code>ls -l</code> 可以看到会指向真实文件或文件夹</p>
-</li>
-<li><p>红色</p>
-<p>.tar&#x2F;.tar.gz 归档压缩包</p>
-</li>
-<li><p>黑色</p>
-<p>文件<code>-</code></p>
-</li>
-</ul>
-<h4 id="查看当前目录"><a href="#查看当前目录" class="headerlink" title="查看当前目录"></a>查看当前目录</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls</span><br><span class="line">详细模式</span><br><span class="line">ls -l</span><br><span class="line">查看隐藏文件</span><br><span class="line">ls -a</span><br></pre></td></tr></table></figure>
-
-<h4 id="显示当前位置"><a href="#显示当前位置" class="headerlink" title="显示当前位置"></a>显示当前位置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pwd</span><br><span class="line">即print working directory</span><br></pre></td></tr></table></figure>
-
-<h4 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd</span><br><span class="line">即change directory</span><br></pre></td></tr></table></figure>
-
-<h4 id="几个特殊的目录"><a href="#几个特殊的目录" class="headerlink" title="几个特殊的目录"></a>几个特殊的目录</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~</span><br><span class="line">代表当前用户的主目录</span><br><span class="line">.</span><br><span class="line">代表当前目录</span><br><span class="line">..</span><br><span class="line">代表上一级目录</span><br><span class="line"></span><br><span class="line">cd ~</span><br><span class="line">cd ~/example</span><br><span class="line">cd ../example</span><br></pre></td></tr></table></figure>
-
-<h4 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir abc</span><br><span class="line">mkdir -p abc/123/text</span><br><span class="line">//创建目录即make directory,-p参数将路径的层次目录全部创建</span><br><span class="line"></span><br><span class="line">rmdir abc</span><br><span class="line">//删除空目录即remove directory,空目录才能删除，若目录非空，则删除失败</span><br><span class="line"></span><br><span class="line">rm -rf abc</span><br><span class="line">rm -rf /*</span><br><span class="line">//删除文件或目录即remove,可以删除非空目录，会连带里面的内容都删除,-rf参数表示强制删除</span><br><span class="line"></span><br><span class="line">cp -rf example example2</span><br><span class="line">//复制文件或目录即copy</span><br><span class="line"></span><br><span class="line">mv hello helloworld</span><br><span class="line">//移动文件或目录（重命名）即move</span><br></pre></td></tr></table></figure>
-
-<h4 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -cvf xxx.tar file1 file2 file3</span><br><span class="line">tar -zcvf xxx.tar.gz example/</span><br><span class="line">//即tape archive,创建档案打包</span><br><span class="line">//c表示create创建档案v表示verbose显示详情f表示file,z表示gzip压缩</span><br></pre></td></tr></table></figure>
-
-<h4 id="还原归档"><a href="#还原归档" class="headerlink" title="还原归档"></a>还原归档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xvf example.tar</span><br><span class="line">tar -xvf example.tar -C mydir</span><br><span class="line">tar -zxvf example.tar.gz</span><br><span class="line">//其中，-C参数指定存放目标目录，默认解到当前目录，z解压缩</span><br></pre></td></tr></table></figure>
-
-<h4 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s example examplelink</span><br><span class="line">//即windows的快捷方式,s表示soft软链接（默认为硬）</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2、用户"><a href="#2、用户" class="headerlink" title="2、用户"></a>2、用户</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">useradd -m test1</span><br><span class="line">//其中sudo表示以管理员身份执行，如下，后面同理</span><br><span class="line">//sudo useradd -m test1</span><br></pre></td></tr></table></figure>
-
-<h4 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h4><blockquote>
-<p>密码不会显示的，但实际上输入了</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">passwd test1</span><br></pre></td></tr></table></figure>
-
-<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userdel test1</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意，删除用户后，不会自动删除<code>/home/test1</code>的文件</p>
-<p>可以自己删除<code>sudo rm -rf /home/test1</code></p>
-<ul>
-<li><p>注意</p>
-<ul>
-<li><p>登陆系统时，默认不允许以root用户登陆</p>
-</li>
-<li><p>只有特殊用户才能执行sudo</p>
-<blockquote>
-<p>test1就不能执行sudo</p>
-</blockquote>
-</li>
-<li><p>能执行sudo命令的用户叫做 sudoer</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h4 id="超级用户root"><a href="#超级用户root" class="headerlink" title="超级用户root"></a>超级用户root</h4><blockquote>
-<p>类似Windows下的管理员Administrator用户</p>
-<p>root有全部权限</p>
-<ul>
-<li><p>设置密码</p>
-<p><code>sudo passwd root</code></p>
-</li>
-<li><p>切换到 root用户(switch user)</p>
-<p><code>su root</code></p>
-<blockquote>
-<p>切换用户仅对当前会话终端有效（临时切换而已），不影响当前桌面环境</p>
-</blockquote>
-</li>
-<li><p>退出</p>
-<p><code>exit</code></p>
-</li>
-</ul>
-</blockquote>
-<h4 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h4><blockquote>
-<p>默认在同名的组</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//创建组</span><br><span class="line">groupadd boys</span><br><span class="line">//创建用户（g表示添加用户同时加到组boys里）</span><br><span class="line">useradd -m -g boys ming</span><br><span class="line">//修改现有用户到新组(usermod用户信息)</span><br><span class="line">usermod -g boys ming</span><br><span class="line"></span><br><span class="line">//查看用户和组(一行表示一个group的信息，名称+ID)</span><br><span class="line">cat /etc/group</span><br><span class="line">//查看用户列表(一行一个用户信息)</span><br><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
-
-<h4 id="以root-登陆桌面"><a href="#以root-登陆桌面" class="headerlink" title="以root 登陆桌面"></a>以root 登陆桌面</h4><blockquote>
-<p>默认不允许</p>
-<p>要修改配置</p>
-</blockquote>
-<ul>
-<li><p>其他用户登陆</p>
-</li>
-<li><p>切换到root用户</p>
-<p><code>su root</code></p>
-</li>
-<li><p>打开配置1</p>
-<p><code>gedit /etc/pam.d/gdm-autologin</code></p>
-<p>注释掉#</p>
-<blockquote>
-<p>#auth   required    pam_succeed_if.so user !&#x3D; root quiet_success</p>
-</blockquote>
-</li>
-<li><p>打开配置2</p>
-<p><code>gedit /etc/pam.d/gdm-password</code></p>
-<p>注释掉</p>
-<blockquote>
-<p>#auth   required    pam_succeed_if.so user !&#x3D; root quiet_success</p>
-</blockquote>
-</li>
-<li><p>关闭虚拟机，重启</p>
-</li>
-</ul>
-<h3 id="3、文件"><a href="#3、文件" class="headerlink" title="3、文件"></a>3、文件</h3><h4 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h4><ul>
-<li><p><code>-owner</code></p>
-<p>文件的属主</p>
-</li>
-<li><p><code>-r</code></p>
-<p>是否可读read</p>
-</li>
-<li><p><code>-w</code></p>
-<p>是否可写write</p>
-</li>
-<li><p><code>-x</code></p>
-<p>是否可执行excute</p>
-</li>
-<li><p>权限分为三部分</p>
-<ul>
-<li>自己</li>
-<li>同组</li>
-<li>别人</li>
-</ul>
-<p>例如：</p>
-<p><code>rwxrwxr-x</code></p>
-<p><code>rwxrwxr--</code></p>
-<p><code>r--------</code></p>
-</li>
-</ul>
-<h4 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h4><blockquote>
-<p>只有文件的属主或root可以修改文件权限</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod o+w example.txt</span><br><span class="line">chmod o-w example.txt</span><br><span class="line">chmod +w example.txt</span><br><span class="line">//即change file mode 修改文件的访问权限</span><br><span class="line">//o表示other别人，+w表示增加write权限，-w表示除去write权限</span><br><span class="line">//人员：a所有人，u自己,o别人，不加人员默认是自己和本组</span><br></pre></td></tr></table></figure>
-
-<h4 id="修改文件属主"><a href="#修改文件属主" class="headerlink" title="修改文件属主"></a>修改文件属主</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chown</span><br><span class="line">//即change owner修改文件的属主，不常用</span><br><span class="line">chown -R 新属主 文件</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4、可执行脚本"><a href="#4、可执行脚本" class="headerlink" title="4、可执行脚本"></a>4、可执行脚本</h3><ul>
-<li><p>颜色</p>
-<ul>
-<li><p>普通文本 </p>
-<p>黑色</p>
-</li>
-<li><p>可执行脚本 </p>
-<p>绿色</p>
-</li>
-</ul>
-</li>
-<li><p>脚本Script，一种解释执行的程序</p>
-<p>Linux 下常见的三种脚本程序</p>
-<ul>
-<li>Shell 脚本 <code>*.sh</code></li>
-<li>Perl 脚本 <code>*.pl</code></li>
-<li>Python 脚本 <code>*.py</code></li>
-</ul>
-<p>脚本文件，本质是一个文本文件</p>
-<ul>
-<li>是一个文本文件，具有可执行权限</li>
-</ul>
-</li>
-<li><p>脚本程序都是由解释器来执行的</p>
-<ul>
-<li>Shell 脚本解释器 <code>/bin/sh</code></li>
-<li>Perl 脚本解释器 <code>/bin/perl</code></li>
-<li>Python 脚本解释器 <code>/bin/python3</code></li>
-</ul>
-</li>
-<li><p>执行脚本</p>
-<p>两种方式</p>
-<ul>
-<li><code>./hello.py</code></li>
-<li><code>/bin/python3 hello.py</code></li>
-</ul>
-<blockquote>
-<p>第二种，相当于传入参数</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="Shell-脚本"><a href="#Shell-脚本" class="headerlink" title="Shell 脚本"></a>Shell 脚本</h4><ul>
-<li><p>按Shell 语法写出来的脚本</p>
-<p>是Linux 自带的脚本语言</p>
-<blockquote>
-<p>相当于Windows 下的 DOS 批处理脚本</p>
-</blockquote>
-</li>
-<li><p>写文本</p>
-</li>
-</ul>
-<p><code>hello.sh</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">echo &quot;hello,world&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>添加执行权限</p>
-<p><code>chmod +x hello.sh</code></p>
-<blockquote>
-<p>Linux很严格，自己也要加上x执行权限，才能执行脚本</p>
-</blockquote>
-</li>
-<li><p>执行</p>
-<p><code>./hello.sh</code></p>
-<blockquote>
-<p>执行必须加上路径！</p>
-<p>注意不能是<code>hello.sh</code>，要加上<code>./</code></p>
-</blockquote>
-</li>
-</ul>
-<h4 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h4><ul>
-<li>也要走三步流程<ul>
-<li>加上开头</li>
-<li>添加执行权限</li>
-<li>用路径执行</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello,world&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5、变量"><a href="#5、变量" class="headerlink" title="5、变量"></a>5、变量</h3><h4 id="SHELL中的变量"><a href="#SHELL中的变量" class="headerlink" title="SHELL中的变量"></a>SHELL中的变量</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义变量</span></span><br><span class="line">OUTDIR = /opt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用变量</span></span><br><span class="line">echo &quot;output to : $&#123;OUTDIR&#125;&quot;</span><br><span class="line">ls $&#123;OUTDIR&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><ul>
-<li><p>定义一个环境变量</p>
-<p><code>export OUTDIR=/opt</code></p>
-<p>然后就可以通过${OUTDIR}来作为<code>/opt</code>使用了</p>
-<blockquote>
-<p>但是，你在一个终端里定义的环境变量，</p>
-<p>只在当前终端有效</p>
-</blockquote>
-</li>
-<li><p>查看当前环境变量命令</p>
-<p><code>printenv</code></p>
-</li>
-<li><p>环境变量是可以在脚本中直接使用的</p>
-</li>
-</ul>
-<h4 id="用户环境变量"><a href="#用户环境变量" class="headerlink" title="用户环境变量"></a>用户环境变量</h4><ul>
-<li><p>在<code>~/.profile</code>中定义</p>
-<blockquote>
-<p>这个隐藏文件本质也是一个SHELL脚本</p>
-</blockquote>
-</li>
-<li><p>打开这个文件</p>
-</li>
-<li><p>在文件末尾文本添加</p>
-<p><code>export OUTDIR=/opt</code></p>
-</li>
-<li><p>重启</p>
-</li>
-</ul>
-<blockquote>
-<p>原理：当用户打开终端时，会自动执行<code>.profile</code>，</p>
-<p>将变量注入到当前环境中。</p>
-<p>注：</p>
-<p>每个用户有自己的<code>.profile</code></p>
-<p>有些Linux 是<code>.bash_profile</code></p>
-</blockquote>
-<h4 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h4><ul>
-<li>定义的环境变量对所有用户都有效</li>
-<li>在<code>/etc/profile</code>中</li>
-<li>需要以root命令执行<ul>
-<li>一般不直接修改<code>/etc/profile</code></li>
-<li>而是在<code>/etc/profile.d/</code>下创建一个自定义的脚本</li>
-<li><code>gedit /etc/profile.d/myprofile.sh</code></li>
-<li>写入脚本</li>
-<li>重启</li>
-</ul>
-</li>
-</ul>
-<h4 id="PATH-环境变量"><a href="#PATH-环境变量" class="headerlink" title="PATH 环境变量"></a>PATH 环境变量</h4><ul>
-<li><p>PATH，最常见的一个环境变量</p>
-<p>用于描述可执行程序的搜索路径</p>
-</li>
-<li><p>查看</p>
-<p><code>echo $PATH</code></p>
-</li>
-<li><p>路径</p>
-<ul>
-<li>冒号<code>:</code>分开多个路径</li>
-</ul>
-</li>
-<li><p>默认的，系统从以下目录中搜索可执行程序</p>
-<ul>
-<li><code>/usr/bin</code></li>
-<li><code>/usr/sbin</code></li>
-<li><code>/usr/local/bin</code></li>
-<li><code>/usr/local/sbin</code></li>
-</ul>
-<blockquote>
-<p>注意，是<code>usr</code>不是<code>user</code>！！！</p>
-<p>其中，sbin为超级用户root 才能执行的程序</p>
-<p><code>/usr/</code>下系统自带的程序，</p>
-<p><code>/usr/loacl</code>才是用户安装的程序。</p>
-</blockquote>
-</li>
-<li><p>修改</p>
-<ul>
-<li>在系统变量修改方法中：<br>打开<code>gedit /etc/profile.d/myprofile.sh</code></li>
-<li>写入<code>export PATH=$PATH:/home/seymour0314</code></li>
-<li>重启</li>
-</ul>
-<blockquote>
-<p>当然，使用其他方法也可以，就是PATH生效范围不一样</p>
-<blockquote>
-<p>若你添加了某个路径，</p>
-<p>那么下次执行这个路径下的可执行文件时，</p>
-<p>就不用通过路径执行了</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/linux/image-20230418183545180.png" alt="image-20230418183545180" style="zoom:80%;" />
-
-
-
-<h3 id="6、虚拟机网络"><a href="#6、虚拟机网络" class="headerlink" title="6、虚拟机网络"></a>6、虚拟机网络</h3><ul>
-<li><p>先把 VMware 设置在管理员方式运行下</p>
-</li>
-<li><p>看网络配置部分</p>
-</li>
-<li><p>注意，宿主机能上网，虚拟机才能上网</p>
-</li>
-</ul>
-<h3 id="7、软件包管理器"><a href="#7、软件包管理器" class="headerlink" title="7、软件包管理器"></a>7、软件包管理器</h3><blockquote>
-<p>注意要<code>sudo</code>执行</p>
-</blockquote>
-<ul>
-<li><p><code>apt</code></p>
-<ul>
-<li><p>安装</p>
-<p><code>apt install net-tools</code></p>
-</li>
-<li><p>移除</p>
-<p><code>apt remove net-tools</code></p>
-</li>
-<li><p>搜索</p>
-<p><code>apt search xxx</code></p>
-</li>
-<li><p>列表</p>
-<p><code>apt list | grep xxx</code></p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="8、FTP-服务器"><a href="#8、FTP-服务器" class="headerlink" title="8、FTP 服务器"></a>8、FTP 服务器</h3><ul>
-<li><p>比如，传文件给Ubuntu主机</p>
-</li>
-<li><p>可以在要传文件的主机上使用<code>FileZilla</code>软件传给虚拟机</p>
-</li>
-<li><p>客户端 FileZilla（Windows)</p>
-</li>
-<li><p>服务器 vsftpd （Ubuntu）</p>
-</li>
-</ul>
-<h3 id="9、SSH-服务器"><a href="#9、SSH-服务器" class="headerlink" title="9、SSH 服务器"></a>9、SSH 服务器</h3><ul>
-<li>略，服务器用到</li>
-</ul>
-<h3 id="10、文本编辑"><a href="#10、文本编辑" class="headerlink" title="10、文本编辑"></a>10、文本编辑</h3><h4 id="vi-x2F-vim"><a href="#vi-x2F-vim" class="headerlink" title="vi&#x2F;vim"></a>vi&#x2F;vim</h4><ul>
-<li>vim是vi 的升级版</li>
-</ul>
-<h4 id="打开文本编辑"><a href="#打开文本编辑" class="headerlink" title="打开文本编辑"></a>打开文本编辑</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim abc.txt</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果目标文件存在，则打开编辑</li>
-<li>如果不存在，会新建一个</li>
-</ul>
-<h4 id="切换模式"><a href="#切换模式" class="headerlink" title="切换模式"></a>切换模式</h4><ul>
-<li><p>两个模式</p>
-<ul>
-<li>编辑模式 Insert Mode :按<code>i</code>键进入</li>
-<li>命令模式 Command Mode :按<code>Esc</code>键进入</li>
-</ul>
-</li>
-<li><p>退出</p>
-<p>先进入命令模式</p>
-<ul>
-<li><code>:wq</code>保存退出</li>
-<li><code>:q</code>退出</li>
-<li><code>:q!</code>强制退出（放弃保存）</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《RegExp正则表达式》Notes</title>
     <url>/butterflyblog/2023/04/05/%E3%80%8ARegExp%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%8BNotes/</url>
     <content><![CDATA[<h1 id="《RegExp正则表达式》Notes"><a href="#《RegExp正则表达式》Notes" class="headerlink" title="《RegExp正则表达式》Notes"></a>《RegExp正则表达式》Notes</h1><blockquote>
@@ -9807,6 +9404,508 @@
       </tags>
   </entry>
   <entry>
+    <title>《Linux》Notes</title>
+    <url>/butterflyblog/2023/04/18/%E3%80%8ALinux%E3%80%8BNotes/</url>
+    <content><![CDATA[<h1 id="《Linux》Notes"><a href="#《Linux》Notes" class="headerlink" title="《Linux》Notes"></a>《Linux》Notes</h1><h2 id="Linux-命令-篇"><a href="#Linux-命令-篇" class="headerlink" title="Linux 命令 篇"></a>Linux 命令 篇</h2><h3 id="0、基础目录"><a href="#0、基础目录" class="headerlink" title="0、基础目录"></a>0、基础目录</h3><h4 id="清空当前命令行信息"><a href="#清空当前命令行信息" class="headerlink" title="清空当前命令行信息"></a>清空当前命令行信息</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1、文件命令"><a href="#1、文件命令" class="headerlink" title="1、文件命令"></a>1、文件命令</h3><h4 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h4><ul>
+<li><p>蓝色</p>
+<p>文件夹<code>d</code></p>
+</li>
+<li><p>青色</p>
+<p>软链接<code>l</code>，通过 <code>ls -l</code> 可以看到会指向真实文件或文件夹</p>
+</li>
+<li><p>红色</p>
+<p>.tar&#x2F;.tar.gz 归档压缩包</p>
+</li>
+<li><p>黑色</p>
+<p>文件<code>-</code></p>
+</li>
+</ul>
+<h4 id="查看当前目录"><a href="#查看当前目录" class="headerlink" title="查看当前目录"></a>查看当前目录</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls</span><br><span class="line">详细模式</span><br><span class="line">ls -l</span><br><span class="line">查看隐藏文件</span><br><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示当前位置"><a href="#显示当前位置" class="headerlink" title="显示当前位置"></a>显示当前位置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pwd</span><br><span class="line">即print working directory</span><br></pre></td></tr></table></figure>
+
+<h4 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd</span><br><span class="line">即change directory</span><br></pre></td></tr></table></figure>
+
+<h4 id="几个特殊的目录"><a href="#几个特殊的目录" class="headerlink" title="几个特殊的目录"></a>几个特殊的目录</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~</span><br><span class="line">代表当前用户的主目录</span><br><span class="line">.</span><br><span class="line">代表当前目录</span><br><span class="line">..</span><br><span class="line">代表上一级目录</span><br><span class="line"></span><br><span class="line">cd ~</span><br><span class="line">cd ~/example</span><br><span class="line">cd ../example</span><br></pre></td></tr></table></figure>
+
+<h4 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir abc</span><br><span class="line">mkdir -p abc/123/text</span><br><span class="line">//创建目录即make directory,-p参数将路径的层次目录全部创建</span><br><span class="line"></span><br><span class="line">rmdir abc</span><br><span class="line">//删除空目录即remove directory,空目录才能删除，若目录非空，则删除失败</span><br><span class="line"></span><br><span class="line">rm -rf abc</span><br><span class="line">rm -rf /*</span><br><span class="line">//删除文件或目录即remove,可以删除非空目录，会连带里面的内容都删除,-rf参数表示强制删除</span><br><span class="line"></span><br><span class="line">cp -rf example example2</span><br><span class="line">//复制文件或目录即copy</span><br><span class="line"></span><br><span class="line">mv hello helloworld</span><br><span class="line">//移动文件或目录（重命名）即move</span><br></pre></td></tr></table></figure>
+
+<h4 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -cvf xxx.tar file1 file2 file3</span><br><span class="line">tar -zcvf xxx.tar.gz example/</span><br><span class="line">//即tape archive,创建档案打包</span><br><span class="line">//c表示create创建档案v表示verbose显示详情f表示file,z表示gzip压缩</span><br></pre></td></tr></table></figure>
+
+<h4 id="还原归档"><a href="#还原归档" class="headerlink" title="还原归档"></a>还原归档</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xvf example.tar</span><br><span class="line">tar -xvf example.tar -C mydir</span><br><span class="line">tar -zxvf example.tar.gz</span><br><span class="line">//其中，-C参数指定存放目标目录，默认解到当前目录，z解压缩</span><br></pre></td></tr></table></figure>
+
+<h4 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s example examplelink</span><br><span class="line">//即windows的快捷方式,s表示soft软链接（默认为硬）</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、用户"><a href="#2、用户" class="headerlink" title="2、用户"></a>2、用户</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">useradd -m test1</span><br><span class="line">//其中sudo表示以管理员身份执行，如下，后面同理</span><br><span class="line">//sudo useradd -m test1</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h4><blockquote>
+<p>密码不会显示的，但实际上输入了</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">passwd test1</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">userdel test1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，删除用户后，不会自动删除<code>/home/test1</code>的文件</p>
+<p>可以自己删除<code>sudo rm -rf /home/test1</code></p>
+<ul>
+<li><p>注意</p>
+<ul>
+<li><p>登陆系统时，默认不允许以root用户登陆</p>
+</li>
+<li><p>只有特殊用户才能执行sudo</p>
+<blockquote>
+<p>test1就不能执行sudo</p>
+</blockquote>
+</li>
+<li><p>能执行sudo命令的用户叫做 sudoer</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="超级用户root"><a href="#超级用户root" class="headerlink" title="超级用户root"></a>超级用户root</h4><blockquote>
+<p>类似Windows下的管理员Administrator用户</p>
+<p>root有全部权限</p>
+<ul>
+<li><p>设置密码</p>
+<p><code>sudo passwd root</code></p>
+</li>
+<li><p>切换到 root用户(switch user)</p>
+<p><code>su root</code></p>
+<blockquote>
+<p>切换用户仅对当前会话终端有效（临时切换而已），不影响当前桌面环境</p>
+</blockquote>
+</li>
+<li><p>退出</p>
+<p><code>exit</code></p>
+</li>
+</ul>
+</blockquote>
+<h4 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h4><blockquote>
+<p>默认在同名的组</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//创建组</span><br><span class="line">groupadd boys</span><br><span class="line">//创建用户（g表示添加用户同时加到组boys里）</span><br><span class="line">useradd -m -g boys ming</span><br><span class="line">//修改现有用户到新组(usermod用户信息)</span><br><span class="line">usermod -g boys ming</span><br><span class="line"></span><br><span class="line">//查看用户和组(一行表示一个group的信息，名称+ID)</span><br><span class="line">cat /etc/group</span><br><span class="line">//查看用户列表(一行一个用户信息)</span><br><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h4 id="以root-登陆桌面"><a href="#以root-登陆桌面" class="headerlink" title="以root 登陆桌面"></a>以root 登陆桌面</h4><blockquote>
+<p>默认不允许</p>
+<p>要修改配置</p>
+</blockquote>
+<ul>
+<li><p>其他用户登陆</p>
+</li>
+<li><p>切换到root用户</p>
+<p><code>su root</code></p>
+</li>
+<li><p>打开配置1</p>
+<p><code>gedit /etc/pam.d/gdm-autologin</code></p>
+<p>注释掉#</p>
+<blockquote>
+<p>#auth   required    pam_succeed_if.so user !&#x3D; root quiet_success</p>
+</blockquote>
+</li>
+<li><p>打开配置2</p>
+<p><code>gedit /etc/pam.d/gdm-password</code></p>
+<p>注释掉</p>
+<blockquote>
+<p>#auth   required    pam_succeed_if.so user !&#x3D; root quiet_success</p>
+</blockquote>
+</li>
+<li><p>关闭虚拟机，重启</p>
+</li>
+</ul>
+<h3 id="3、文件"><a href="#3、文件" class="headerlink" title="3、文件"></a>3、文件</h3><h4 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h4><ul>
+<li><p><code>-owner</code></p>
+<p>文件的属主</p>
+</li>
+<li><p><code>-r</code></p>
+<p>是否可读read</p>
+</li>
+<li><p><code>-w</code></p>
+<p>是否可写write</p>
+</li>
+<li><p><code>-x</code></p>
+<p>是否可执行excute</p>
+</li>
+<li><p>权限分为三部分</p>
+<ul>
+<li>自己</li>
+<li>同组</li>
+<li>别人</li>
+</ul>
+<p>例如：</p>
+<p><code>rwxrwxr-x</code></p>
+<p><code>rwxrwxr--</code></p>
+<p><code>r--------</code></p>
+</li>
+</ul>
+<h4 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h4><blockquote>
+<p>只有文件的属主或root可以修改文件权限</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod o+w example.txt</span><br><span class="line">chmod o-w example.txt</span><br><span class="line">chmod +w example.txt</span><br><span class="line">//即change file mode 修改文件的访问权限</span><br><span class="line">//o表示other别人，+w表示增加write权限，-w表示除去write权限</span><br><span class="line">//人员：a所有人，u自己,o别人，不加人员默认是自己和本组</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改文件属主"><a href="#修改文件属主" class="headerlink" title="修改文件属主"></a>修改文件属主</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chown</span><br><span class="line">//即change owner修改文件的属主，不常用</span><br><span class="line">chown -R 新属主 文件</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、可执行脚本"><a href="#4、可执行脚本" class="headerlink" title="4、可执行脚本"></a>4、可执行脚本</h3><ul>
+<li><p>颜色</p>
+<ul>
+<li><p>普通文本 </p>
+<p>黑色</p>
+</li>
+<li><p>可执行脚本 </p>
+<p>绿色</p>
+</li>
+</ul>
+</li>
+<li><p>脚本Script，一种解释执行的程序</p>
+<p>Linux 下常见的三种脚本程序</p>
+<ul>
+<li>Shell 脚本 <code>*.sh</code></li>
+<li>Perl 脚本 <code>*.pl</code></li>
+<li>Python 脚本 <code>*.py</code></li>
+</ul>
+<p>脚本文件，本质是一个文本文件</p>
+<ul>
+<li>是一个文本文件，具有可执行权限</li>
+</ul>
+</li>
+<li><p>脚本程序都是由解释器来执行的</p>
+<ul>
+<li>Shell 脚本解释器 <code>/bin/sh</code></li>
+<li>Perl 脚本解释器 <code>/bin/perl</code></li>
+<li>Python 脚本解释器 <code>/bin/python3</code></li>
+</ul>
+</li>
+<li><p>执行脚本</p>
+<p>两种方式</p>
+<ul>
+<li><code>./hello.py</code></li>
+<li><code>/bin/python3 hello.py</code></li>
+</ul>
+<blockquote>
+<p>第二种，相当于传入参数</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Shell-脚本"><a href="#Shell-脚本" class="headerlink" title="Shell 脚本"></a>Shell 脚本</h4><ul>
+<li><p>按Shell 语法写出来的脚本</p>
+<p>是Linux 自带的脚本语言</p>
+<blockquote>
+<p>相当于Windows 下的 DOS 批处理脚本</p>
+</blockquote>
+</li>
+<li><p>写文本</p>
+</li>
+</ul>
+<p><code>hello.sh</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">echo &quot;hello,world&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>添加执行权限</p>
+<p><code>chmod +x hello.sh</code></p>
+<blockquote>
+<p>Linux很严格，自己也要加上x执行权限，才能执行脚本</p>
+</blockquote>
+</li>
+<li><p>执行</p>
+<p><code>./hello.sh</code></p>
+<blockquote>
+<p>执行必须加上路径！</p>
+<p>注意不能是<code>hello.sh</code>，要加上<code>./</code></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h4><ul>
+<li>也要走三步流程<ul>
+<li>加上开头</li>
+<li>添加执行权限</li>
+<li>用路径执行</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello,world&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、变量"><a href="#5、变量" class="headerlink" title="5、变量"></a>5、变量</h3><h4 id="SHELL中的变量"><a href="#SHELL中的变量" class="headerlink" title="SHELL中的变量"></a>SHELL中的变量</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义变量</span></span><br><span class="line">OUTDIR = /opt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用变量</span></span><br><span class="line">echo &quot;output to : $&#123;OUTDIR&#125;&quot;</span><br><span class="line">ls $&#123;OUTDIR&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><ul>
+<li><p>定义一个环境变量</p>
+<p><code>export OUTDIR=/opt</code></p>
+<p>然后就可以通过${OUTDIR}来作为<code>/opt</code>使用了</p>
+<blockquote>
+<p>但是，你在一个终端里定义的环境变量，</p>
+<p>只在当前终端有效</p>
+</blockquote>
+</li>
+<li><p>查看当前环境变量命令</p>
+<p><code>printenv</code></p>
+</li>
+<li><p>环境变量是可以在脚本中直接使用的</p>
+</li>
+</ul>
+<h4 id="用户环境变量"><a href="#用户环境变量" class="headerlink" title="用户环境变量"></a>用户环境变量</h4><ul>
+<li><p>在<code>~/.profile</code>中定义</p>
+<blockquote>
+<p>这个隐藏文件本质也是一个SHELL脚本</p>
+</blockquote>
+</li>
+<li><p>打开这个文件</p>
+</li>
+<li><p>在文件末尾文本添加</p>
+<p><code>export OUTDIR=/opt</code></p>
+</li>
+<li><p>重启</p>
+</li>
+</ul>
+<blockquote>
+<p>原理：当用户打开终端时，会自动执行<code>.profile</code>，</p>
+<p>将变量注入到当前环境中。</p>
+<p>注：</p>
+<p>每个用户有自己的<code>.profile</code></p>
+<p>有些Linux 是<code>.bash_profile</code></p>
+</blockquote>
+<h4 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h4><ul>
+<li>定义的环境变量对所有用户都有效</li>
+<li>在<code>/etc/profile</code>中</li>
+<li>需要以root命令执行<ul>
+<li>一般不直接修改<code>/etc/profile</code></li>
+<li>而是在<code>/etc/profile.d/</code>下创建一个自定义的脚本</li>
+<li><code>gedit /etc/profile.d/myprofile.sh</code></li>
+<li>写入脚本</li>
+<li>重启</li>
+</ul>
+</li>
+</ul>
+<h4 id="PATH-环境变量"><a href="#PATH-环境变量" class="headerlink" title="PATH 环境变量"></a>PATH 环境变量</h4><ul>
+<li><p>PATH，最常见的一个环境变量</p>
+<p>用于描述可执行程序的搜索路径</p>
+</li>
+<li><p>查看</p>
+<p><code>echo $PATH</code></p>
+</li>
+<li><p>路径</p>
+<ul>
+<li>冒号<code>:</code>分开多个路径</li>
+</ul>
+</li>
+<li><p>默认的，系统从以下目录中搜索可执行程序</p>
+<ul>
+<li><code>/usr/bin</code></li>
+<li><code>/usr/sbin</code></li>
+<li><code>/usr/local/bin</code></li>
+<li><code>/usr/local/sbin</code></li>
+</ul>
+<blockquote>
+<p>注意，是<code>usr</code>不是<code>user</code>！！！</p>
+<p>其中，sbin为超级用户root 才能执行的程序</p>
+<p><code>/usr/</code>下系统自带的程序，</p>
+<p><code>/usr/loacl</code>才是用户安装的程序。</p>
+</blockquote>
+</li>
+<li><p>修改</p>
+<ul>
+<li>在系统变量修改方法中：<br>打开<code>gedit /etc/profile.d/myprofile.sh</code></li>
+<li>写入<code>export PATH=$PATH:/home/seymour0314</code></li>
+<li>重启</li>
+</ul>
+<blockquote>
+<p>当然，使用其他方法也可以，就是PATH生效范围不一样</p>
+<blockquote>
+<p>若你添加了某个路径，</p>
+<p>那么下次执行这个路径下的可执行文件时，</p>
+<p>就不用通过路径执行了</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/linux/image-20230418183545180.png" alt="image-20230418183545180" style="zoom:80%;" />
+
+
+
+<h3 id="6、虚拟机网络"><a href="#6、虚拟机网络" class="headerlink" title="6、虚拟机网络"></a>6、虚拟机网络</h3><ul>
+<li><p>先把 VMware 设置在管理员方式运行下</p>
+</li>
+<li><p>看网络配置部分</p>
+</li>
+<li><p>注意，宿主机能上网，虚拟机才能上网</p>
+</li>
+</ul>
+<h3 id="7、软件包管理器"><a href="#7、软件包管理器" class="headerlink" title="7、软件包管理器"></a>7、软件包管理器</h3><blockquote>
+<p>注意要<code>sudo</code>执行</p>
+</blockquote>
+<ul>
+<li><p><code>apt</code></p>
+<ul>
+<li><p>安装</p>
+<p><code>apt install net-tools</code></p>
+</li>
+<li><p>移除</p>
+<p><code>apt remove net-tools</code></p>
+</li>
+<li><p>搜索</p>
+<p><code>apt search xxx</code></p>
+</li>
+<li><p>列表</p>
+<p><code>apt list | grep xxx</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="8、FTP-服务器"><a href="#8、FTP-服务器" class="headerlink" title="8、FTP 服务器"></a>8、FTP 服务器</h3><ul>
+<li><p>比如，传文件给Ubuntu主机</p>
+</li>
+<li><p>可以在要传文件的主机上使用<code>FileZilla</code>软件传给虚拟机</p>
+</li>
+<li><p>客户端 FileZilla（Windows)</p>
+</li>
+<li><p>服务器 vsftpd （Ubuntu）</p>
+</li>
+</ul>
+<h3 id="9、SSH-服务器"><a href="#9、SSH-服务器" class="headerlink" title="9、SSH 服务器"></a>9、SSH 服务器</h3><ul>
+<li>略，服务器用到</li>
+</ul>
+<h3 id="10、文本编辑"><a href="#10、文本编辑" class="headerlink" title="10、文本编辑"></a>10、文本编辑</h3><h4 id="vi-x2F-vim"><a href="#vi-x2F-vim" class="headerlink" title="vi&#x2F;vim"></a>vi&#x2F;vim</h4><ul>
+<li>vim是vi 的升级版</li>
+</ul>
+<h4 id="打开文本编辑"><a href="#打开文本编辑" class="headerlink" title="打开文本编辑"></a>打开文本编辑</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim abc.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果目标文件存在，则打开编辑</li>
+<li>如果不存在，会新建一个</li>
+</ul>
+<h4 id="切换模式"><a href="#切换模式" class="headerlink" title="切换模式"></a>切换模式</h4><ul>
+<li><p>两个模式</p>
+<ul>
+<li>编辑模式 Insert Mode :按<code>i</code>键进入</li>
+<li>命令模式 Command Mode :按<code>Esc</code>键进入</li>
+</ul>
+</li>
+<li><p>退出</p>
+<p>先进入命令模式</p>
+<ul>
+<li><code>:wq</code>保存退出</li>
+<li><code>:q</code>退出</li>
+<li><code>:q!</code>强制退出（放弃保存）</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《sqlmap中文用法指南》</title>
+    <url>/butterflyblog/2023/09/19/%E3%80%8Asqlmap%E4%B8%AD%E6%96%87%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97%E3%80%8B/</url>
+    <content><![CDATA[<h1 id="《sqlmap中文用法指南》"><a href="#《sqlmap中文用法指南》" class="headerlink" title="《sqlmap中文用法指南》"></a>《sqlmap中文用法指南》</h1><blockquote>
+<p>sqlmap官方：<a href="https://github.com/sqlmapproject/sqlmap">sqlmap</a></p>
+<p>说明：首先保证您的主机已经安装Python环境（若您未安装，请百度安装方法）</p>
+</blockquote>
+<h2 id="1、用法"><a href="#1、用法" class="headerlink" title="1、用法"></a>1、用法</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python sqlmap.py [选项]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、选项"><a href="#2、选项" class="headerlink" title="2、选项"></a>2、选项</h2><h3 id="2-1-帮助信息"><a href="#2-1-帮助信息" class="headerlink" title="2.1 帮助信息"></a>2.1 帮助信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-h, --help            显示基本帮助信息并退出</span><br><span class="line">-hh                   显示高级帮助信息并退出</span><br><span class="line">--version             显示程序版本信息并退出</span><br><span class="line">-v VERBOSE            输出信息详细程度级别：0-6（默认为 1）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-目标"><a href="#2-2-目标" class="headerlink" title="2.2 目标"></a>2.2 目标</h3><ul>
+<li>至少提供一个以下选项以指定目标</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-d DIRECT           直接连接数据库</span><br><span class="line">-u URL, --url=URL   目标 URL（例如：&quot;http://www.site.com/vuln.php?id=1&quot;）</span><br><span class="line">-l LOGFILE          从 Burp 或 WebScarab 代理的日志文件中解析目标地址</span><br><span class="line">-x SITEMAPURL       从远程网站地图（.xml）文件中解析目标</span><br><span class="line">-m BULKFILE         从文本文件中获取批量目标</span><br><span class="line">-r REQUESTFILE      从文件中读取 HTTP 请求</span><br><span class="line">-g GOOGLEDORK       使用 Google dork 结果作为目标</span><br><span class="line">-c CONFIGFILE       从 INI 配置文件中加载选项</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-请求"><a href="#2-3-请求" class="headerlink" title="2.3 请求"></a>2.3 请求</h3><ul>
+<li>以下选项可以指定连接目标地址的方式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--method=METHOD     强制使用提供的 HTTP 方法（例如：PUT）</span><br><span class="line">--data=DATA         使用 POST 发送数据串</span><br><span class="line">--param-del=PARA..  设置参数值分隔符</span><br><span class="line">--cookie=COOKIE     指定 HTTP Cookie </span><br><span class="line">--cookie-del=COO..  设置 cookie 分隔符</span><br><span class="line">--load-cookies=L..  指定以 Netscape/wget 格式存放 cookies 的文件</span><br><span class="line">--drop-set-cookie   忽略 HTTP 响应中的 Set-Cookie 参数</span><br><span class="line">--user-agent=AGENT  指定 HTTP User-Agent</span><br><span class="line">--random-agent      使用随机的 HTTP User-Agent</span><br><span class="line">--host=HOST         指定 HTTP Host</span><br><span class="line">--referer=REFERER   指定 HTTP Referer</span><br><span class="line">-H HEADER, --hea..  设置额外的 HTTP 头参数（例如：&quot;X-Forwarded-For: 127.0.0.1&quot;）</span><br><span class="line">--headers=HEADERS   设置额外的 HTTP 头参数（例如：&quot;Accept-Language: fr\nETag: 123&quot;）</span><br><span class="line">--auth-type=AUTH..  HTTP 认证方式（Basic，Digest，NTLM 或 PKI）</span><br><span class="line">--auth-cred=AUTH..  HTTP 认证凭证（username:password）</span><br><span class="line">--auth-file=AUTH..  HTTP 认证 PEM 证书/私钥文件</span><br><span class="line">--ignore-code=IG..  忽略 HTTP 错误码（例如：401）</span><br><span class="line">--ignore-proxy      忽略系统默认代理设置</span><br><span class="line">--ignore-redirects  忽略重定向尝试</span><br><span class="line">--ignore-timeouts   忽略连接超时</span><br><span class="line">--proxy=PROXY       使用代理连接目标 URL</span><br><span class="line">--proxy-cred=PRO..  使用代理进行认证（username:password）</span><br><span class="line">--proxy-file=PRO..  从文件中加载代理列表</span><br><span class="line">--tor               使用 Tor 匿名网络</span><br><span class="line">--tor-port=TORPORT  设置 Tor 代理端口代替默认端口</span><br><span class="line">--tor-type=TORTYPE  设置 Tor 代理方式（HTTP，SOCKS4 或 SOCKS5（默认））</span><br><span class="line">--check-tor         检查是否正确使用了 Tor</span><br><span class="line">--delay=DELAY       设置每个 HTTP 请求的延迟秒数</span><br><span class="line">--timeout=TIMEOUT   设置连接响应的有效秒数（默认为 30）</span><br><span class="line">--retries=RETRIES   连接超时时重试次数（默认为 3）</span><br><span class="line">--randomize=RPARAM  随机更改给定的参数值</span><br><span class="line">--safe-url=SAFEURL  测试过程中可频繁访问且合法的 URL 地址（译者注：</span><br><span class="line">                    有些网站在你连续多次访问错误地址时会关闭会话连接，</span><br><span class="line">                    后面的“请求”小节有详细说明）</span><br><span class="line">--safe-post=SAFE..  使用 POST 方法发送合法的数据</span><br><span class="line">--safe-req=SAFER..  从文件中加载合法的 HTTP 请求</span><br><span class="line">--safe-freq=SAFE..  每访问两次给定的合法 URL 才发送一次测试请求</span><br><span class="line">--skip-urlencode    不对 payload 数据进行 URL 编码</span><br><span class="line">--csrf-token=CSR..  设置网站用来反 CSRF 攻击的 token</span><br><span class="line">--csrf-url=CSRFURL  指定可提取反 CSRF 攻击 token 的 URL</span><br><span class="line">--force-ssl         强制使用 SSL/HTTPS</span><br><span class="line">--hpp               使用 HTTP 参数污染攻击</span><br><span class="line">--eval=EVALCODE     在发起请求前执行给定的 Python 代码（例如：</span><br><span class="line">                    &quot;import hashlib;id2=hashlib.md5(id).hexdigest()&quot;）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-优化"><a href="#2-4-优化" class="headerlink" title="2.4 优化"></a>2.4 优化</h3><ul>
+<li>以下选项用于优化 sqlmap 性能</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-o                  开启所有优化开关</span><br><span class="line">--predict-output    预测常用请求的输出</span><br><span class="line">--keep-alive        使用持久的 HTTP(S) 连接</span><br><span class="line">--null-connection   仅获取页面大小而非实际的 HTTP 响应</span><br><span class="line">--threads=THREADS   设置 HTTP(S) 请求并发数最大值（默认为 1）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-注入"><a href="#2-5-注入" class="headerlink" title="2.5 注入"></a>2.5 注入</h3><ul>
+<li><p>以下选项用于指定要测试的参数，</p>
+<p>提供自定义注入 payloads 和篡改参数的脚本</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-p TESTPARAMETER    指定需要测试的参数</span><br><span class="line">--skip=SKIP         指定要跳过的参数</span><br><span class="line">--skip-static       指定跳过非动态参数</span><br><span class="line">--param-exclude=..  用正则表达式排除参数（例如：&quot;ses&quot;）</span><br><span class="line">--dbms=DBMS         指定 DBMS 类型（例如：MySQL）</span><br><span class="line">--dbms-cred=DBMS..  DBMS 认证凭据（username:password）</span><br><span class="line">--os=OS             指定 DBMS 服务器的操作系统类型</span><br><span class="line">--invalid-bignum    将无效值设置为大数</span><br><span class="line">--invalid-logical   对无效值使用逻辑运算</span><br><span class="line">--invalid-string    对无效值使用随机字符串</span><br><span class="line">--no-cast           关闭 payload 构造机制</span><br><span class="line">--no-escape         关闭字符串转义机制</span><br><span class="line">--prefix=PREFIX     注入 payload 的前缀字符串</span><br><span class="line">--suffix=SUFFIX     注入 payload 的后缀字符串</span><br><span class="line">--tamper=TAMPER     用给定脚本修改注入数据</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-检测"><a href="#2-6-检测" class="headerlink" title="2.6 检测"></a>2.6 检测</h3><ul>
+<li>以下选项用于自定义检测方式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--level=LEVEL       设置测试等级（1-5，默认为 1）</span><br><span class="line">--risk=RISK         设置测试风险等级（1-3，默认为 1）</span><br><span class="line">--string=STRING     用于确定查询结果为真时的字符串</span><br><span class="line">--not-string=NOT..  用于确定查询结果为假时的字符串</span><br><span class="line">--regexp=REGEXP     用于确定查询结果为真时的正则表达式</span><br><span class="line">--code=CODE         用于确定查询结果为真时的 HTTP 状态码</span><br><span class="line">--text-only         只根据页面文本内容对比页面</span><br><span class="line">--titles            只根据页面标题对比页面</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-技术"><a href="#2-7-技术" class="headerlink" title="2.7 技术"></a>2.7 技术</h3><ul>
+<li>以下选项用于调整特定 SQL 注入技术的测试方法</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--technique=TECH    使用的 SQL 注入技术（默认为“BEUSTQ”，译者注：</span><br><span class="line">                    B: Boolean-based blind SQL injection（布尔型盲注）</span><br><span class="line">                    E: Error-based SQL injection（报错型注入）</span><br><span class="line">                    U: UNION query SQL injection（联合查询注入）</span><br><span class="line">                    S: Stacked queries SQL injection（堆查询注入）</span><br><span class="line">                    T: Time-based blind SQL injection（时间型盲注）</span><br><span class="line">                    Q: inline Query injection（内联查询注入）</span><br><span class="line">--time-sec=TIMESEC  延迟 DBMS 的响应秒数（默认为 5）</span><br><span class="line">--union-cols=UCOLS  设置联合查询注入测试的列数目范围</span><br><span class="line">--union-char=UCHAR  用于暴力猜解列数的字符</span><br><span class="line">--union-from=UFROM  设置联合查询注入 FROM 处用到的表</span><br><span class="line">--dns-domain=DNS..  设置用于 DNS 渗出攻击的域名（译者注：</span><br><span class="line">                    推荐阅读《在SQL注入中使用DNS获取数据》</span><br><span class="line">                    http://cb.drops.wiki/drops/tips-5283.html，</span><br><span class="line">                    在后面的“技术”小节中也有相应解释）</span><br><span class="line">--second-order=S..  设置二阶响应的结果显示页面的 URL（译者注：</span><br><span class="line">                    该选项用于二阶 SQL 注入）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-指纹识别"><a href="#2-8-指纹识别" class="headerlink" title="2.8 指纹识别"></a>2.8 指纹识别</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-f, --fingerprint   执行广泛的 DBMS 版本指纹识别</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-9-枚举"><a href="#2-9-枚举" class="headerlink" title="2.9 枚举"></a>2.9 枚举</h3><ul>
+<li><p>以下选项用于获取后端数据库管理系统的信息，结构和数据表中的数据。</p>
+<p>此外，还可以运行你输入的 SQL 语句</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-a, --all           获取所有信息、数据</span><br><span class="line">-b, --banner        获取 DBMS banner</span><br><span class="line">--current-user      获取 DBMS 当前用户</span><br><span class="line">--current-db        获取 DBMS 当前数据库</span><br><span class="line">--hostname          获取 DBMS 服务器的主机名</span><br><span class="line">--is-dba            探测 DBMS 当前用户是否为 DBA（数据库管理员）</span><br><span class="line">--users             枚举出 DBMS 所有用户</span><br><span class="line">--passwords         枚举出 DBMS 所有用户的密码哈希</span><br><span class="line">--privileges        枚举出 DBMS 所有用户特权级</span><br><span class="line">--roles             枚举出 DBMS 所有用户角色</span><br><span class="line">--dbs               枚举出 DBMS 所有数据库</span><br><span class="line">--tables            枚举出 DBMS 数据库中的所有表</span><br><span class="line">--columns           枚举出 DBMS 表中的所有列</span><br><span class="line">--schema            枚举出 DBMS 所有模式</span><br><span class="line">--count             获取数据表数目</span><br><span class="line">--dump              导出 DBMS 数据库表项</span><br><span class="line">--dump-all          导出所有 DBMS 数据库表项</span><br><span class="line">--search            搜索列，表和/或数据库名</span><br><span class="line">--comments          获取 DBMS 注释</span><br><span class="line">-D DB               指定要枚举的 DBMS 数据库</span><br><span class="line">-T TBL              指定要枚举的 DBMS 数据表</span><br><span class="line">-C COL              指定要枚举的 DBMS 数据列</span><br><span class="line">-X EXCLUDECOL       指定要排除的 DBMS 数据列</span><br><span class="line">-U USER             指定枚举的 DBMS 用户</span><br><span class="line">--exclude-sysdbs    枚举所有数据表时，指定排除特定系统数据库</span><br><span class="line">--pivot-column=P..  指定主列</span><br><span class="line">--where=DUMPWHERE   在转储表时使用 WHERE 条件语句</span><br><span class="line">--start=LIMITSTART  指定要导出的数据表条目开始行数</span><br><span class="line">--stop=LIMITSTOP    指定要导出的数据表条目结束行数</span><br><span class="line">--first=FIRSTCHAR   指定获取返回查询结果的开始字符位</span><br><span class="line">--last=LASTCHAR     指定获取返回查询结果的结束字符位</span><br><span class="line">--sql-query=QUERY   指定要执行的 SQL 语句</span><br><span class="line">--sql-shell         调出交互式 SQL shell</span><br><span class="line">--sql-file=SQLFILE  执行文件中的 SQL 语句</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-10-暴力破解"><a href="#2-10-暴力破解" class="headerlink" title="2.10 暴力破解"></a>2.10 暴力破解</h3><ul>
+<li>以下选项用于暴力破解测试</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--common-tables     检测常见的表名是否存在</span><br><span class="line">--common-columns    检测常用的列名是否存在</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-11-用户自定义函数注入"><a href="#2-11-用户自定义函数注入" class="headerlink" title="2.11 用户自定义函数注入"></a>2.11 用户自定义函数注入</h3><ul>
+<li>以下选项用于创建用户自定义函数</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--udf-inject        注入用户自定义函数</span><br><span class="line">--shared-lib=SHLIB  共享库的本地路径</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-12-访问文件系统"><a href="#2-12-访问文件系统" class="headerlink" title="2.12 访问文件系统"></a>2.12 访问文件系统</h3><ul>
+<li>以下选项用于访问后端数据库管理系统的底层文件系统</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--file-read=RFILE   读取后端 DBMS 文件系统中的文件</span><br><span class="line">--file-write=WFILE  写入后端 DBMS 文件系统中的文件</span><br><span class="line">--file-dest=DFILE   使用文件绝对路径写入到后端 DBMS</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-13-访问操作系统"><a href="#2-13-访问操作系统" class="headerlink" title="2.13 访问操作系统"></a>2.13 访问操作系统</h3><ul>
+<li>以下选项用于访问后端数据库管理系统的底层操作系统</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--os-cmd=OSCMD      执行操作系统命令</span><br><span class="line">--os-shell          调出交互式操作系统 shell</span><br><span class="line">--os-pwn            调出 OOB shell，Meterpreter 或 VNC</span><br><span class="line">--os-smbrelay       一键调出 OOB shell，Meterpreter 或 VNC</span><br><span class="line">--os-bof            利用存储过程的缓冲区溢出</span><br><span class="line">--priv-esc          数据库进程用户提权</span><br><span class="line">--msf-path=MSFPATH  Metasploit 框架的本地安装路径</span><br><span class="line">--tmp-path=TMPPATH  远程临时文件目录的绝对路径</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-14-访问-Windows-注册表"><a href="#2-14-访问-Windows-注册表" class="headerlink" title="2.14 访问 Windows 注册表"></a>2.14 访问 Windows 注册表</h3><ul>
+<li>以下选项用于访问后端数据库管理系统的 Windows 注册表</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--reg-read          读取一个 Windows 注册表键值</span><br><span class="line">--reg-add           写入一个 Windows 注册表键值数据</span><br><span class="line">--reg-del           删除一个 Windows 注册表键值</span><br><span class="line">--reg-key=REGKEY    指定 Windows 注册表键</span><br><span class="line">--reg-value=REGVAL  指定 Windows 注册表键值</span><br><span class="line">--reg-data=REGDATA  指定 Windows 注册表键值数据</span><br><span class="line">--reg-type=REGTYPE  指定 Windows 注册表键值类型</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-15-通用选项"><a href="#2-15-通用选项" class="headerlink" title="2.15 通用选项"></a>2.15 通用选项</h3><ul>
+<li>以下选项用于设置通用的参数</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-s SESSIONFILE      从文件（.sqlite）中读入会话信息</span><br><span class="line">-t TRAFFICFILE      保存所有 HTTP 流量记录到指定文本文件</span><br><span class="line">--batch             从不询问用户输入，使用默认配置</span><br><span class="line">--binary-fields=..  具有二进制值的结果字段（例如：&quot;digest&quot;）</span><br><span class="line">--check-internet    在访问目标之前检查是否正常连接互联网</span><br><span class="line">--crawl=CRAWLDEPTH  从目标 URL 开始爬取网站</span><br><span class="line">--crawl-exclude=..  用正则表达式筛选爬取的页面（例如：&quot;logout&quot;）</span><br><span class="line">--csv-del=CSVDEL    指定输出到 CVS 文件时使用的分隔符（默认为“,”）</span><br><span class="line">--charset=CHARSET   指定 SQL 盲注字符集（例如：&quot;0123456789abcdef&quot;）</span><br><span class="line">--dump-format=DU..  导出数据的格式（CSV（默认），HTML 或 SQLITE）</span><br><span class="line">--encoding=ENCOD..  指定获取数据时使用的字符编码（例如：GBK）</span><br><span class="line">--eta               显示每个结果输出的预计到达时间</span><br><span class="line">--flush-session     清空当前目标的会话文件</span><br><span class="line">--forms             解析并测试目标 URL 的表单</span><br><span class="line">--fresh-queries     忽略存储在会话文件中的查询结果</span><br><span class="line">--har=HARFILE       将所有 HTTP 流量记录到一个 HAR 文件中</span><br><span class="line">--hex               获取数据时调用 DBMS 的 hex 函数</span><br><span class="line">--output-dir=OUT..  自定义输出目录路径</span><br><span class="line">--parse-errors      从响应中解析并显示 DBMS 错误信息</span><br><span class="line">--save=SAVECONFIG   将选项设置保存到一个 INI 配置文件</span><br><span class="line">--scope=SCOPE       用正则表达式从提供的代理日志中过滤目标</span><br><span class="line">--test-filter=TE..  根据 payloads 和/或标题（例如：ROW）选择测试</span><br><span class="line">--test-skip=TEST..  根据 payloads 和/或标题（例如：BENCHMARK）跳过部分测试</span><br><span class="line">--update            更新 sqlmap</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-16-其他选项"><a href="#2-16-其他选项" class="headerlink" title="2.16 其他选项"></a>2.16 其他选项</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-z MNEMONICS        使用短助记符（例如：“flu,bat,ban,tec=EU”）</span><br><span class="line">--alert=ALERT       在找到 SQL 注入时运行 OS 命令</span><br><span class="line">--answers=ANSWERS   设置问题答案（例如：“quit=N,follow=N”）</span><br><span class="line">--beep              出现问题提醒或在发现 SQL 注入时发出提示音</span><br><span class="line">--cleanup           指定移除 DBMS 中的特定的 UDF 或者数据表</span><br><span class="line">--dependencies      检查 sqlmap 缺少什么（非核心）依赖</span><br><span class="line">--disable-coloring  关闭彩色控制台输出</span><br><span class="line">--gpage=GOOGLEPAGE  指定页码使用 Google dork 结果</span><br><span class="line">--identify-waf      针对 WAF/IPS/IDS 保护进行彻底的测试</span><br><span class="line">--mobile            使用 HTTP User-Agent 模仿智能手机</span><br><span class="line">--offline           在离线模式下工作（仅使用会话数据）</span><br><span class="line">--purge-output      安全地删除输出目录的所有内容</span><br><span class="line">--skip-waf          跳过启发式检测 WAF/IPS/IDS 保护</span><br><span class="line">--smart             只有在使用启发式检测时才进行彻底的测试</span><br><span class="line">--sqlmap-shell      调出交互式 sqlmap shell</span><br><span class="line">--tmp-dir=TMPDIR    指定用于存储临时文件的本地目录</span><br><span class="line">--web-root=WEBROOT  指定 Web 服务器根目录（例如：&quot;/var/www&quot;）</span><br><span class="line">--wizard            适合初级用户的向导界面</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：</p>
+<p>sqlmap默认输出路径为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\用户名\AppData\Local\sqlmap\output\网址\dump\数据库名\表名</span><br></pre></td></tr></table></figure>
+
+<p>可以通过 <code>--output-dir=D:\自定义路径</code> 自定义输出目录路径。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>脚本工具</category>
+      </categories>
+      <tags>
+        <tag>sqlmap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《SQL快速入门》Notes</title>
     <url>/butterflyblog/2023/08/26/%E3%80%8ASQL%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E3%80%8BNotes/</url>
     <content><![CDATA[<h1 id="《SQL快速入门》Notes"><a href="#《SQL快速入门》Notes" class="headerlink" title="《SQL快速入门》Notes"></a>《SQL快速入门》Notes</h1><blockquote>
@@ -9933,105 +10032,6 @@
       </categories>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《sqlmap中文用法指南》</title>
-    <url>/butterflyblog/2023/09/19/%E3%80%8Asqlmap%E4%B8%AD%E6%96%87%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97%E3%80%8B/</url>
-    <content><![CDATA[<h1 id="《sqlmap中文用法指南》"><a href="#《sqlmap中文用法指南》" class="headerlink" title="《sqlmap中文用法指南》"></a>《sqlmap中文用法指南》</h1><blockquote>
-<p>sqlmap官方：<a href="https://github.com/sqlmapproject/sqlmap">sqlmap</a></p>
-<p>说明：首先保证您的主机已经安装Python环境（若您未安装，请百度安装方法）</p>
-</blockquote>
-<h2 id="1、用法"><a href="#1、用法" class="headerlink" title="1、用法"></a>1、用法</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python sqlmap.py [选项]</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、选项"><a href="#2、选项" class="headerlink" title="2、选项"></a>2、选项</h2><h3 id="2-1-帮助信息"><a href="#2-1-帮助信息" class="headerlink" title="2.1 帮助信息"></a>2.1 帮助信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-h, --help            显示基本帮助信息并退出</span><br><span class="line">-hh                   显示高级帮助信息并退出</span><br><span class="line">--version             显示程序版本信息并退出</span><br><span class="line">-v VERBOSE            输出信息详细程度级别：0-6（默认为 1）</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-目标"><a href="#2-2-目标" class="headerlink" title="2.2 目标"></a>2.2 目标</h3><ul>
-<li>至少提供一个以下选项以指定目标</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-d DIRECT           直接连接数据库</span><br><span class="line">-u URL, --url=URL   目标 URL（例如：&quot;http://www.site.com/vuln.php?id=1&quot;）</span><br><span class="line">-l LOGFILE          从 Burp 或 WebScarab 代理的日志文件中解析目标地址</span><br><span class="line">-x SITEMAPURL       从远程网站地图（.xml）文件中解析目标</span><br><span class="line">-m BULKFILE         从文本文件中获取批量目标</span><br><span class="line">-r REQUESTFILE      从文件中读取 HTTP 请求</span><br><span class="line">-g GOOGLEDORK       使用 Google dork 结果作为目标</span><br><span class="line">-c CONFIGFILE       从 INI 配置文件中加载选项</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3-请求"><a href="#2-3-请求" class="headerlink" title="2.3 请求"></a>2.3 请求</h3><ul>
-<li>以下选项可以指定连接目标地址的方式</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--method=METHOD     强制使用提供的 HTTP 方法（例如：PUT）</span><br><span class="line">--data=DATA         使用 POST 发送数据串</span><br><span class="line">--param-del=PARA..  设置参数值分隔符</span><br><span class="line">--cookie=COOKIE     指定 HTTP Cookie </span><br><span class="line">--cookie-del=COO..  设置 cookie 分隔符</span><br><span class="line">--load-cookies=L..  指定以 Netscape/wget 格式存放 cookies 的文件</span><br><span class="line">--drop-set-cookie   忽略 HTTP 响应中的 Set-Cookie 参数</span><br><span class="line">--user-agent=AGENT  指定 HTTP User-Agent</span><br><span class="line">--random-agent      使用随机的 HTTP User-Agent</span><br><span class="line">--host=HOST         指定 HTTP Host</span><br><span class="line">--referer=REFERER   指定 HTTP Referer</span><br><span class="line">-H HEADER, --hea..  设置额外的 HTTP 头参数（例如：&quot;X-Forwarded-For: 127.0.0.1&quot;）</span><br><span class="line">--headers=HEADERS   设置额外的 HTTP 头参数（例如：&quot;Accept-Language: fr\nETag: 123&quot;）</span><br><span class="line">--auth-type=AUTH..  HTTP 认证方式（Basic，Digest，NTLM 或 PKI）</span><br><span class="line">--auth-cred=AUTH..  HTTP 认证凭证（username:password）</span><br><span class="line">--auth-file=AUTH..  HTTP 认证 PEM 证书/私钥文件</span><br><span class="line">--ignore-code=IG..  忽略 HTTP 错误码（例如：401）</span><br><span class="line">--ignore-proxy      忽略系统默认代理设置</span><br><span class="line">--ignore-redirects  忽略重定向尝试</span><br><span class="line">--ignore-timeouts   忽略连接超时</span><br><span class="line">--proxy=PROXY       使用代理连接目标 URL</span><br><span class="line">--proxy-cred=PRO..  使用代理进行认证（username:password）</span><br><span class="line">--proxy-file=PRO..  从文件中加载代理列表</span><br><span class="line">--tor               使用 Tor 匿名网络</span><br><span class="line">--tor-port=TORPORT  设置 Tor 代理端口代替默认端口</span><br><span class="line">--tor-type=TORTYPE  设置 Tor 代理方式（HTTP，SOCKS4 或 SOCKS5（默认））</span><br><span class="line">--check-tor         检查是否正确使用了 Tor</span><br><span class="line">--delay=DELAY       设置每个 HTTP 请求的延迟秒数</span><br><span class="line">--timeout=TIMEOUT   设置连接响应的有效秒数（默认为 30）</span><br><span class="line">--retries=RETRIES   连接超时时重试次数（默认为 3）</span><br><span class="line">--randomize=RPARAM  随机更改给定的参数值</span><br><span class="line">--safe-url=SAFEURL  测试过程中可频繁访问且合法的 URL 地址（译者注：</span><br><span class="line">                    有些网站在你连续多次访问错误地址时会关闭会话连接，</span><br><span class="line">                    后面的“请求”小节有详细说明）</span><br><span class="line">--safe-post=SAFE..  使用 POST 方法发送合法的数据</span><br><span class="line">--safe-req=SAFER..  从文件中加载合法的 HTTP 请求</span><br><span class="line">--safe-freq=SAFE..  每访问两次给定的合法 URL 才发送一次测试请求</span><br><span class="line">--skip-urlencode    不对 payload 数据进行 URL 编码</span><br><span class="line">--csrf-token=CSR..  设置网站用来反 CSRF 攻击的 token</span><br><span class="line">--csrf-url=CSRFURL  指定可提取反 CSRF 攻击 token 的 URL</span><br><span class="line">--force-ssl         强制使用 SSL/HTTPS</span><br><span class="line">--hpp               使用 HTTP 参数污染攻击</span><br><span class="line">--eval=EVALCODE     在发起请求前执行给定的 Python 代码（例如：</span><br><span class="line">                    &quot;import hashlib;id2=hashlib.md5(id).hexdigest()&quot;）</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-4-优化"><a href="#2-4-优化" class="headerlink" title="2.4 优化"></a>2.4 优化</h3><ul>
-<li>以下选项用于优化 sqlmap 性能</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-o                  开启所有优化开关</span><br><span class="line">--predict-output    预测常用请求的输出</span><br><span class="line">--keep-alive        使用持久的 HTTP(S) 连接</span><br><span class="line">--null-connection   仅获取页面大小而非实际的 HTTP 响应</span><br><span class="line">--threads=THREADS   设置 HTTP(S) 请求并发数最大值（默认为 1）</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-5-注入"><a href="#2-5-注入" class="headerlink" title="2.5 注入"></a>2.5 注入</h3><ul>
-<li><p>以下选项用于指定要测试的参数，</p>
-<p>提供自定义注入 payloads 和篡改参数的脚本</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-p TESTPARAMETER    指定需要测试的参数</span><br><span class="line">--skip=SKIP         指定要跳过的参数</span><br><span class="line">--skip-static       指定跳过非动态参数</span><br><span class="line">--param-exclude=..  用正则表达式排除参数（例如：&quot;ses&quot;）</span><br><span class="line">--dbms=DBMS         指定 DBMS 类型（例如：MySQL）</span><br><span class="line">--dbms-cred=DBMS..  DBMS 认证凭据（username:password）</span><br><span class="line">--os=OS             指定 DBMS 服务器的操作系统类型</span><br><span class="line">--invalid-bignum    将无效值设置为大数</span><br><span class="line">--invalid-logical   对无效值使用逻辑运算</span><br><span class="line">--invalid-string    对无效值使用随机字符串</span><br><span class="line">--no-cast           关闭 payload 构造机制</span><br><span class="line">--no-escape         关闭字符串转义机制</span><br><span class="line">--prefix=PREFIX     注入 payload 的前缀字符串</span><br><span class="line">--suffix=SUFFIX     注入 payload 的后缀字符串</span><br><span class="line">--tamper=TAMPER     用给定脚本修改注入数据</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-6-检测"><a href="#2-6-检测" class="headerlink" title="2.6 检测"></a>2.6 检测</h3><ul>
-<li>以下选项用于自定义检测方式</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--level=LEVEL       设置测试等级（1-5，默认为 1）</span><br><span class="line">--risk=RISK         设置测试风险等级（1-3，默认为 1）</span><br><span class="line">--string=STRING     用于确定查询结果为真时的字符串</span><br><span class="line">--not-string=NOT..  用于确定查询结果为假时的字符串</span><br><span class="line">--regexp=REGEXP     用于确定查询结果为真时的正则表达式</span><br><span class="line">--code=CODE         用于确定查询结果为真时的 HTTP 状态码</span><br><span class="line">--text-only         只根据页面文本内容对比页面</span><br><span class="line">--titles            只根据页面标题对比页面</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-7-技术"><a href="#2-7-技术" class="headerlink" title="2.7 技术"></a>2.7 技术</h3><ul>
-<li>以下选项用于调整特定 SQL 注入技术的测试方法</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--technique=TECH    使用的 SQL 注入技术（默认为“BEUSTQ”，译者注：</span><br><span class="line">                    B: Boolean-based blind SQL injection（布尔型盲注）</span><br><span class="line">                    E: Error-based SQL injection（报错型注入）</span><br><span class="line">                    U: UNION query SQL injection（联合查询注入）</span><br><span class="line">                    S: Stacked queries SQL injection（堆查询注入）</span><br><span class="line">                    T: Time-based blind SQL injection（时间型盲注）</span><br><span class="line">                    Q: inline Query injection（内联查询注入）</span><br><span class="line">--time-sec=TIMESEC  延迟 DBMS 的响应秒数（默认为 5）</span><br><span class="line">--union-cols=UCOLS  设置联合查询注入测试的列数目范围</span><br><span class="line">--union-char=UCHAR  用于暴力猜解列数的字符</span><br><span class="line">--union-from=UFROM  设置联合查询注入 FROM 处用到的表</span><br><span class="line">--dns-domain=DNS..  设置用于 DNS 渗出攻击的域名（译者注：</span><br><span class="line">                    推荐阅读《在SQL注入中使用DNS获取数据》</span><br><span class="line">                    http://cb.drops.wiki/drops/tips-5283.html，</span><br><span class="line">                    在后面的“技术”小节中也有相应解释）</span><br><span class="line">--second-order=S..  设置二阶响应的结果显示页面的 URL（译者注：</span><br><span class="line">                    该选项用于二阶 SQL 注入）</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-8-指纹识别"><a href="#2-8-指纹识别" class="headerlink" title="2.8 指纹识别"></a>2.8 指纹识别</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-f, --fingerprint   执行广泛的 DBMS 版本指纹识别</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-9-枚举"><a href="#2-9-枚举" class="headerlink" title="2.9 枚举"></a>2.9 枚举</h3><ul>
-<li><p>以下选项用于获取后端数据库管理系统的信息，结构和数据表中的数据。</p>
-<p>此外，还可以运行你输入的 SQL 语句</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-a, --all           获取所有信息、数据</span><br><span class="line">-b, --banner        获取 DBMS banner</span><br><span class="line">--current-user      获取 DBMS 当前用户</span><br><span class="line">--current-db        获取 DBMS 当前数据库</span><br><span class="line">--hostname          获取 DBMS 服务器的主机名</span><br><span class="line">--is-dba            探测 DBMS 当前用户是否为 DBA（数据库管理员）</span><br><span class="line">--users             枚举出 DBMS 所有用户</span><br><span class="line">--passwords         枚举出 DBMS 所有用户的密码哈希</span><br><span class="line">--privileges        枚举出 DBMS 所有用户特权级</span><br><span class="line">--roles             枚举出 DBMS 所有用户角色</span><br><span class="line">--dbs               枚举出 DBMS 所有数据库</span><br><span class="line">--tables            枚举出 DBMS 数据库中的所有表</span><br><span class="line">--columns           枚举出 DBMS 表中的所有列</span><br><span class="line">--schema            枚举出 DBMS 所有模式</span><br><span class="line">--count             获取数据表数目</span><br><span class="line">--dump              导出 DBMS 数据库表项</span><br><span class="line">--dump-all          导出所有 DBMS 数据库表项</span><br><span class="line">--search            搜索列，表和/或数据库名</span><br><span class="line">--comments          获取 DBMS 注释</span><br><span class="line">-D DB               指定要枚举的 DBMS 数据库</span><br><span class="line">-T TBL              指定要枚举的 DBMS 数据表</span><br><span class="line">-C COL              指定要枚举的 DBMS 数据列</span><br><span class="line">-X EXCLUDECOL       指定要排除的 DBMS 数据列</span><br><span class="line">-U USER             指定枚举的 DBMS 用户</span><br><span class="line">--exclude-sysdbs    枚举所有数据表时，指定排除特定系统数据库</span><br><span class="line">--pivot-column=P..  指定主列</span><br><span class="line">--where=DUMPWHERE   在转储表时使用 WHERE 条件语句</span><br><span class="line">--start=LIMITSTART  指定要导出的数据表条目开始行数</span><br><span class="line">--stop=LIMITSTOP    指定要导出的数据表条目结束行数</span><br><span class="line">--first=FIRSTCHAR   指定获取返回查询结果的开始字符位</span><br><span class="line">--last=LASTCHAR     指定获取返回查询结果的结束字符位</span><br><span class="line">--sql-query=QUERY   指定要执行的 SQL 语句</span><br><span class="line">--sql-shell         调出交互式 SQL shell</span><br><span class="line">--sql-file=SQLFILE  执行文件中的 SQL 语句</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-10-暴力破解"><a href="#2-10-暴力破解" class="headerlink" title="2.10 暴力破解"></a>2.10 暴力破解</h3><ul>
-<li>以下选项用于暴力破解测试</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--common-tables     检测常见的表名是否存在</span><br><span class="line">--common-columns    检测常用的列名是否存在</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-11-用户自定义函数注入"><a href="#2-11-用户自定义函数注入" class="headerlink" title="2.11 用户自定义函数注入"></a>2.11 用户自定义函数注入</h3><ul>
-<li>以下选项用于创建用户自定义函数</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--udf-inject        注入用户自定义函数</span><br><span class="line">--shared-lib=SHLIB  共享库的本地路径</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-12-访问文件系统"><a href="#2-12-访问文件系统" class="headerlink" title="2.12 访问文件系统"></a>2.12 访问文件系统</h3><ul>
-<li>以下选项用于访问后端数据库管理系统的底层文件系统</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--file-read=RFILE   读取后端 DBMS 文件系统中的文件</span><br><span class="line">--file-write=WFILE  写入后端 DBMS 文件系统中的文件</span><br><span class="line">--file-dest=DFILE   使用文件绝对路径写入到后端 DBMS</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-13-访问操作系统"><a href="#2-13-访问操作系统" class="headerlink" title="2.13 访问操作系统"></a>2.13 访问操作系统</h3><ul>
-<li>以下选项用于访问后端数据库管理系统的底层操作系统</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--os-cmd=OSCMD      执行操作系统命令</span><br><span class="line">--os-shell          调出交互式操作系统 shell</span><br><span class="line">--os-pwn            调出 OOB shell，Meterpreter 或 VNC</span><br><span class="line">--os-smbrelay       一键调出 OOB shell，Meterpreter 或 VNC</span><br><span class="line">--os-bof            利用存储过程的缓冲区溢出</span><br><span class="line">--priv-esc          数据库进程用户提权</span><br><span class="line">--msf-path=MSFPATH  Metasploit 框架的本地安装路径</span><br><span class="line">--tmp-path=TMPPATH  远程临时文件目录的绝对路径</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-14-访问-Windows-注册表"><a href="#2-14-访问-Windows-注册表" class="headerlink" title="2.14 访问 Windows 注册表"></a>2.14 访问 Windows 注册表</h3><ul>
-<li>以下选项用于访问后端数据库管理系统的 Windows 注册表</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--reg-read          读取一个 Windows 注册表键值</span><br><span class="line">--reg-add           写入一个 Windows 注册表键值数据</span><br><span class="line">--reg-del           删除一个 Windows 注册表键值</span><br><span class="line">--reg-key=REGKEY    指定 Windows 注册表键</span><br><span class="line">--reg-value=REGVAL  指定 Windows 注册表键值</span><br><span class="line">--reg-data=REGDATA  指定 Windows 注册表键值数据</span><br><span class="line">--reg-type=REGTYPE  指定 Windows 注册表键值类型</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-15-通用选项"><a href="#2-15-通用选项" class="headerlink" title="2.15 通用选项"></a>2.15 通用选项</h3><ul>
-<li>以下选项用于设置通用的参数</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-s SESSIONFILE      从文件（.sqlite）中读入会话信息</span><br><span class="line">-t TRAFFICFILE      保存所有 HTTP 流量记录到指定文本文件</span><br><span class="line">--batch             从不询问用户输入，使用默认配置</span><br><span class="line">--binary-fields=..  具有二进制值的结果字段（例如：&quot;digest&quot;）</span><br><span class="line">--check-internet    在访问目标之前检查是否正常连接互联网</span><br><span class="line">--crawl=CRAWLDEPTH  从目标 URL 开始爬取网站</span><br><span class="line">--crawl-exclude=..  用正则表达式筛选爬取的页面（例如：&quot;logout&quot;）</span><br><span class="line">--csv-del=CSVDEL    指定输出到 CVS 文件时使用的分隔符（默认为“,”）</span><br><span class="line">--charset=CHARSET   指定 SQL 盲注字符集（例如：&quot;0123456789abcdef&quot;）</span><br><span class="line">--dump-format=DU..  导出数据的格式（CSV（默认），HTML 或 SQLITE）</span><br><span class="line">--encoding=ENCOD..  指定获取数据时使用的字符编码（例如：GBK）</span><br><span class="line">--eta               显示每个结果输出的预计到达时间</span><br><span class="line">--flush-session     清空当前目标的会话文件</span><br><span class="line">--forms             解析并测试目标 URL 的表单</span><br><span class="line">--fresh-queries     忽略存储在会话文件中的查询结果</span><br><span class="line">--har=HARFILE       将所有 HTTP 流量记录到一个 HAR 文件中</span><br><span class="line">--hex               获取数据时调用 DBMS 的 hex 函数</span><br><span class="line">--output-dir=OUT..  自定义输出目录路径</span><br><span class="line">--parse-errors      从响应中解析并显示 DBMS 错误信息</span><br><span class="line">--save=SAVECONFIG   将选项设置保存到一个 INI 配置文件</span><br><span class="line">--scope=SCOPE       用正则表达式从提供的代理日志中过滤目标</span><br><span class="line">--test-filter=TE..  根据 payloads 和/或标题（例如：ROW）选择测试</span><br><span class="line">--test-skip=TEST..  根据 payloads 和/或标题（例如：BENCHMARK）跳过部分测试</span><br><span class="line">--update            更新 sqlmap</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-16-其他选项"><a href="#2-16-其他选项" class="headerlink" title="2.16 其他选项"></a>2.16 其他选项</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-z MNEMONICS        使用短助记符（例如：“flu,bat,ban,tec=EU”）</span><br><span class="line">--alert=ALERT       在找到 SQL 注入时运行 OS 命令</span><br><span class="line">--answers=ANSWERS   设置问题答案（例如：“quit=N,follow=N”）</span><br><span class="line">--beep              出现问题提醒或在发现 SQL 注入时发出提示音</span><br><span class="line">--cleanup           指定移除 DBMS 中的特定的 UDF 或者数据表</span><br><span class="line">--dependencies      检查 sqlmap 缺少什么（非核心）依赖</span><br><span class="line">--disable-coloring  关闭彩色控制台输出</span><br><span class="line">--gpage=GOOGLEPAGE  指定页码使用 Google dork 结果</span><br><span class="line">--identify-waf      针对 WAF/IPS/IDS 保护进行彻底的测试</span><br><span class="line">--mobile            使用 HTTP User-Agent 模仿智能手机</span><br><span class="line">--offline           在离线模式下工作（仅使用会话数据）</span><br><span class="line">--purge-output      安全地删除输出目录的所有内容</span><br><span class="line">--skip-waf          跳过启发式检测 WAF/IPS/IDS 保护</span><br><span class="line">--smart             只有在使用启发式检测时才进行彻底的测试</span><br><span class="line">--sqlmap-shell      调出交互式 sqlmap shell</span><br><span class="line">--tmp-dir=TMPDIR    指定用于存储临时文件的本地目录</span><br><span class="line">--web-root=WEBROOT  指定 Web 服务器根目录（例如：&quot;/var/www&quot;）</span><br><span class="line">--wizard            适合初级用户的向导界面</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>说明：</p>
-<p>sqlmap默认输出路径为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\用户名\AppData\Local\sqlmap\output\网址\dump\数据库名\表名</span><br></pre></td></tr></table></figure>
-
-<p>可以通过 <code>--output-dir=D:\自定义路径</code> 自定义输出目录路径。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>脚本工具</category>
-      </categories>
-      <tags>
-        <tag>sqlmap</tag>
       </tags>
   </entry>
   <entry>
@@ -10247,116 +10247,6 @@
       </tags>
   </entry>
   <entry>
-    <title>颜色素材——原神</title>
-    <url>/butterflyblog/2023/08/03/%E9%A2%9C%E8%89%B2%E7%B4%A0%E6%9D%90%E2%80%94%E2%80%94%E5%8E%9F%E7%A5%9E/</url>
-    <content><![CDATA[<h1 id="开发颜色素材——原神"><a href="#开发颜色素材——原神" class="headerlink" title="开发颜色素材——原神"></a>开发颜色素材——原神</h1><blockquote>
-<p>一个常用的占位无用背景色：<code>#f8f8f8 </code> 淡浅灰</p>
-</blockquote>
-<h4 id="来源1：璃月港"><a href="#来源1：璃月港" class="headerlink" title="来源1：璃月港"></a><a href="https://www.bilibili.com/video/BV1i84y1h75N/?spm_id_from=333.999.0.0&vd_source=c8fd2e0497e85b922bd7937e4829dc8f">来源1：璃月港</a></h4><h4 id="1-1-香菱"><a href="#1-1-香菱" class="headerlink" title="1.1 香菱"></a>1.1 香菱</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119174702280.png" alt="image-20230119174702280" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#000000</span><br><span class="line">#384871</span><br><span class="line">#E7BD39</span><br><span class="line">#AB4F3F</span><br><span class="line">#47855A</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-申鹤"><a href="#1-2-申鹤" class="headerlink" title="1.2 申鹤"></a>1.2 申鹤</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119174817927.png" alt="image-20230119174817927" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#232B36</span><br><span class="line">#5E7C89</span><br><span class="line">#B4BFD0</span><br><span class="line">#8694AD</span><br><span class="line">#9C3129</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-3-魈"><a href="#1-3-魈" class="headerlink" title="1.3 魈"></a>1.3 魈</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119174923461.png" alt="image-20230119174923461" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#333C42</span><br><span class="line">#316658</span><br><span class="line">#5EA69C</span><br><span class="line">#C2CFA2</span><br><span class="line">#A4795E</span><br><span class="line">#706690</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-4-胡桃"><a href="#1-4-胡桃" class="headerlink" title="1.4 胡桃"></a>1.4 胡桃</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175000000.png" alt="image-20230119175000000" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#3A1B19</span><br><span class="line">#7B595E</span><br><span class="line">#C7A085</span><br><span class="line">#FCF0E1</span><br><span class="line">#C94737</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-5-云堇"><a href="#1-5-云堇" class="headerlink" title="1.5 云堇"></a>1.5 云堇</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175045668.png" alt="image-20230119175045668" style="zoom: 50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#1E1A22</span><br><span class="line">#67A4BA</span><br><span class="line">#4E4C72</span><br><span class="line">#B94E5E</span><br><span class="line">#D389A1</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-6-钟离"><a href="#1-6-钟离" class="headerlink" title="1.6 钟离"></a>1.6 钟离</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175127600.png" alt="image-20230119175127600" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#2F2321</span><br><span class="line">#AA4F23</span><br><span class="line">#F8EBDC</span><br><span class="line">#FED875</span><br><span class="line">#CF627A</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-6-甘雨"><a href="#1-6-甘雨" class="headerlink" title="1.6 甘雨"></a>1.6 甘雨</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175157962.png" alt="image-20230119175157962" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#33395B</span><br><span class="line">#5D74A2</span><br><span class="line">#C4D8F2</span><br><span class="line">#F2E8E3</span><br><span class="line">#7C282B</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-7-刻晴"><a href="#1-7-刻晴" class="headerlink" title="1.7 刻晴"></a>1.7 刻晴</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175226756.png" alt="image-20230119175226756" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#211A3E</span><br><span class="line">#453370</span><br><span class="line">#A597B6</span><br><span class="line">#FEF3E8</span><br><span class="line">#D06C9D</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="来源2：稻妻城"><a href="#来源2：稻妻城" class="headerlink" title="来源2：稻妻城"></a><a href="https://www.bilibili.com/video/BV1W24y1e75S/?spm_id_from=333.337.search-card.all.click&vd_source=c8fd2e0497e85b922bd7937e4829dc8f">来源2：稻妻城</a></h4><h4 id="2-1-八重神子"><a href="#2-1-八重神子" class="headerlink" title="2.1 八重神子"></a>2.1 八重神子</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175544863.png" alt="image-20230119175544863" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-2-早柚"><a href="#2-2-早柚" class="headerlink" title="2.2 早柚"></a>2.2 早柚</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175615925.png" alt="image-20230119175615925" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-3-雷电将军"><a href="#2-3-雷电将军" class="headerlink" title="2.3 雷电将军"></a>2.3 雷电将军</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175645940.png" alt="image-20230119175645940" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-4-宵宫"><a href="#2-4-宵宫" class="headerlink" title="2.4 宵宫"></a>2.4 宵宫</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175717878.png" alt="image-20230119175717878" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#CD4432</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-5-枫原万叶"><a href="#2-5-枫原万叶" class="headerlink" title="2.5 枫原万叶"></a>2.5 枫原万叶</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175802792.png" alt="image-20230119175802792" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#C33828</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-6-神里绫华"><a href="#2-6-神里绫华" class="headerlink" title="2.6 神里绫华"></a>2.6 神里绫华</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175841853.png" alt="image-20230119175841853" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#414C87</span><br><span class="line">#9CB3D4</span><br><span class="line">#ECEDEB</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-7-荒泷一斗"><a href="#2-7-荒泷一斗" class="headerlink" title="2.7 荒泷一斗"></a>2.7 荒泷一斗</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175910185.png" alt="image-20230119175910185" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#F7DB78</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-8-珊瑚宫心海"><a href="#2-8-珊瑚宫心海" class="headerlink" title="2.8 珊瑚宫心海"></a>2.8 珊瑚宫心海</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175944139.png" alt="image-20230119175944139" style="zoom:50%;" />
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#8E8DC8</span><br><span class="line">#F7E2DB</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>通用知识</category>
-      </categories>
-      <tags>
-        <tag>原神</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数字逻辑实验Notes持续更新</title>
     <url>/butterflyblog/2023/09/21/%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E5%AE%9E%E9%AA%8CNotes%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</url>
     <content><![CDATA[<h1 id="数字逻辑实验Notes持续更新"><a href="#数字逻辑实验Notes持续更新" class="headerlink" title="数字逻辑实验Notes持续更新"></a>数字逻辑实验Notes持续更新</h1><blockquote>
@@ -10477,6 +10367,116 @@
       </categories>
       <tags>
         <tag>数字逻辑实验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>颜色素材——原神</title>
+    <url>/butterflyblog/2023/08/03/%E9%A2%9C%E8%89%B2%E7%B4%A0%E6%9D%90%E2%80%94%E2%80%94%E5%8E%9F%E7%A5%9E/</url>
+    <content><![CDATA[<h1 id="开发颜色素材——原神"><a href="#开发颜色素材——原神" class="headerlink" title="开发颜色素材——原神"></a>开发颜色素材——原神</h1><blockquote>
+<p>一个常用的占位无用背景色：<code>#f8f8f8 </code> 淡浅灰</p>
+</blockquote>
+<h4 id="来源1：璃月港"><a href="#来源1：璃月港" class="headerlink" title="来源1：璃月港"></a><a href="https://www.bilibili.com/video/BV1i84y1h75N/?spm_id_from=333.999.0.0&vd_source=c8fd2e0497e85b922bd7937e4829dc8f">来源1：璃月港</a></h4><h4 id="1-1-香菱"><a href="#1-1-香菱" class="headerlink" title="1.1 香菱"></a>1.1 香菱</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119174702280.png" alt="image-20230119174702280" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#000000</span><br><span class="line">#384871</span><br><span class="line">#E7BD39</span><br><span class="line">#AB4F3F</span><br><span class="line">#47855A</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-申鹤"><a href="#1-2-申鹤" class="headerlink" title="1.2 申鹤"></a>1.2 申鹤</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119174817927.png" alt="image-20230119174817927" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#232B36</span><br><span class="line">#5E7C89</span><br><span class="line">#B4BFD0</span><br><span class="line">#8694AD</span><br><span class="line">#9C3129</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-3-魈"><a href="#1-3-魈" class="headerlink" title="1.3 魈"></a>1.3 魈</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119174923461.png" alt="image-20230119174923461" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#333C42</span><br><span class="line">#316658</span><br><span class="line">#5EA69C</span><br><span class="line">#C2CFA2</span><br><span class="line">#A4795E</span><br><span class="line">#706690</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-4-胡桃"><a href="#1-4-胡桃" class="headerlink" title="1.4 胡桃"></a>1.4 胡桃</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175000000.png" alt="image-20230119175000000" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#3A1B19</span><br><span class="line">#7B595E</span><br><span class="line">#C7A085</span><br><span class="line">#FCF0E1</span><br><span class="line">#C94737</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-5-云堇"><a href="#1-5-云堇" class="headerlink" title="1.5 云堇"></a>1.5 云堇</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175045668.png" alt="image-20230119175045668" style="zoom: 50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#1E1A22</span><br><span class="line">#67A4BA</span><br><span class="line">#4E4C72</span><br><span class="line">#B94E5E</span><br><span class="line">#D389A1</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-6-钟离"><a href="#1-6-钟离" class="headerlink" title="1.6 钟离"></a>1.6 钟离</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175127600.png" alt="image-20230119175127600" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#2F2321</span><br><span class="line">#AA4F23</span><br><span class="line">#F8EBDC</span><br><span class="line">#FED875</span><br><span class="line">#CF627A</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-6-甘雨"><a href="#1-6-甘雨" class="headerlink" title="1.6 甘雨"></a>1.6 甘雨</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175157962.png" alt="image-20230119175157962" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#33395B</span><br><span class="line">#5D74A2</span><br><span class="line">#C4D8F2</span><br><span class="line">#F2E8E3</span><br><span class="line">#7C282B</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-7-刻晴"><a href="#1-7-刻晴" class="headerlink" title="1.7 刻晴"></a>1.7 刻晴</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175226756.png" alt="image-20230119175226756" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#211A3E</span><br><span class="line">#453370</span><br><span class="line">#A597B6</span><br><span class="line">#FEF3E8</span><br><span class="line">#D06C9D</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="来源2：稻妻城"><a href="#来源2：稻妻城" class="headerlink" title="来源2：稻妻城"></a><a href="https://www.bilibili.com/video/BV1W24y1e75S/?spm_id_from=333.337.search-card.all.click&vd_source=c8fd2e0497e85b922bd7937e4829dc8f">来源2：稻妻城</a></h4><h4 id="2-1-八重神子"><a href="#2-1-八重神子" class="headerlink" title="2.1 八重神子"></a>2.1 八重神子</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175544863.png" alt="image-20230119175544863" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-早柚"><a href="#2-2-早柚" class="headerlink" title="2.2 早柚"></a>2.2 早柚</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175615925.png" alt="image-20230119175615925" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-雷电将军"><a href="#2-3-雷电将军" class="headerlink" title="2.3 雷电将军"></a>2.3 雷电将军</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175645940.png" alt="image-20230119175645940" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-4-宵宫"><a href="#2-4-宵宫" class="headerlink" title="2.4 宵宫"></a>2.4 宵宫</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175717878.png" alt="image-20230119175717878" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#CD4432</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-5-枫原万叶"><a href="#2-5-枫原万叶" class="headerlink" title="2.5 枫原万叶"></a>2.5 枫原万叶</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175802792.png" alt="image-20230119175802792" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#C33828</span><br><span class="line">#</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-6-神里绫华"><a href="#2-6-神里绫华" class="headerlink" title="2.6 神里绫华"></a>2.6 神里绫华</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175841853.png" alt="image-20230119175841853" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#414C87</span><br><span class="line">#9CB3D4</span><br><span class="line">#ECEDEB</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-7-荒泷一斗"><a href="#2-7-荒泷一斗" class="headerlink" title="2.7 荒泷一斗"></a>2.7 荒泷一斗</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175910185.png" alt="image-20230119175910185" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">#F7DB78</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-8-珊瑚宫心海"><a href="#2-8-珊瑚宫心海" class="headerlink" title="2.8 珊瑚宫心海"></a>2.8 珊瑚宫心海</h4><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/genshincolor/image-20230119175944139.png" alt="image-20230119175944139" style="zoom:50%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">#</span><br><span class="line">#8E8DC8</span><br><span class="line">#F7E2DB</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>通用知识</category>
+      </categories>
+      <tags>
+        <tag>原神</tag>
       </tags>
   </entry>
 </search>
