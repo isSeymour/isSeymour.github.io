@@ -1,0 +1,1086 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>《Django》入门 Notes（中） | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="《Django》入门 Notes（中） @Seymour0314 来源官方文档https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;4.2&#x2F;intro&#x2F;  本文是Django 后端技术初级入门教程。 编程语言：Python  第 3 部分  本教程从 教程2结束的地方开始。我们将继续开发网络投票应用程序，并将着重于创建公共接口——“视图”。  3.1 概况   Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Django》入门 Notes（中）">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2023/06/02/Django-2/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="《Django》入门 Notes（中） @Seymour0314 来源官方文档https:&#x2F;&#x2F;docs.djangoproject.com&#x2F;zh-hans&#x2F;4.2&#x2F;intro&#x2F;  本文是Django 后端技术初级入门教程。 编程语言：Python  第 3 部分  本教程从 教程2结束的地方开始。我们将继续开发网络投票应用程序，并将着重于创建公共接口——“视图”。  3.1 概况   Django">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp">
+<meta property="article:published_time" content="2023-06-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-01T16:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2023/06/02/Django-2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《Django》入门 Notes（中）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-06-02 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《Django》入门 Notes（中）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-01T16:00:00.000Z" title="发表于 2023-06-02 00:00:00">2023-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-01T16:00:00.000Z" title="更新于 2023-06-02 00:00:00">2023-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">12.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>48分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《Django》入门 Notes（中）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>《Django》入门 Notes（中）</h1>
+<p>@Seymour0314 来源官方文档<code>https://docs.djangoproject.com/zh-hans/4.2/intro/</code></p>
+<blockquote>
+<p>本文是Django 后端技术初级入门教程。</p>
+<p>编程语言：Python</p>
+</blockquote>
+<h2 id="第-3-部分">第 3 部分</h2>
+<blockquote>
+<p>本教程从 教程2结束的地方开始。我们将继续开发网络投票应用程序，并将着重于创建公共接口——“视图”。</p>
+</blockquote>
+<h3 id="3-1-概况">3.1 概况</h3>
+<ul>
+<li>
+<p>Django 中的视图的概念是「<strong>一类具有相同功能和模板的网页的集合</strong>」。</p>
+<blockquote>
+<p>比如，在一个博客应用中，你可能会创建如下几个视图：</p>
+<ul>
+<li>博客首页——展示最近的几项内容。</li>
+<li>内容“详情”页——详细展示某项内容。</li>
+<li>以年为单位的归档页——展示选中的年份里各个月份创建的内容。</li>
+<li>以月为单位的归档页——展示选中的月份里各天创建的内容。</li>
+<li>以天为单位的归档页——展示选中天里创建的所有内容。</li>
+<li>评论处理器——用于响应为一项内容添加评论的操作。</li>
+</ul>
+<p>而在我们的投票应用中，我们需要下列几个视图：</p>
+<ul>
+<li>问题索引页——展示最近的几个投票问题。</li>
+<li>问题详情页——展示某个投票的问题和不带结果的选项列表。</li>
+<li>问题结果页——展示某个投票的结果。</li>
+<li>投票处理器——用于响应用户为某个问题的特定选项投票的操作。</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>在 Django 中，网页和其他内容都是从视图派生而来。</p>
+<p>每一个视图表现为一个 Python 函数（或者说方法，如果是在基于类的视图里的话）。</p>
+<p>Django 将会根据用户请求的 URL 来选择使用哪个视图（更准确的说，是根据 URL 中域名之后的部分）。</p>
+<blockquote>
+<p>在你上网的过程中，很可能看见过像这样美丽的 URL：</p>
+<p><code>ME2/Sites/dirmod.htm?sid=&amp;type=gen&amp;mod=Core+Pages&amp;gid=A6CD4967199A42D9B65B1B</code></p>
+<p>别担心，Django 里的 <em>URL 样式</em> 要比这优雅的多！</p>
+</blockquote>
+</li>
+<li>
+<p>URL 样式是 URL 的一般形式</p>
+<blockquote>
+<p>例如：<code>/newsarchive/&lt;year&gt;/&lt;month&gt;/</code>。</p>
+</blockquote>
+</li>
+<li>
+<p>为了将 URL 和视图关联起来，Django 使用了 ‘URLconfs’ 来配置。</p>
+<p>URLconf 将 URL 模式映射到视图。</p>
+<blockquote>
+<p>本教程只会介绍 URLconf 的基础内容，你可以看看 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/http/urls/">URL调度器</a> 以获取更多内容。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-2-编写更多视图">3.2 编写更多视图</h3>
+<ul>
+<li>
+<p>现在让我们向 <code>polls/views.py</code> 里添加更多视图。</p>
+<p>这些视图有一些不同，因为他们接收参数：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">detail</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&quot;You&#x27;re looking at question %s.&quot;</span> % question_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">results</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    response = <span class="string">&quot;You&#x27;re looking at the results of question %s.&quot;</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(response % question_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vote</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&quot;You&#x27;re voting on question %s.&quot;</span> % question_id)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>把这些新视图添加进 <code>polls.urls</code> 模块里，</p>
+<p>只要添加几个 <code>url()</code> 函数调用就行：</p>
+<p><code>polls/urls.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># ex: /polls/</span></span><br><span class="line">    path(<span class="string">&quot;&quot;</span>, views.index, name=<span class="string">&quot;index&quot;</span>),</span><br><span class="line">    <span class="comment"># ex: /polls/5/</span></span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/&quot;</span>, views.detail, name=<span class="string">&quot;detail&quot;</span>),</span><br><span class="line">    <span class="comment"># ex: /polls/5/results/</span></span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/results/&quot;</span>, views.results, name=<span class="string">&quot;results&quot;</span>),</span><br><span class="line">    <span class="comment"># ex: /polls/5/vote/</span></span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/vote/&quot;</span>, views.vote, name=<span class="string">&quot;vote&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>查看效果</p>
+<p>然后看看你的浏览器，如果你转到 “/polls/34/” ，Django 将会运行 <code>detail()</code> 方法并且展示你在 URL 里提供的问题 ID。</p>
+<p>再试试 “/polls/34/vote/” 和 “/polls/34/vote/” ——你将会看到暂时用于占位的结果和投票页。</p>
+<blockquote>
+<p>记得先开服务器运行<code>py manage.py runserver</code></p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511195955371.png" alt="image-20230511195955371" style="zoom:67%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511200013525.png" alt="image-20230511200013525" style="zoom: 67%;" /> 
+<blockquote>
+<ul>
+<li>
+<p>问题 <code>question_id=34</code> 来自 <code>&lt;int:question_id&gt;</code>。</p>
+<p>使用尖括号 “获得” 网址部分后发送给视图函数作为一个关键字参数。</p>
+</li>
+<li>
+<p>字符串的 <code>question_id</code> 部分定义了要使用的名字，用来识别相匹配的模式，</p>
+<p>而 <code>int</code> 部分是一种转换形式，用来确定应该匹配网址路径的什么模式。</p>
+<p>冒号 (<code>:</code>) 用来分隔转换形式和模式名。</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-3-写一个真正有用的视图">3.3 写一个真正有用的视图</h3>
+<blockquote>
+<ul>
+<li>
+<p>每个视图必须要做的只有两件事：</p>
+<ul>
+<li>返回一个包含被请求页面内容的 <code>HttpResponse</code> 对象，</li>
+<li>或者抛出一个异常，比如 <code>Http404</code>。</li>
+</ul>
+<p>至于你还想干些什么，随便你。</p>
+</li>
+<li>
+<p>你的视图</p>
+<ul>
+<li>
+<p>可以从数据库里读取记录</p>
+</li>
+<li>
+<p>可以使用一个模板引擎（比如 Django 自带的，或者其他第三方的）</p>
+</li>
+<li>
+<p>可以生成一个 PDF 文件</p>
+</li>
+<li>
+<p>可以输出一个 XML</p>
+</li>
+<li>
+<p>创建一个 ZIP 文件</p>
+</li>
+</ul>
+<p>你可以做任何你想做的事，使用任何你想用的 Python 库。</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>Django 只要求返回的是一个 <code>HttpResponse</code> ，或者抛出一个异常。</p>
+<blockquote>
+<p>因为 Django 自带的数据库 API 很方便，我们曾在 教程第 2 部分中学过，所以我们试试在视图里使用它。</p>
+</blockquote>
+</li>
+<li>
+<p>我们在 <code>index()</code> 函数里插入了一些新内容，</p>
+<p>让它能展示数据库里以发布日期排序的最近 5 个投票问题，以空格分割：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    latest_question_list = Question.objects.order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br><span class="line">    output = <span class="string">&quot;, &quot;</span>.join([q.question_text <span class="keyword">for</span> q <span class="keyword">in</span> latest_question_list])</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(output)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Leave the rest of the views (detail, results, vote) unchanged</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511205742413.png" alt="image-20230511205742413" style="zoom:80%;" /> 
+<p>这里有个问题：页面的设计写死在视图函数的代码里的。</p>
+<p>如果你想改变页面的样子，你需要编辑 Python 代码。</p>
+<p>所以让我们使用 Django 的模板系统，只要创建一个视图，就可以将页面的设计从代码中分离出来。</p>
+</blockquote>
+</li>
+<li>
+<p>首先，在你的 <code>polls</code> 目录里创建一个 <code>templates</code> 目录。</p>
+<p>Django 将会在这个目录里查找模板文件。</p>
+<blockquote>
+<ul>
+<li>
+<p>你项目的 <code>TEMPLATES</code> 配置项描述了 Django 如何载入和渲染模板。</p>
+</li>
+<li>
+<p>默认的设置文件设置了 <code>DjangoTemplates</code> 后端，并将 <code>APP_DIRS</code> 设置成了 True。</p>
+<p>这一选项将会让 <code>DjangoTemplates</code> 在每个 <code>INSTALLED_APPS</code> 文件夹中寻找 “templates” 子目录。</p>
+<p>这就是为什么尽管我们没有像在第二部分中那样修改 DIRS 设置，Django 也能正确找到 polls 的模板位置的原因。</p>
+</li>
+</ul>
+</blockquote>
+<p>在你刚刚创建的 <code>templates</code> 目录里，再创建一个目录 <code>polls</code>，然后在其中新建一个文件 <code>index.html</code> 。</p>
+<p><code>polls/templates/polls/index.html</code></p>
+<blockquote>
+<p>换句话说，你的模板文件的路径应该是 <code>polls/templates/polls/index.html</code> 。</p>
+<p>因为<code>app_directories</code> 模板加载器是通过上述描述的方法运行的，</p>
+<p>所以 Django 可以引用到 <code>polls/index.html</code> 这一模板了。</p>
+<blockquote>
+<ul>
+<li>
+<p>模板命名空间</p>
+<p>虽然我们现在可以将模板文件直接放在 <code>polls/templates</code> 文件夹中（而不是再建立一个 <code>polls</code> 子文件夹），但是这样做不太好。</p>
+<p>Django 将会选择第一个匹配的模板文件，如果你有一个模板文件正好和另一个应用中的某个模板文件重名，Django 没有办法 <em>区分</em> 它们。</p>
+<p>我们需要帮助 Django 选择正确的模板，最好的方法就是把他们放入各自的 <em>命名空间</em> 中，也就是把这些模板放入一个和 <em>自身</em> 应用重名的子文件夹里。</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if latest_question_list %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    &#123;% for question in latest_question_list %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/polls/&#123;&#123; question.id &#125;&#125;/&quot;</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>No polls are available.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>备注</p>
+<p>为了让教程看起来不那么长，所有的模板文件都只写出了核心代码。</p>
+<p>在你自己创建的项目中，你应该使用 完整的 HTML 文档 。</p>
+<blockquote>
+<p>本次的完整HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>POLLS<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Polls:<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">&#123;% if latest_question_list %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    &#123;% for question in latest_question_list %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/polls/&#123;&#123; question.id &#125;&#125;/&quot;</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>No polls are available.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>然后，让我们更新一下 <code>polls/views.py</code> 里的 <code>index</code> 视图来使用模板：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> loader</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    latest_question_list = Question.objects.order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br><span class="line">    template = loader.get_template(<span class="string">&quot;polls/index.html&quot;</span>)</span><br><span class="line">    context = &#123;</span><br><span class="line">        <span class="string">&quot;latest_question_list&quot;</span>: latest_question_list,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(template.render(context, request))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>
+<p>上述代码的作用是，载入 <code>polls/index.html</code> 模板文件，并且向它传递一个上下文(context)。这个上下文是一个字典，它将模板内的变量映射为 Python 对象。</p>
+</li>
+<li>
+<p>用你的浏览器访问 “/polls/” ，你将会看见一个无序列表，列出了我们在 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/intro/tutorial02/">教程第 2 部分</a> 中添加的 “What’s up” 投票问题，链接指向这个投票的详情页。</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511205932031.png" alt="image-20230511205932031" style="zoom:80%;" /> 
+</blockquote>
+</li>
+</ul>
+<h4 id="一个快捷函数：-render">一个快捷函数： <code>render()</code></h4>
+<ul>
+<li>
+<p>「<strong>载入模板，填充上下文，再返回由它生成的 <code>HttpResponse</code>对象</strong>」</p>
+<p>是一个非常常用的操作流程。</p>
+</li>
+<li>
+<p>于是 Django 提供了一个快捷函数，</p>
+<p>我们用它来重写 <code>index()</code> 视图：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    latest_question_list = Question.objects.order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br><span class="line">    context = &#123;<span class="string">&quot;latest_question_list&quot;</span>: latest_question_list&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/index.html&quot;</span>, context)</span><br></pre></td></tr></table></figure>
+<p>注意到，我们不再需要导入 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/templates/#module-django.template.loader"><code>loader</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/ref/request-response/#django.http.HttpResponse"><code>HttpResponse</code></a> 。</p>
+<p>不过如果你还有其他函数（比如说 <code>detail</code>, <code>results</code>, 和 <code>vote</code> ）需要用到它的话，</p>
+<p>就需要保持 <code>HttpResponse</code> 的导入。</p>
+</li>
+</ul>
+<h3 id="3-4-抛出-404-错误">3.4 抛出 404 错误</h3>
+<ul>
+<li>
+<p>现在，我们来处理投票详情视图——它会显示指定投票的问题标题。下面是这个视图的代码：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> Http404</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">detail</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        question = Question.objects.get(pk=question_id)</span><br><span class="line">    <span class="keyword">except</span> Question.DoesNotExist:</span><br><span class="line">        <span class="keyword">raise</span> Http404(<span class="string">&quot;Question does not exist&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/detail.html&quot;</span>, &#123;<span class="string">&quot;question&quot;</span>: question&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>这里有个新原则。</p>
+<p>如果指定问题 ID 所对应的问题不存在，这个视图就会抛出一个 <code>Http404</code> 异常。</p>
+<blockquote>
+<p>我们稍后再讨论你需要在 <code>polls/detail.html</code> 里输入什么，</p>
+<p>但是如果你想试试上面这段代码是否正常工作的话，</p>
+<p>你可以暂时把下面这段输进去：</p>
+<p><code>polls/templates/polls/details.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>POLLS<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Polls:<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">&#123;&#123; question &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511211221223.png" alt="image-20230511211221223" style="zoom:67%;" /> 
+<p>这样你就能测试了。</p>
+<p>比如，测试<code>127.0.0.1:8000/polls/34/details/</code></p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511211519781.png" alt="image-20230511211519781" style="zoom:67%;" /> 
+</blockquote>
+</li>
+</ul>
+<h4 id="一个快捷函数：-get-object-or-404">一个快捷函数： <code>get_object_or_404()</code></h4>
+<ul>
+<li>
+<p>尝试用 <code>get()</code>函数获取一个对象，如果不存在就抛出 <code>Http404</code>错误也是一个普遍的流程。</p>
+<p>Django 也提供了一个快捷函数，下面是修改后的详情 <code>detail()</code> 视图代码：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">detail</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/detail.html&quot;</span>, &#123;<span class="string">&quot;question&quot;</span>: question&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511212237975.png" alt="image-20230511212237975" style="zoom: 67%;" /> 
+</blockquote>
+<blockquote>
+<p>设计哲学</p>
+<ul>
+<li>
+<p>为什么我们使用辅助函数 <code>get_object_or_404()</code>而不是自己捕获 <code>ObjectDoesNotExist</code> 异常呢？</p>
+<p>还有，为什么模型 API 不直接抛出 <code>ObjectDoesNotExist</code>而是抛出 <code>Http404</code>呢？</p>
+</li>
+<li>
+<p>因为这样做会增加模型层和视图层的耦合性。</p>
+<p>指导 Django 设计的最重要的思想之一就是要保证松散耦合。</p>
+<p>一些受控的耦合将会被包含在 <code>django.shortcuts</code> 模块中。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>也有 <code>get_list_or_404()</code>函数，</p>
+<p>工作原理和 <code>get_object_or_404()</code> 一样，除了 <code>get()</code> 函数被换成了 <code>filter()</code> 函数。</p>
+<p>如果列表为空的话会抛出 <code>Http404</code>异常。</p>
+</li>
+</ul>
+<h3 id="3-5-使用模板系统">3.5 使用模板系统</h3>
+<ul>
+<li>
+<p>回过头去看看我们的 <code>detail()</code> 视图。它向模板传递了上下文变量 <code>question</code> 。</p>
+<p>下面是 <code>polls/detail.html</code> 模板里正式的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123;% for choice in question.choice_set.all %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123; choice.choice_text &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模板系统统一使用点符号来访问变量的属性。</p>
+<blockquote>
+<p>在示例 <code>&#123;&#123; question.question_text &#125;&#125;</code> 中，</p>
+<ul>
+<li>
+<p>首先 Django 尝试对 <code>question</code> 对象使用字典查找（也就是使用 obj.get(str) 操作），</p>
+</li>
+<li>
+<p>如果失败了就尝试属性查找（也就是 obj.str 操作），结果是成功了。</p>
+</li>
+<li>
+<p>如果这一操作也失败的话，将会尝试列表查找（也就是 obj[int] 操作）。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>在 <code>&#123;% for %&#125;</code>循环中发生的函数调用：</p>
+<p><code>question.choice_set.all</code> 被解释为 Python 代码 <code>question.choice_set.all()</code> ，</p>
+<p>将会返回一个可迭代的 <code>Choice</code> 对象，这一对象可以在 <code>&#123;% for %&#125;</code> 标签内部使用。</p>
+<blockquote>
+<p>查看 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/templates/">模板指南</a> 可以了解关于模板的更多信息。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-6-去除模板中的硬编码-URL">3.6 去除模板中的硬编码 URL</h3>
+<ul>
+<li>
+<p>还记得吗，我们在 <code>polls/index.html</code> 里编写投票链接时，链接是硬编码的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/polls/&#123;&#123; question.id &#125;&#125;/&quot;</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>问题在于，硬编码和强耦合的链接，对于一个包含很多应用的项目来说，修改起来是十分困难的。</p>
+</li>
+<li>
+<p>然而，因为你在 <code>polls.urls</code> 的 <code>url()</code> 函数中通过 name 参数为 URL 定义了名字，</p>
+<p>你可以使用 <code>&#123;% url %&#125;</code> 标签代替它：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;detail&#x27; question.id %&#125;&quot;</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个标签的工作方式是在 <code>polls.urls</code> 模块的 URL 定义中寻具有指定名字的条目。</p>
+<p>你可以回忆一下，具有名字 ‘detail’ 的 URL 是在如下语句中定义的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment"># the &#x27;name&#x27; value as called by the &#123;% url %&#125; template tag</span></span><br><span class="line">path(<span class="string">&quot;&lt;int:question_id&gt;/&quot;</span>, views.detail, name=<span class="string">&quot;detail&quot;</span>),</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>如果你想改变投票详情视图的 URL，比如想改成 <code>polls/specifics/12/</code> ，</p>
+<p>你不用在模板里修改任何东西（包括其它模板），</p>
+<p>只要在 <code>polls/urls.py</code> 里稍微修改一下就行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment"># added the word &#x27;specifics&#x27;</span></span><br><span class="line">path(<span class="string">&quot;specifics/&lt;int:question_id&gt;/&quot;</span>, views.detail, name=<span class="string">&quot;detail&quot;</span>),</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-7-为-URL-名称添加命名空间">3.7 为 URL 名称添加命名空间</h3>
+<ul>
+<li>
+<p>教程项目只有一个应用，<code>polls</code> 。在一个真实的 Django 项目中，可能会有五个，十个，二十个，甚至更多应用。Django 如何分辨重名的 URL 呢？</p>
+<p>举个例子，<code>polls</code> 应用有 <code>detail</code> 视图，可能另一个博客应用也有同名的视图。</p>
+<p>Django 如何知道 <code>&#123;% url %&#125;</code> 标签到底对应哪一个应用的 URL 呢？</p>
+</li>
+<li>
+<p>答案是：在根 URLconf 中添加命名空间。在 <code>polls/urls.py</code> 文件中稍作修改，加上 <code>app_name</code> 设置命名空间：</p>
+<p><code>polls/urls.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">app_name = <span class="string">&quot;polls&quot;</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;&quot;</span>, views.index, name=<span class="string">&quot;index&quot;</span>),</span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/&quot;</span>, views.detail, name=<span class="string">&quot;detail&quot;</span>),</span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/results/&quot;</span>, views.results, name=<span class="string">&quot;results&quot;</span>),</span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/vote/&quot;</span>, views.vote, name=<span class="string">&quot;vote&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>现在，编辑 <code>polls/index.html</code> 文件，从：</p>
+<p><code>polls/templates/polls/index.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;detail&#x27; question.id %&#125;&quot;</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修改为指向具有命名空间的详细视图：</p>
+<p><code>polls/templates/polls/index.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;polls:detail&#x27; question.id %&#125;&quot;</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511214221490.png" alt="image-20230511214221490" style="zoom:80%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511214234075.png" alt="image-20230511214234075" style="zoom:80%;" /> 
+<p>当你对你写的视图感到满意后，请阅读 教程的第 4 部分了解基础的表单处理和通用视图。</p>
+</blockquote>
+<h2 id="第-4-部分">第 4 部分</h2>
+<blockquote>
+<p>本教程从 教程第 3 部分 结束的地方开始。我们将继续网络投票的应用，并将重点放在表单处理和精简我们的代码上。</p>
+</blockquote>
+<h3 id="4-1-编写一个简单的表单">4.1 编写一个简单的表单</h3>
+<ul>
+<li>
+<p>让我们更新一下在上一个教程中编写的投票详细页面的模板 (“polls/detail.html”) ，</p>
+<p>让它包含一个 HTML <code>&lt;form&gt;</code> 元素：</p>
+<p><code>polls/templates/polls/detail.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;polls:vote&#x27; question.id %&#125;&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    &#123;% if error_message %&#125;<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; error_message &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#123;% endif %&#125;</span><br><span class="line">    &#123;% for choice in question.choice_set.all %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;choice&quot;</span> <span class="attr">id</span>=<span class="string">&quot;choice&#123;&#123; forloop.counter &#125;&#125;&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; choice.id &#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;choice&#123;&#123; forloop.counter &#125;&#125;&quot;</span>&gt;</span>&#123;&#123; choice.choice_text &#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Vote&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>简要说明：</p>
+<ul>
+<li>
+<p>上面的模板在 Question 的每个 Choice 前添加一个单选按钮。</p>
+<blockquote>
+<p>每个单选按钮的 <code>value</code> 属性是对应的各个 Choice 的 ID。每个单选按钮的 <code>name</code> 是 <code>&quot;choice&quot;</code> 。这意味着，当有人选择一个单选按钮并提交表单提交时，它将发送一个 POST 数据 <code>choice=#</code> ，其中# 为选择的 Choice 的 ID。这是 HTML 表单的基本概念。</p>
+</blockquote>
+</li>
+<li>
+<p>我们将表单的 <code>action</code> 设置为 <code>&#123;% url 'polls:vote' question.id %&#125;</code>，并设置 <code>method=&quot;post&quot;</code>。</p>
+<blockquote>
+<p>使用 <code>method=&quot;post&quot;</code> （而不是 <code>method=&quot;get&quot;</code> ）是非常重要的，因为提交这个表单的行为将改变服务器端的数据。当你创建一个改变服务器端数据的表单时，使用 <code>method=&quot;post&quot;</code>。</p>
+<p>这不是 Django 的特定技巧；这是优秀的网站开发技巧。</p>
+</blockquote>
+</li>
+<li>
+<p><code>forloop.counter</code> 指示 <code>for</code>标签已经循环多少次。</p>
+</li>
+<li>
+<p>由于我们创建一个 POST 表单（它具有修改数据的作用），所以我们需要小心跨站点请求伪造。</p>
+<blockquote>
+<p>谢天谢地，你不必太过担心，因为 Django 自带了一个非常有用的防御系统。</p>
+<p>简而言之，所有针对内部 URL 的 POST 表单都应该使用 <code>&#123;% csrf_token %&#125;</code> 模板标签。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>现在，让我们来创建一个 Django 视图来处理提交的数据。</p>
+<p>记住，在 教程第 3 部分中，我们为投票应用创建了一个 URLconf ，包含这一行：</p>
+<p><code>polls/urls.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path(<span class="string">&quot;&lt;int:question_id&gt;/vote/&quot;</span>, views.vote, name=<span class="string">&quot;vote&quot;</span>),</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>我们还创建了一个 <code>vote()</code> 函数的虚拟实现。</p>
+<p>让我们来创建一个真实的版本。 将下面的代码添加到 <code>polls/views.py</code> ：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Choice, Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vote</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        selected_choice = question.choice_set.get(pk=request.POST[<span class="string">&quot;choice&quot;</span>])</span><br><span class="line">    <span class="keyword">except</span> (KeyError, Choice.DoesNotExist):</span><br><span class="line">        <span class="comment"># Redisplay the question voting form.</span></span><br><span class="line">        <span class="keyword">return</span> render(</span><br><span class="line">            request,</span><br><span class="line">            <span class="string">&quot;polls/detail.html&quot;</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;question&quot;</span>: question,</span><br><span class="line">                <span class="string">&quot;error_message&quot;</span>: <span class="string">&quot;You didn&#x27;t select a choice.&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        selected_choice.votes += <span class="number">1</span></span><br><span class="line">        selected_choice.save()</span><br><span class="line">        <span class="comment"># Always return an HttpResponseRedirect after successfully dealing</span></span><br><span class="line">        <span class="comment"># with POST data. This prevents data from being posted twice if a</span></span><br><span class="line">        <span class="comment"># user hits the Back button.</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponseRedirect(reverse(<span class="string">&quot;polls:results&quot;</span>, args=(question.<span class="built_in">id</span>,)))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上代码中有些内容还未在本教程中提到过：</p>
+<ul>
+<li>
+<p><code>request.POST</code>是一个类字典对象，让你可以通过关键字的名字获取提交的数据。</p>
+<p>这个例子中， <code>request.POST['choice']</code> 以字符串形式返回选择的 Choice 的 ID。</p>
+<p><code>request.POST</code> 的值永远是字符串。</p>
+<p>注意，Django 还以同样的方式提供 <code>request.GET</code> 用于访问 GET 数据</p>
+<p>但我们在代码中显式地使用 <code>request.POST</code>，以保证数据只能通过 POST 调用改动。</p>
+</li>
+<li>
+<p>如果在 <code>request.POST['choice']</code> 数据中没有提供 <code>choice</code> ， POST 将引发一个 <code>KeyError</code> 。</p>
+<p>上面的代码检查 <code>KeyError</code>，如果没有给出 <code>choice</code> 将重新显示 Question 表单和一个错误信息。</p>
+</li>
+<li>
+<p>在增加 Choice 的得票数之后，代码返回一个 <code>HttpResponseRedirect</code>而不是常用的 <code>HttpResponse</code>。</p>
+<p><code>HttpResponseRedirect</code>只接收一个参数：用户将要被<strong>重定向</strong>的 URL。</p>
+<p>（请继续看下去，我们将会解释如何构造这个例子中的 URL）</p>
+<blockquote>
+<p>正如上面的 Python 注释指出的，在成功处理 POST 数据后，你应该总是返回一个 <code>HttpResponseRedirect</code>。</p>
+<p>这不是 Django 的特殊要求，这是那些优秀网站在开发实践中形成的共识。</p>
+</blockquote>
+</li>
+<li>
+<p>在这个例子中，我们在 <code>HttpResponseRedirect</code>的构造函数中使用 <code>reverse()</code> 函数。</p>
+<p>这个函数避免了我们在视图函数中硬编码 URL。它需要我们给出我们想要跳转的视图的名字和该视图所对应的 URL 模式中需要给该视图提供的参数。</p>
+<p>在本例中，使用在 教程第 3 部分中设定的 URLconf， <code>reverse()</code> 调用将返回一个这样的字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;/polls/3/results/&quot;</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>3</code> 是 <code>question.id</code> 的值。重定向的 URL 将调用 <code>'results'</code> 视图来显示最终的页面。</p>
+<blockquote>
+<p>正如在 教程第 3 部分 中提到的，<code>HttpRequest</code> 是一个 <code>HttpRequest</code> 对象。</p>
+<p>更多关于 <code>HttpRequest</code> 对象的内容，请参见 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/ref/request-response/">请求和响应的文档</a> 。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>当有人对 Question 进行投票后，</p>
+<p><code>vote()</code> 视图将请求重定向到 Question 的结果界面。</p>
+<p>让我们来编写这个视图：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">results</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/results.html&quot;</span>, &#123;<span class="string">&quot;question&quot;</span>: question&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这和 教程第 3 部分 中的 <code>detail()</code> 视图几乎一模一样。唯一的不同是模板的名字。 我们将在稍后解决这个冗余问题。</p>
+</blockquote>
+</li>
+<li>
+<p>现在，创建一个 <code>polls/results.html</code> 模板：</p>
+<p><code>polls/templates/polls/results.html</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;&#123;&#123; question.question_text &#125;&#125;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&#123;% <span class="keyword">for</span> choice <span class="keyword">in</span> question.choice_set.<span class="built_in">all</span> %&#125;</span><br><span class="line">    &lt;li&gt;&#123;&#123; choice.choice_text &#125;&#125; -- &#123;&#123; choice.votes &#125;&#125; vote&#123;&#123; choice.votes|pluralize &#125;&#125;&lt;/li&gt;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href=<span class="string">&quot;&#123;% url &#x27;polls:detail&#x27; question.id %&#125;&quot;</span>&gt;Vote again?&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>现在，在你的浏览器中访问 <code>/polls/1/</code> 然后为 Question 投票。</p>
+<p>你应该看到一个投票结果页面，并且在你每次投票之后都会更新。</p>
+<p>如果你提交时没有选择任何 Choice，你应该看到错误信息。</p>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511221043107.png" alt="image-20230511221043107" style="zoom:67%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511221102738.png" alt="image-20230511221102738" style="zoom:67%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230511221121194.png" alt="image-20230511221121194" style="zoom: 67%;" /> 
+</blockquote>
+<ul>
+<li>
+<p>备注</p>
+<p>我们的 <code>vote()</code> 视图代码有一个小问题。</p>
+<p>代码首先从数据库中获取了 <code>selected_choice</code> 对象，接着计算 <code>vote</code> 的新值，最后把值存回数据库。</p>
+<p>如果网站有两个方可同时投票在 <em>同一时间</em> ，可能会导致问题。同样的值，42，会被 <code>votes</code> 返回。然后，对于两个用户，新值43计算完毕，并被保存，但是期望值是44。</p>
+<blockquote>
+<p>这个问题被称为 <em>竞争条件</em> 。如果你对此有兴趣，你可以阅读 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/ref/models/expressions/#avoiding-race-conditions-using-f">使用 F() 避免竞争条件</a> 来学习如何解决这个问题。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-使用通用视图：代码还是少点好">4.2 使用通用视图：代码还是少点好</h3>
+<ul>
+<li>
+<p><code>detail()</code> （在 教程第 3 部分 中）和 <code>results()</code> 视图都很精简</p>
+<p>并且，像上面提到的那样，存在冗余问题。用来显示一个投票列表的 <code>index()</code> 视图（也在 教程第 3 部分中）和它们类似。</p>
+</li>
+<li>
+<p>这些视图反映基本的网络开发中的一个常见情况：</p>
+<p>根据 URL 中的参数从数据库中获取数据、载入模板文件然后返回渲染后的模板。</p>
+</li>
+<li>
+<p>由于这种情况特别常见，Django 提供一种快捷方式，叫做 <strong>“通用视图” 系统</strong>。</p>
+<p>通用视图将常见的模式抽象化，可以使你在编写应用时甚至不需要编写Python代码。</p>
+<p>让我们将我们的投票应用转换成使用通用视图系统，这样我们可以删除许多我们的代码。我们仅仅需要做以下几步来完成转换，我们将：</p>
+<ol>
+<li>转换 URLconf。</li>
+<li>删除一些旧的、不再需要的视图。</li>
+<li>基于 Django 的通用视图引入新的视图。</li>
+</ol>
+<p>请继续阅读来了解详细信息。</p>
+<blockquote>
+<p>为什么要重构代码？</p>
+<p>一般来说，当编写一个 Django 应用时，你应该先评估一下通用视图是否可以解决你的问题，你应该在一开始使用它，而不是进行到一半时重构代码。本教程目前为止是有意将重点放在以“艰难的方式”编写视图，这是为将重点放在核心概念上。</p>
+<p>就像在使用计算器之前你需要掌握基础数学一样。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-3-改良-URLconf">4.3 改良 URLconf</h3>
+<ul>
+<li>
+<p>首先，打开 <code>polls/urls.py</code> 这个 URLconf 并将它修改成：</p>
+<p><code>polls/urls.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">app_name = <span class="string">&quot;polls&quot;</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;&quot;</span>, views.IndexView.as_view(), name=<span class="string">&quot;index&quot;</span>),</span><br><span class="line">    path(<span class="string">&quot;&lt;int:pk&gt;/&quot;</span>, views.DetailView.as_view(), name=<span class="string">&quot;detail&quot;</span>),</span><br><span class="line">    path(<span class="string">&quot;&lt;int:pk&gt;/results/&quot;</span>, views.ResultsView.as_view(), name=<span class="string">&quot;results&quot;</span>),</span><br><span class="line">    path(<span class="string">&quot;&lt;int:question_id&gt;/vote/&quot;</span>, views.vote, name=<span class="string">&quot;vote&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，第二个和第三个匹配准则中，路径字符串中匹配模式的名称已经由 <code>&lt;question_id&gt;</code> 改为 <code>&lt;pk&gt;</code>。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-4-改良视图">4.4 改良视图</h3>
+<ul>
+<li>
+<p>下一步，我们将删除旧的 <code>index</code>, <code>detail</code>, 和 <code>results</code> 视图，并用 Django 的通用视图代替。</p>
+<p>打开 <code>polls/views.py</code> 文件，</p>
+<blockquote>
+<p>原来是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Choice, Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    latest_question_list = Question.objects.order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br><span class="line">    context = &#123;<span class="string">&quot;latest_question_list&quot;</span>: latest_question_list&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/index.html&quot;</span>, context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">detail</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/detail.html&quot;</span>, &#123;<span class="string">&quot;question&quot;</span>: question&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">results</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&quot;polls/results.html&quot;</span>, &#123;<span class="string">&quot;question&quot;</span>: question&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vote</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        selected_choice = question.choice_set.get(pk=request.POST[<span class="string">&quot;choice&quot;</span>])</span><br><span class="line">    <span class="keyword">except</span> (KeyError, Choice.DoesNotExist):</span><br><span class="line">        <span class="comment"># Redisplay the question voting form.</span></span><br><span class="line">        <span class="keyword">return</span> render(</span><br><span class="line">            request,</span><br><span class="line">            <span class="string">&quot;polls/detail.html&quot;</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;question&quot;</span>: question,</span><br><span class="line">                <span class="string">&quot;error_message&quot;</span>: <span class="string">&quot;You didn&#x27;t select a choice.&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        selected_choice.votes += <span class="number">1</span></span><br><span class="line">        selected_choice.save()</span><br><span class="line">        <span class="comment"># Always return an HttpResponseRedirect after successfully dealing</span></span><br><span class="line">        <span class="comment"># with POST data. This prevents data from being posted twice if a</span></span><br><span class="line">        <span class="comment"># user hits the Back button.</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponseRedirect(reverse(<span class="string">&quot;polls:results&quot;</span>, args=(question.<span class="built_in">id</span>,)))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>并将它修改成：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> generic</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Choice, Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IndexView</span>(generic.ListView):</span><br><span class="line">    template_name = <span class="string">&quot;polls/index.html&quot;</span></span><br><span class="line">    context_object_name = <span class="string">&quot;latest_question_list&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_queryset</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Return the last five published questions.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> Question.objects.order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DetailView</span>(generic.DetailView):</span><br><span class="line">    model = Question</span><br><span class="line">    template_name = <span class="string">&quot;polls/detail.html&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ResultsView</span>(generic.DetailView):</span><br><span class="line">    model = Question</span><br><span class="line">    template_name = <span class="string">&quot;polls/results.html&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">vote</span>(<span class="params">request, question_id</span>):</span><br><span class="line">    question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        selected_choice = question.choice_set.get(pk=request.POST[<span class="string">&quot;choice&quot;</span>])</span><br><span class="line">    <span class="keyword">except</span> (KeyError, Choice.DoesNotExist):</span><br><span class="line">        <span class="comment"># Redisplay the question voting form.</span></span><br><span class="line">        <span class="keyword">return</span> render(</span><br><span class="line">            request,</span><br><span class="line">            <span class="string">&quot;polls/detail.html&quot;</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;question&quot;</span>: question,</span><br><span class="line">                <span class="string">&quot;error_message&quot;</span>: <span class="string">&quot;You didn&#x27;t select a choice.&quot;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        selected_choice.votes += <span class="number">1</span></span><br><span class="line">        selected_choice.save()</span><br><span class="line">        <span class="comment"># Always return an HttpResponseRedirect after successfully dealing</span></span><br><span class="line">        <span class="comment"># with POST data. This prevents data from being posted twice if a</span></span><br><span class="line">        <span class="comment"># user hits the Back button.</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponseRedirect(reverse(<span class="string">&quot;polls:results&quot;</span>, args=(question.<span class="built_in">id</span>,)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们在这里使用两个通用视图： <code>ListView</code>和 <code>DetailView</code>。</p>
+<p>这两个视图分别抽象“<strong>显示一个对象列表</strong>”和“<strong>显示一个特定类型对象的详细信息页面</strong>”这两种概念。</p>
+<ul>
+<li>每个通用视图需要知道它将作用于哪个模型。 这由 <code>model</code> 属性提供。</li>
+<li><code>DetailView</code>期望从 URL 中捕获名为 <code>&quot;pk&quot;</code> 的主键值，所以我们为通用视图把 <code>question_id</code> 改成 <code>pk</code> 。</li>
+</ul>
+<p>默认情况下，通用视图 <code>DetailView</code>使用一个叫做 <code>&lt;app name&gt;/&lt;model name&gt;_detail.html</code> 的模板。</p>
+<p>在我们的例子中，它将使用 <code>&quot;polls/question_detail.html&quot;</code> 模板。</p>
+<ul>
+<li>
+<p><code>template_name</code> 属性是用来告诉 Django 使用一个指定的模板名字，而不是自动生成的默认名字。</p>
+<p>我们也为 <code>results</code> 列表视图指定了 <code>template_name</code> —— 这确保 results 视图和 detail 视图在渲染时具有不同的外观，即使它们在后台都是同一个 <code>DetailView</code>。</p>
+</li>
+</ul>
+<p>类似地，<code>ListView</code>使用一个叫做 <code>&lt;app name&gt;/&lt;model name&gt;_list.html</code> 的默认模板；</p>
+<ul>
+<li>我们使用 <code>template_name</code> 来告诉 <code>ListView</code>使用我们创建的已经存在的 <code>&quot;polls/index.html&quot;</code> 模板。</li>
+</ul>
+</li>
+<li>
+<p>在之前的教程中，提供模板文件时都带有一个包含 <code>question</code> 和 <code>latest_question_list</code> 变量的 context。</p>
+<p>对于 <code>DetailView</code> ， <code>question</code> 变量会自动提供—— 因为我们使用 Django 的模型（Question）， Django 能够为 context 变量决定一个合适的名字。</p>
+<p>然而对于 ListView， 自动生成的 context 变量是 <code>question_list</code>。为了覆盖这个行为，我们提供 <code>context_object_name</code> 属性，表示我们想使用 <code>latest_question_list</code>。</p>
+<p>作为一种替换方案，你可以改变你的模板来匹配新的 context 变量 —— 这是一种更便捷的方法，告诉 Django 使用你想使用的变量名。</p>
+</li>
+<li>
+<p>启动服务器，使用一下基于通用视图的新投票应用。</p>
+<blockquote>
+<p>效果与前面一样。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>更多关于通用视图的详细信息，请查看 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/class-based-views/">通用视图的文档</a></p>
+<p>当你对你所写的表单和通用视图感到满意后，请阅读 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/intro/tutorial05/">教程的第 5 部分</a> 来了解如何测试我们的投票应用。</p>
+</blockquote>
+<h2 id="第-5-部分">第 5 部分</h2>
+<blockquote>
+<p>本教程从 教程第 4 部分结束的地方开始。我们已经建立了一个网络投票应用程序，现在我们将为它创建一些自动化测试。</p>
+</blockquote>
+<h3 id="5-1-自动化测试简介">5.1 自动化测试简介</h3>
+<h4 id="自动化测试是什么？">自动化测试是什么？</h4>
+<ul>
+<li>
+<p>测试代码，是用来检查你的代码能否正常运行的程序。</p>
+</li>
+<li>
+<p>测试在不同的层次中都存在。有些测试只关注某个很小的细节（某个模型的某个方法的返回值是否满足预期？），而另一些测试可能检查对某个软件的一系列操作（<em>某一用户输入序列是否造成了预期的结果？</em>）。其实这和我们在 教程第 2 部分，里做的并没有什么不同，我们使用 <code>shell</code>来测试某一方法的功能，或者运行某个应用并输入数据来检查它的行为。</p>
+</li>
+<li>
+<p>真正不同的地方在于，<em>自动化</em> 测试是由某个系统帮你自动完成的。当你创建好了一系列测试，每次修改应用代码后，就可以自动检查出修改后的代码是否还像你曾经预期的那样正常工作。你不需要花费大量时间来进行手动测试。</p>
+</li>
+</ul>
+<h4 id="为什么你需要写测试">为什么你需要写测试</h4>
+<ul>
+<li>
+<p>但是，为什么需要测试呢？又为什么是现在呢？</p>
+</li>
+<li>
+<p>你可能觉得学 Python/Django 对你来说已经很满足了，再学一些新东西的话看起来有点负担过重并且没什么必要。毕竟，我们的投票应用看起来已经完美工作了。写一些自动测试并不能让它工作的更好。如果写一个投票应用是你想用 Django 完成的唯一工作，那你确实没必要学写测试。但是如果你还想写更复杂的项目，现在就是学习测试写法的最好时机了。</p>
+</li>
+<li>
+<p>测试将节约你的时间</p>
+<blockquote>
+<p>在某种程度上，能够「判断出代码是否正常工作」的测试，就称得上是个令人满意的了。在更复杂的应用程序中，组件之间可能会有数十个复杂的交互。</p>
+<p>对其中某一组件的改变，也有可能会造成意想不到的结果。判断「代码是否正常工作」意味着你需要用大量的数据来完整的测试全部代码的功能，以确保你的小修改没有对应用整体造成破坏——这太费时间了。</p>
+<p>尤其是当你发现自动化测试能在几秒钟之内帮你完成这件事时，就更会觉得手动测试实在是太浪费时间了。当某人写出错误的代码时，自动化测试还能帮助你定位错误代码的位置。</p>
+<p>有时候你会觉得，和富有创造性和生产力的业务代码比起来，编写枯燥的测试代码实在是太无聊了，特别是当你知道你的代码完全没有问题的时候。</p>
+<p>然而，编写测试还是要比花费几个小时手动测试你的应用，或者为了找到某个小错误而胡乱翻看代码要有意义的多。</p>
+</blockquote>
+</li>
+<li>
+<p>测试不仅能发现错误，而且能预防错误</p>
+<blockquote>
+<p>「测试是开发的对立面」，这种思想是不对的。</p>
+<p>如果没有测试，整个应用的行为意图会变得更加的不清晰。甚至当你在看自己写的代码时也是这样，有时候你需要仔细研读一段代码才能搞清楚它有什么用。</p>
+<p>而测试的出现改变了这种情况。测试就好像是从内部仔细检查你的代码，当有些地方出错时，这些地方将会变得很显眼——<em>就算你自己没有意识到那里写错了</em>。</p>
+</blockquote>
+</li>
+<li>
+<p>测试使你的代码更有吸引力</p>
+<blockquote>
+<p>你也许遇到过这种情况：你编写了一个绝赞的软件，但是其他开发者看都不看它一眼，因为它缺少测试。没有测试的代码不值得信任。 Django 最初开发者之一的 Jacob Kaplan-Moss 说过：“项目规划时没有包含测试是不科学的。”</p>
+<p>其他的开发者希望在正式使用你的代码前看到它通过了测试，这是你需要写测试的另一个重要原因。</p>
+</blockquote>
+</li>
+<li>
+<p>测试有利于团队协作</p>
+<blockquote>
+<p>前面的几点都是从单人开发的角度来说的。复杂的应用可能由团队维护。测试的存在保证了协作者不会不小心破坏了了你的代码（也保证你不会不小心弄坏他们的）。如果你想作为一个 Django 程序员谋生的话，你必须擅长编写测试！</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="5-2-基础测试策略">5.2 基础测试策略</h3>
+<ul>
+<li>
+<p>有好几种不同的方法可以写测试。</p>
+<p>一些开发者遵循 “<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Test-driven_development">测试驱动</a>” 的开发原则，他们在写代码之前先写测试。这种方法看起来有点反直觉，但事实上，这和大多数人日常的做法是相吻合的。我们会先描述一个问题，然后写代码来解决它。「测试驱动」的开发方法只是将问题的描述抽象为了 Python 的测试样例。</p>
+</li>
+<li>
+<p>更普遍的情况是，一个刚接触自动化测试的新手更倾向于先写代码，然后再写测试。虽然提前写测试可能更好，但是晚点写起码也比没有强。</p>
+<p>有时候很难决定从哪里开始下手写测试。如果你才写了几千行 Python 代码，选择从哪里开始写测试确实不怎么简单。如果是这种情况，那么在你下次修改代码（比如加新功能，或者修复 Bug）之前写个测试是比较合理且有效的。</p>
+</li>
+<li>
+<p>所以，我们现在就开始写吧。</p>
+</li>
+</ul>
+<h3 id="5-3-开始写我们的第一个测试">5.3 开始写我们的第一个测试</h3>
+<h4 id="首先得有个-Bug">首先得有个 Bug</h4>
+<ul>
+<li>
+<p>幸运的是，我们的 <code>polls</code> 应用现在就有一个小 bug 需要被修复：</p>
+<p>我们的要求是如果 Question 是在一天之内发布的， <code>Question.was_published_recently()</code> 方法将会返回 <code>True</code> ，</p>
+<p>然而现在这个方法在 <code>Question</code> 的 <code>pub_date</code> 字段比当前时间还晚时也会返回 True（这是个 Bug）。</p>
+</li>
+<li>
+<p>用djadmin:<code>shell</code>命令确认一下这个方法的日期bug</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...\&gt; py manage.py shell</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; import datetime</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; from django.utils import timezone</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; from polls.models import Question</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># create a Question instance with pub_date 30 days in the future</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; future_question = Question(pub_date=timezone.now() + datetime.timedelta(days=30))</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># was it published recently?</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; future_question.was_published_recently()</span></span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>因为将来发生的是肯定不是最近发生的，所以代码明显是错误的。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230512085658552.png" alt="image-20230512085658552" style="zoom:50%;" /> 
+</blockquote>
+</li>
+</ul>
+<h4 id="创建一个测试来暴露这个-bug">创建一个测试来暴露这个 bug</h4>
+<ul>
+<li>
+<p>我们刚刚在 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/ref/django-admin/#django-admin-shell"><code>shell</code></a> 里做的测试也就是自动化测试应该做的工作。所以我们来把它改写成自动化的吧。</p>
+</li>
+<li>
+<p>按照惯例，Django 应用的测试应该写在应用的 <code>tests.py</code> 文件里。测试系统会自动的在所有以 <code>tests</code> 开头的文件里寻找并执行测试代码。</p>
+<p>将下面的代码写入 <code>polls</code> 应用里的 <code>tests.py</code> 文件内：</p>
+<p><code>polls/tests.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</span><br><span class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionModelTests</span>(<span class="title class_ inherited__">TestCase</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_was_published_recently_with_future_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        was_published_recently() returns False for questions whose pub_date</span></span><br><span class="line"><span class="string">        is in the future.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        time = timezone.now() + datetime.timedelta(days=<span class="number">30</span>)</span><br><span class="line">        future_question = Question(pub_date=time)</span><br><span class="line">        self.assertIs(future_question.was_published_recently(), <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我们创建了一个 <code>django.test.TestCase</code>的子类，并添加了一个方法，此方法创建一个 <code>pub_date</code> 时未来某天的 <code>Question</code> 实例。然后检查它的 <code>was_published_recently()</code> 方法的返回值——它 <em>应该</em> 是 False。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="运行测试">运行测试</h4>
+<ul>
+<li>
+<p>在终端中，我们通过输入以下代码运行测试:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...\&gt; py manage.py test polls</span><br></pre></td></tr></table></figure>
+<p>测试情况：</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230512090624341.png" alt="image-20230512090624341" style="zoom:50%;" /> 
+<blockquote>
+<p>不一样的错误？</p>
+<p>若在此处你得到了一个 <code>NameError</code> 错误，你可能漏了 第二步 中将 <code>datetime</code> 和 <code>timezone</code> 导入 <code>polls/model.py</code> 的步骤。复制这些语句，然后试着重新运行测试。</p>
+</blockquote>
+<blockquote>
+<p>发生了什么呢？以下是自动化测试的运行过程：</p>
+<ul>
+<li><code>python manage.py test polls</code> 将会寻找 <code>polls</code> 应用里的测试代码</li>
+<li>它找到了 <code>django.test.TestCase</code> 的一个子类</li>
+<li>它创建一个特殊的数据库供测试使用</li>
+<li>它在类中寻找测试方法——以 <code>test</code> 开头的方法。</li>
+<li>在 <code>test_was_published_recently_with_future_question</code> 方法中，它创建了一个 <code>pub_date</code> 值为 30 天后的 <code>Question</code> 实例。</li>
+<li>接着使用 <code>assertls()</code> 方法，发现 <code>was_published_recently()</code> 返回了 <code>True</code>，而我们期望它返回 <code>False</code>。</li>
+</ul>
+<p>测试系统通知我们哪些测试样例失败了，和造成测试失败的代码所在的行号。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="修复这个-bug">修复这个 bug</h4>
+<ul>
+<li>
+<p>我们早已知道，当 <code>pub_date</code> 为未来某天时， <code>Question.was_published_recently()</code> 应该返回 <code>False</code>。</p>
+<p>我们修改 <code>models.py</code> 里的方法，让它只在日期是过去式的时候才返回 <code>True</code>：</p>
+<p><code>polls/models.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">was_published_recently</span>(<span class="params">self</span>):</span><br><span class="line">    now = timezone.now()</span><br><span class="line">    <span class="keyword">return</span> now - datetime.timedelta(days=<span class="number">1</span>) &lt;= self.pub_date &lt;= now</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原来是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">was_published_recently</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>再次测试：</p>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230512091346086.png" alt="image-20230512091346086" style="zoom:67%;" /> 
+</blockquote>
+<p>发现 bug 后，我们编写了能够暴露这个 bug 的自动化测试。在修复 bug 之后，我们的代码顺利的通过了测试。</p>
+<p>将来，我们的应用可能会出现其他的问题，但是我们可以肯定的是，一定不会再次出现这个 bug，因为只要运行一遍测试，就会立刻收到警告。我们可以认为应用的这一小部分代码永远是安全的。</p>
+</li>
+</ul>
+<h4 id="更全面的测试">更全面的测试</h4>
+<ul>
+<li>
+<p>我们已经搞定一小部分了，现在可以考虑全面的测试 <code>was_published_recently()</code> 这个方法以确定它的安全性，然后就可以把这个方法稳定下来了。事实上，在修复一个 bug 时不小心引入另一个 bug 会是非常令人尴尬的。</p>
+<p>我们在上次写的类里再增加两个测试，来更全面的测试这个方法：</p>
+<p><code>polls/test.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">test_was_published_recently_with_old_question</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    was_published_recently() returns False for questions whose pub_date</span></span><br><span class="line"><span class="string">    is older than 1 day.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    time = timezone.now() - datetime.timedelta(days=<span class="number">1</span>, seconds=<span class="number">1</span>)</span><br><span class="line">    old_question = Question(pub_date=time)</span><br><span class="line">    self.assertIs(old_question.was_published_recently(), <span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_was_published_recently_with_recent_question</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    was_published_recently() returns True for questions whose pub_date</span></span><br><span class="line"><span class="string">    is within the last day.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    time = timezone.now() - datetime.timedelta(hours=<span class="number">23</span>, minutes=<span class="number">59</span>, seconds=<span class="number">59</span>)</span><br><span class="line">    recent_question = Question(pub_date=time)</span><br><span class="line">    self.assertIs(recent_question.was_published_recently(), <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>现在，我们有三个测试来确保 <code>Question.was_published_recently()</code> 方法对于过去，最近，和将来的三种情况都返回正确的值。</p>
+<p>再次申明，尽管 <code>polls</code> 现在是个小型的应用，但是无论它以后变得到多么复杂，无论他和其他代码如何交互，我们可以在一定程度上保证我们为之编写测试的方法将按照预期的方式运行。</p>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230512091837995.png" alt="image-20230512091837995" style="zoom:67%;" /> 
+</blockquote>
+</li>
+</ul>
+<h3 id="5-4-测试视图">5.4 测试视图</h3>
+<blockquote>
+<p>我们的投票应用对所有问题都一视同仁：它将会发布所有的问题，也包括那些 <code>pub_date</code> 字段值是未来的问题。</p>
+<p>我们应该改善这一点。如果 <code>pub_date</code> 设置为未来某天，这应该被解释为这个问题将在所填写的时间点才被发布，而在之前是不可见的。</p>
+</blockquote>
+<h4 id="针对视图的测试">针对视图的测试</h4>
+<ul>
+<li>
+<p>为了修复上述 bug ，我们这次先编写测试，然后再去改代码。事实上，这是一个「测试驱动」开发模式的实例，但其实这两者的顺序不太重要。</p>
+</li>
+<li>
+<p>在我们的第一个测试中，我们关注代码的内部行为。我们通过模拟用户使用浏览器访问被测试的应用来检查代码行为是否符合预期。</p>
+<p>在我们动手之前，先看看需要用到的工具们。</p>
+</li>
+</ul>
+<h4 id="Django-测试工具之-Client">Django 测试工具之 Client</h4>
+<ul>
+<li>
+<p>Django 提供了一个供测试使用的 <code>Client</code> 来模拟用户和视图层代码的交互。我们能在 <code>tests.py</code> 甚至是 <code>shell</code>中使用它。</p>
+<p>我们依照惯例从 <code>shell</code> 开始，首先我们要做一些在 <code>tests.py</code> 里不是必须的准备工作。</p>
+<ul>
+<li>
+<p>第一步是在 <code>shell</code>中配置测试环境:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...\&gt; py manage.py shell</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; from django.test.utils import setup_test_environment</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; setup_test_environment()</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>setup_test_environment()</code>安装了一个模板渲染器，</p>
+<p>这将使我们能够检查响应上的一些额外属性，如 <code>response.context</code>，否则将无法使用此功能。</p>
+<p>请注意，这个方法 <em>不会</em> 建立一个测试数据库，所以下面的内容将针对现有的数据库运行，输出结果可能略有不同，这取决于你已经创建了哪些问题。如果你在 <code>settings.py</code> 中的 <code>TIME_ZONE</code> 不正确，你可能会得到意外的结果。如果你不记得之前的配置，请在继续之前检查。</p>
+</blockquote>
+<p>准备：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; from django.test import Client</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># create an instance of the client for our use</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; client = Client()</span></span><br></pre></td></tr></table></figure>
+<p>让client 开始工作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># get a response from &#x27;/&#x27;</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response = client.get(<span class="string">&quot;/&quot;</span>)</span></span><br><span class="line">Not Found: /</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># we should expect a 404 from that address; if you instead see an</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># &quot;Invalid HTTP_HOST header&quot; error and a 400 response, you probably</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># omitted the setup_test_environment() call described earlier.</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.status_code</span></span><br><span class="line">404</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># on the other hand we should expect to find something at &#x27;/polls/&#x27;</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="comment"># we&#x27;ll use &#x27;reverse()&#x27; rather than a hardcoded URL</span></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; from django.urls import reverse</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response = client.get(reverse(<span class="string">&quot;polls:index&quot;</span>))</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.status_code</span></span><br><span class="line">200</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.content</span></span><br><span class="line">b&#x27;\n    &lt;ul&gt;\n    \n        &lt;li&gt;&lt;a href=&quot;/polls/1/&quot;&gt;What&amp;#x27;s up?&lt;/a&gt;&lt;/li&gt;\n    \n    &lt;/ul&gt;\n\n&#x27;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; response.context[<span class="string">&quot;latest_question_list&quot;</span>]</span></span><br><span class="line">&lt;QuerySet [&lt;Question: What&#x27;s up?&gt;]&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我的测试效果：</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230512093201305.png" alt="image-20230512093201305" style="zoom: 67%;" /> 
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="改善视图代码">改善视图代码</h4>
+<ul>
+<li>
+<p>现在的投票列表会显示将来的投票（ <code>pub_date</code> 值是未来的某天)。我们来修复这个问题。</p>
+<p>在 教程的第 4 部分里，我们介绍了基于 <code>ListView</code> 的视图类：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">IndexView</span>(generic.ListView):</span><br><span class="line">    template_name = <span class="string">&quot;polls/index.html&quot;</span></span><br><span class="line">    context_object_name = <span class="string">&quot;latest_question_list&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_queryset</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Return the last five published questions.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> Question.objects.order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>我们需要改进 <code>get_queryset()</code> 方法，让他它能通过将 Question 的 pub_data 属性与 <code>timezone.now()</code> 相比较来判断是否应该显示此 Question。首先我们需要一行 import 语句，然后我们把 <code>get_queryset</code> 方法改写成下面这样：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_queryset</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Return the last five published questions (not including those set to be</span></span><br><span class="line"><span class="string">    published in the future).</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> Question.objects.<span class="built_in">filter</span>(pub_date__lte=timezone.now()).order_by(<span class="string">&quot;-pub_date&quot;</span>)[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="测试新视图">测试新视图</h4>
+<ul>
+<li>
+<p>启动服务器、在浏览器中载入站点、创建一些发布时间在过去和将来的 <code>Questions</code> ，然后检验只有已经发布的 <code>Questions</code> 会展示出来，现在你可以对自己感到满意了。<em>你不想每次修改可能与这相关的代码时都重复这样做</em> —— 所以让我们基于以上 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/ref/django-admin/#django-admin-shell"><code>shell</code></a> 会话中的内容，再编写一个测试。</p>
+<p>将下面的代码添加到 <code>polls/tests.py</code> ：（我们写一个公用的快捷函数用于创建投票问题，再为视图创建一个测试类：）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_question</span>(<span class="params">question_text, days</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Create a question with the given `question_text` and published the</span></span><br><span class="line"><span class="string">    given number of `days` offset to now (negative for questions published</span></span><br><span class="line"><span class="string">    in the past, positive for questions that have yet to be published).</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    time = timezone.now() + datetime.timedelta(days=days)</span><br><span class="line">    <span class="keyword">return</span> Question.objects.create(question_text=question_text, pub_date=time)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionIndexViewTests</span>(<span class="title class_ inherited__">TestCase</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_no_questions</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        If no questions exist, an appropriate message is displayed.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        response = self.client.get(reverse(<span class="string">&quot;polls:index&quot;</span>))</span><br><span class="line">        self.assertEqual(response.status_code, <span class="number">200</span>)</span><br><span class="line">        self.assertContains(response, <span class="string">&quot;No polls are available.&quot;</span>)</span><br><span class="line">        self.assertQuerySetEqual(response.context[<span class="string">&quot;latest_question_list&quot;</span>], [])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_past_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Questions with a pub_date in the past are displayed on the</span></span><br><span class="line"><span class="string">        index page.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        question = create_question(question_text=<span class="string">&quot;Past question.&quot;</span>, days=-<span class="number">30</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">&quot;polls:index&quot;</span>))</span><br><span class="line">        self.assertQuerySetEqual(</span><br><span class="line">            response.context[<span class="string">&quot;latest_question_list&quot;</span>],</span><br><span class="line">            [question],</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_future_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Questions with a pub_date in the future aren&#x27;t displayed on</span></span><br><span class="line"><span class="string">        the index page.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        create_question(question_text=<span class="string">&quot;Future question.&quot;</span>, days=<span class="number">30</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">&quot;polls:index&quot;</span>))</span><br><span class="line">        self.assertContains(response, <span class="string">&quot;No polls are available.&quot;</span>)</span><br><span class="line">        self.assertQuerySetEqual(response.context[<span class="string">&quot;latest_question_list&quot;</span>], [])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_future_question_and_past_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Even if both past and future questions exist, only past questions</span></span><br><span class="line"><span class="string">        are displayed.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        question = create_question(question_text=<span class="string">&quot;Past question.&quot;</span>, days=-<span class="number">30</span>)</span><br><span class="line">        create_question(question_text=<span class="string">&quot;Future question.&quot;</span>, days=<span class="number">30</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">&quot;polls:index&quot;</span>))</span><br><span class="line">        self.assertQuerySetEqual(</span><br><span class="line">            response.context[<span class="string">&quot;latest_question_list&quot;</span>],</span><br><span class="line">            [question],</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_two_past_questions</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The questions index page may display multiple questions.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        question1 = create_question(question_text=<span class="string">&quot;Past question 1.&quot;</span>, days=-<span class="number">30</span>)</span><br><span class="line">        question2 = create_question(question_text=<span class="string">&quot;Past question 2.&quot;</span>, days=-<span class="number">5</span>)</span><br><span class="line">        response = self.client.get(reverse(<span class="string">&quot;polls:index&quot;</span>))</span><br><span class="line">        self.assertQuerySetEqual(</span><br><span class="line">            response.context[<span class="string">&quot;latest_question_list&quot;</span>],</span><br><span class="line">            [question2, question1],</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>让我们更详细地看下以上这些内容。</p>
+<p>首先是一个快捷函数 <code>create_question</code>，它封装了创建投票的流程，减少了重复代码。</p>
+<p>在 <code>test_past_question</code> 方法中，我们创建了一个投票并检查它是否出现在列表中。</p>
+<p>在 <code>test_future_question</code> 中，我们创建 <code>pub_date</code> 在未来某天的投票。数据库会在每次调用测试方法前被重置，所以第一个投票已经没了，所以主页中应该没有任何投票。</p>
+<p>剩下的那些也都差不多。实际上，测试就是假装一些管理员的输入，然后通过用户端的表现是否符合预期来判断新加入的改变是否破坏了原有的系统状态。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="测试-DetailView">测试 <code>DetailView</code></h4>
+<ul>
+<li>
+<p>我们的工作似乎已经很完美了？不，还有一个问题：就算在发布日期时未来的那些投票不会在目录页 <em>index</em> 里出现，但是如果用户知道或者猜到正确的 URL ，还是可以访问到它们。所以我们得在 <code>DetailView</code> 里增加一些约束：</p>
+<p><code>polls/views.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DetailView</span>(generic.DetailView):</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_queryset</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Excludes any questions that aren&#x27;t published yet.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> Question.objects.<span class="built_in">filter</span>(pub_date__lte=timezone.now())</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>然后，我们应该增加一些测试来检验 <code>pub_date</code> 在过去的 <code>Question</code> 能够被显示出来，而 <code>pub_date</code> 在未来的则不可以：</p>
+<p><code>polls/test.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionDetailViewTests</span>(<span class="title class_ inherited__">TestCase</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_future_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The detail view of a question with a pub_date in the future</span></span><br><span class="line"><span class="string">        returns a 404 not found.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        future_question = create_question(question_text=<span class="string">&quot;Future question.&quot;</span>, days=<span class="number">5</span>)</span><br><span class="line">        url = reverse(<span class="string">&quot;polls:detail&quot;</span>, args=(future_question.<span class="built_in">id</span>,))</span><br><span class="line">        response = self.client.get(url)</span><br><span class="line">        self.assertEqual(response.status_code, <span class="number">404</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_past_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        The detail view of a question with a pub_date in the past</span></span><br><span class="line"><span class="string">        displays the question&#x27;s text.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        past_question = create_question(question_text=<span class="string">&quot;Past Question.&quot;</span>, days=-<span class="number">5</span>)</span><br><span class="line">        url = reverse(<span class="string">&quot;polls:detail&quot;</span>, args=(past_question.<span class="built_in">id</span>,))</span><br><span class="line">        response = self.client.get(url)</span><br><span class="line">        self.assertContains(response, past_question.question_text)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>测试</p>
+<blockquote>
+<p>我的测试结果：</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/image-20230512095545574.png" alt="image-20230512095545574" style="zoom:80%;" /> 
+</blockquote>
+</li>
+</ul>
+<h4 id="更多的测试思路">更多的测试思路</h4>
+<ul>
+<li>
+<p>我们应该给 <code>ResultsView</code> 也增加一个类似的 <code>get_queryset</code> 方法，并且为它创建测试。这和我们之前干的差不多，事实上，基本就是重复一遍。</p>
+</li>
+<li>
+<p>我们还可以从各个方面改进投票应用，但是测试会一直伴随我们。比方说，在目录页上显示一个没有选项 <code>Choices</code> 的投票问题就没什么意义。我们可以检查并排除这样的投票题。测试可以创建一个没有选项的投票，然后检查它是否被显示在目录上。当然也要创建一个有选项的投票，然后确认它确实被显示了。</p>
+<p>恩，也许你想让管理员能在目录上看见未被发布的那些投票，但是普通用户看不到。不管怎么说，如果你想要增加一个新功能，那么同时一定要为它编写测试。不过你是先写代码还是先写测试那就随你了。</p>
+</li>
+<li>
+<p>在未来的某个时刻，你一定会去查看测试代码，然后开始怀疑：「这么多的测试不会使代码越来越复杂吗？」。别着急，我们马上就会谈到这一点。</p>
+</li>
+</ul>
+<h3 id="5-5-当需要测试的时候，测试用例越多越好">5.5 当需要测试的时候，测试用例越多越好</h3>
+<ul>
+<li>
+<p>貌似我们的测试多的快要失去控制了。按照这样发展下去，测试代码就要变得比应用的实际代码还要多了。而且测试代码大多都是重复且不优雅的，特别是在和业务代码比起来的时候，这种感觉更加明显。</p>
+<p><strong>但是这没关系！</strong> 就让测试代码继续肆意增长吧。大部分情况下，你写完一个测试之后就可以忘掉它了。在你继续开发的过程中，它会一直默默无闻地为你做贡献的。</p>
+</li>
+<li>
+<p>但有时测试也需要更新。想象一下如果我们修改了视图，只显示有选项的那些投票，那么只前写的很多测试就都会失败。<em>但这也明确地告诉了我们哪些测试需要被更新</em>，所以测试也会测试自己。</p>
+<p>最坏的情况是，当你继续开发的时候，发现之前的一些测试现在看来是多余的。但是这也不是什么问题，多做些测试也 <em>不错</em>。</p>
+<p>如果你对测试有个整体规划，那么它们就几乎不会变得混乱。下面有几条好的建议：</p>
+<ul>
+<li>对于每个模型和视图都建立单独的 <code>TestClass</code></li>
+<li>每个测试方法只测试一个功能</li>
+<li>给每个测试方法起个能描述其功能的名字</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-6-深入代码测试">5.6 深入代码测试</h3>
+<ul>
+<li>
+<p>在本教程中，我们仅仅是了解了测试的基础知识。你能做的还有很多，而且世界上有很多有用的工具来帮你完成这些有意义的事。</p>
+<p>举个例子，在上述的测试中，我们已经从代码逻辑和视图响应的角度检查了应用的输出，现在你可以从一个更加 “in-browser” 的角度来检查最终渲染出的 HTML 是否符合预期，使用 Selenium 可以很轻松的完成这件事。这个工具不仅可以测试 Django 框架里的代码，还可以检查其他部分，比如说你的 JavaScript。它假装成是一个正在和你站点进行交互的浏览器，就好像有个真人在访问网站一样！Django 它提供了 <code>LiveServerTestCase</code> 来和 Selenium 这样的工具进行交互。</p>
+</li>
+<li>
+<p>如果你在开发一个很复杂的应用的话，</p>
+<p>你也许想在每次提交代码时自动运行测试，也就是我们所说的持续集成 continuous integration，</p>
+<p>这样就能实现质量控制的自动化，起码是部分自动化。</p>
+</li>
+<li>
+<p>一个找出代码中未被测试部分的方法是检查代码覆盖率。它有助于找出代码中的薄弱部分和无用部分。如果你无法测试一段代码，通常说明这段代码需要被重构或者删除。想知道代码覆盖率和无用代码的详细信息，查看文档 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/testing/advanced/#topics-testing-code-coverage">集成 coverage.py</a> 获取详细信息。</p>
+</li>
+</ul>
+<blockquote>
+<p>文档 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/testing/">Django 中的测试</a> 里有关于测试的更多信息。</p>
+</blockquote>
+<h3 id="5-7-接下来要做什么？">5.7 接下来要做什么？</h3>
+<blockquote>
+<p>如果你想深入了解测试，就去看 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.2/topics/testing/">Django 中的测试</a> 。</p>
+<p>当你已经比较熟悉测试 Django 视图的方法后，就可以继续阅读 教程第 6 部分 ，学习静态文件管理的相关知识。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2023/06/02/Django-2/">https://isseymour.github.io/butterflyblog/2023/06/02/Django-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/Django/">Django</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2023/06/01/Django-1/" title="《Django》入门 Notes（上）"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">《Django》入门 Notes（上）</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2023/06/03/Django-3/" title="《Django》入门 Notes（下）"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">《Django》入门 Notes（下）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/butterflyblog/2023/06/01/Django-1/" title="《Django》入门 Notes（上）"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-01</div><div class="title">《Django》入门 Notes（上）</div></div></a></div><div><a href="/butterflyblog/2023/06/03/Django-3/" title="《Django》入门 Notes（下）"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-03</div><div class="title">《Django》入门 Notes（下）</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区更新啦，输入QQ邮箱，不用登陆，即可评论！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">《Django》入门 Notes（中）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-3-%E9%83%A8%E5%88%86"><span class="toc-text">第 3 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%A6%82%E5%86%B5"><span class="toc-text">3.1 概况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%BC%96%E5%86%99%E6%9B%B4%E5%A4%9A%E8%A7%86%E5%9B%BE"><span class="toc-text">3.2 编写更多视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%86%99%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E6%9C%89%E7%94%A8%E7%9A%84%E8%A7%86%E5%9B%BE"><span class="toc-text">3.3 写一个真正有用的视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%BF%AB%E6%8D%B7%E5%87%BD%E6%95%B0%EF%BC%9A-render"><span class="toc-text">一个快捷函数： render()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%8A%9B%E5%87%BA-404-%E9%94%99%E8%AF%AF"><span class="toc-text">3.4 抛出 404 错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%BF%AB%E6%8D%B7%E5%87%BD%E6%95%B0%EF%BC%9A-get-object-or-404"><span class="toc-text">一个快捷函数： get_object_or_404()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.5 使用模板系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E5%8E%BB%E9%99%A4%E6%A8%A1%E6%9D%BF%E4%B8%AD%E7%9A%84%E7%A1%AC%E7%BC%96%E7%A0%81-URL"><span class="toc-text">3.6 去除模板中的硬编码 URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E4%B8%BA-URL-%E5%90%8D%E7%A7%B0%E6%B7%BB%E5%8A%A0%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-text">3.7 为 URL 名称添加命名空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-4-%E9%83%A8%E5%88%86"><span class="toc-text">第 4 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E8%A1%A8%E5%8D%95"><span class="toc-text">4.1 编写一个简单的表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%BD%BF%E7%94%A8%E9%80%9A%E7%94%A8%E8%A7%86%E5%9B%BE%EF%BC%9A%E4%BB%A3%E7%A0%81%E8%BF%98%E6%98%AF%E5%B0%91%E7%82%B9%E5%A5%BD"><span class="toc-text">4.2 使用通用视图：代码还是少点好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%94%B9%E8%89%AF-URLconf"><span class="toc-text">4.3 改良 URLconf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%94%B9%E8%89%AF%E8%A7%86%E5%9B%BE"><span class="toc-text">4.4 改良视图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-5-%E9%83%A8%E5%88%86"><span class="toc-text">第 5 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E7%AE%80%E4%BB%8B"><span class="toc-text">5.1 自动化测试简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">自动化测试是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81%E5%86%99%E6%B5%8B%E8%AF%95"><span class="toc-text">为什么你需要写测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%9F%BA%E7%A1%80%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5"><span class="toc-text">5.2 基础测试策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%BC%80%E5%A7%8B%E5%86%99%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95"><span class="toc-text">5.3 开始写我们的第一个测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%BE%97%E6%9C%89%E4%B8%AA-Bug"><span class="toc-text">首先得有个 Bug</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%9D%A5%E6%9A%B4%E9%9C%B2%E8%BF%99%E4%B8%AA-bug"><span class="toc-text">创建一个测试来暴露这个 bug</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-text">运行测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E8%BF%99%E4%B8%AA-bug"><span class="toc-text">修复这个 bug</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E5%85%A8%E9%9D%A2%E7%9A%84%E6%B5%8B%E8%AF%95"><span class="toc-text">更全面的测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E6%B5%8B%E8%AF%95%E8%A7%86%E5%9B%BE"><span class="toc-text">5.4 测试视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%88%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%B5%8B%E8%AF%95"><span class="toc-text">针对视图的测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Django-%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E4%B9%8B-Client"><span class="toc-text">Django 测试工具之 Client</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E5%96%84%E8%A7%86%E5%9B%BE%E4%BB%A3%E7%A0%81"><span class="toc-text">改善视图代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%96%B0%E8%A7%86%E5%9B%BE"><span class="toc-text">测试新视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-DetailView"><span class="toc-text">测试 DetailView</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%B5%8B%E8%AF%95%E6%80%9D%E8%B7%AF"><span class="toc-text">更多的测试思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E5%BD%93%E9%9C%80%E8%A6%81%E6%B5%8B%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%B6%8A%E5%A4%9A%E8%B6%8A%E5%A5%BD"><span class="toc-text">5.5 当需要测试的时候，测试用例越多越好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E6%B7%B1%E5%85%A5%E4%BB%A3%E7%A0%81%E6%B5%8B%E8%AF%95"><span class="toc-text">5.6 深入代码测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-7-%E6%8E%A5%E4%B8%8B%E6%9D%A5%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">5.7 接下来要做什么？</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/03/02/LaTeX-Math/" title="LaTeX数学公式总览"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/img/latex/latex0.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="LaTeX数学公式总览"/></a><div class="content"><a class="title" href="/butterflyblog/2024/03/02/LaTeX-Math/" title="LaTeX数学公式总览">LaTeX数学公式总览</a><time datetime="2024-03-01T16:00:00.000Z" title="发表于 2024-03-02 00:00:00">2024-03-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/03/01/ComputerOrganization-Notes/" title="《计算机组成原理》Notes_持续更新..."><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/ComputerOrganization/CoverPage.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="《计算机组成原理》Notes_持续更新..."/></a><div class="content"><a class="title" href="/butterflyblog/2024/03/01/ComputerOrganization-Notes/" title="《计算机组成原理》Notes_持续更新...">《计算机组成原理》Notes_持续更新...</a><time datetime="2024-03-01T05:00:00.000Z" title="发表于 2024-03-01 13:00:00">2024-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/03/01/Algorithm-Notes/" title="《算法设计与分析》Notes_持续更新..."><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/Algorithm/CoverPage-3.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="《算法设计与分析》Notes_持续更新..."/></a><div class="content"><a class="title" href="/butterflyblog/2024/03/01/Algorithm-Notes/" title="《算法设计与分析》Notes_持续更新...">《算法设计与分析》Notes_持续更新...</a><time datetime="2024-03-01T04:00:00.000Z" title="发表于 2024-03-01 12:00:00">2024-03-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/BK7.webp')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://isseymour.zeabur.app/',
+      region: 'Hong Kong (East) – hkg1',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://isseymour.zeabur.app/',
+      region: 'Hong Kong (East) – hkg1',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></body></html>
