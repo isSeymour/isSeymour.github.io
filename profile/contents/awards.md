@@ -3,12 +3,10 @@
   
 
 
-- First-prize Academic Scholarship, 2023.
+- National Inspirational Scholarship, 2023.
 
-- Freshman Academic Scholarship, 2022.
+- Second-prize Academic Scholarship, 2022.
 
-- Excellent Graduation Project of Jiangsu Province, 2022.
+- First Prize, 2023 Tongji University Freshman Information Security Competition.
 
-- First-prize Enterprise Scholarship, 2021.
-
-- First-prize Academic Scholarship, 2019.
++ Technical Leader, the 2021 National Innovation and Entrepreneurship Project

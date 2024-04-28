@@ -1,4 +1,6 @@
 
+- 以下为样例，非本人成果
+
 - <strong>S. Li</strong>, X. Yang, A. Cao, C. Wang, Y. Liu, Y. Liu, and Q. Niu (2024). SeisT: A foundational deep learning model for earthquake monitoring tasks. <strong>IEEE Transactions on Geoscience and Remote Sensing</strong>. [[Paper]](https://doi.org/10.1109/TGRS.2024.3371503) [[Code]](https://github.com/senli1073/SeisT)
 
 - A. Cao, X. Yang, C. Wang, <strong>S. Li</strong>, Y. Liu, L. Dou, and Q. Niu (2023). High-precision phase picking and automatic source locating method for seismicity in mines based on deep transfer learning. <strong>Journal of China Coal Society</strong>. [[Paper]](https://doi.org/10.13225/j.cnki.jccs.2023.0095)

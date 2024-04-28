@@ -1,13 +1,11 @@
 
-He is currently pursuing a Master's Degree in computer science, at School of Computer Science and Technology, China University of Mining and Technology.
+He is currently pursuing a Bachelor's degree in Computer Science with a specialization in Information Security at Tongji University, Shanghai, China.
 
 #### Email
 seymour0314[at]163.com
 
 #### Education
-2022.08 - present, Computer Science and Technology, School of Computer Science and Technology, China University of Mining and Technology.
-
-2018.08 - 2022.06, Data Science and Big Data Technology, School of Computer Science and Technology, China University of Mining and Technology.
+2021.08 - present, Information Security, School of Computer Science, College of Electronics and Information Engineering, Tongji University, Shanghai, China.
 
 #### Research Interests
-Deep Learning, Artificial Intelligence Seismology, Mine Microseismic.
+Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Artificial Intelligence.
