@@ -24771,4 +24771,485 @@ r_{mi} = y_i-f_{m-1}(x_i), \, i=1,2,...,N
         <tag>Python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>《计算机视觉与深度学习》Notes</title>
+    <url>/butterflyblog/2024/05/04/CVDL-bupt/</url>
+    <content><![CDATA[<h1>《计算机视觉与深度学习》Notes</h1>
+<blockquote>
+<p>来源：<a href="https://www.bilibili.com/video/BV1V54y1B7K3/">B站 - 计算机视觉与深度学习 北京邮电大学 鲁鹏 清晰版合集（完整版）</a></p>
+<p>学习笔记@isSeymour</p>
+<p>起止：2024-05-04 ~ 2024-06-00</p>
+</blockquote>
+<p>[TOC]</p>
+<h2 id="一、前言">一、前言</h2>
+<blockquote>
+<p>本课程参考 <strong>CS231n</strong>: Convolutional Neural Networks for Visual Recognition</p>
+</blockquote>
+<h3 id="1-1-计算机视觉简介">1.1 计算机视觉简介</h3>
+<ul>
+<li>
+<h4 id="什么是计算机视觉？">什么是计算机视觉？</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-1.png" alt="C1-1" style="zoom:67%;" /> 
+<ul>
+<li>
+<h4 id="计算机视觉的目标">计算机视觉的目标</h4>
+</li>
+<li>
+<p>跨越“语义鸿沟”建立像素到语义的映射</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-2.png" alt="C1-2" style="zoom:67%;" /> 
+<ul>
+<li>
+<h4 id="图形包含哪些信息？">图形包含哪些信息？</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-3.png" alt="C1-3" style="zoom:67%;" /> 
+<ul>
+<li>
+<h4 id="研究进展">研究进展</h4>
+</li>
+</ul>
+<ol>
+<li>动画产业</li>
+<li>三维建模</li>
+<li>摄影</li>
+<li>生物识别</li>
+<li>光学字符识别 OCR</li>
+<li>谷歌地图</li>
+<li>家用型机器人</li>
+<li>视觉搜索</li>
+<li>穿戴设备</li>
+<li>无人驾驶</li>
+<li>新零售</li>
+<li>人机交互</li>
+<li>增强现实</li>
+<li>太空探索</li>
+<li>医学图像</li>
+<li>气象学</li>
+</ol>
+<h3 id="1-2-课程介绍">1.2 课程介绍</h3>
+<blockquote>
+<p>本课程聚焦于视觉识别任务中最为基础、也是最为重要的一个任务——图像分类任务。</p>
+</blockquote>
+<ul>
+<li>
+<p>视觉识别中与图像分类任务相关的任务有很多，其中比较典型的包括目标检测、图像分割、图像描述、图像生成等。</p>
+</li>
+<li>
+<p>对于视觉识别任务而言, 目前最为有效的工具就是<strong>卷积神经网络</strong>！</p>
+<p>卷积神经网络最早出现在1998年！</p>
+</li>
+<li>
+<h4 id="深度学习三要素">深度学习三要素</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-5.png" alt="C1-5" style="zoom:67%;" /> 
+<ul>
+<li>
+<h4 id="课程目标">课程目标</h4>
+<ul>
+<li>了解视觉识别任务的难点与现状</li>
+<li>掌握多种典型的视觉识别任务（图像分类、目标检测、图像分割等）</li>
+<li>熟悉机器学习的一些基本概念，了解机器学习系统的设计流程。</li>
+<li>掌握多种深度网络结构（包括全连接神经网络、卷积神经网络、循环神经网络、变分自编码网络、生成对抗网络等）</li>
+</ul>
+</li>
+<li>
+<h4 id="课程安排">课程安排</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-6.png" alt="C1-6" style="zoom:67%;" /> 
+</li>
+</ul>
+<h2 id="二、图像分类">二、图像分类</h2>
+<h3 id="2-1-定义">2.1 定义</h3>
+<ul>
+<li>
+<p>图像分类任务是计算机视觉中的核心任务，</p>
+<p>其目标是根据图像信息中所反映的不同特征，把不同类别的图像区分开来。</p>
+</li>
+<li>
+<p>图像分类：<strong>从已知的类别标签集合中为给定的输入图片选定一个类别标签</strong>。</p>
+<p>标签: {狗，猫，卡车，飞机，…}</p>
+</li>
+</ul>
+<h3 id="2-2-难点">2.2 难点</h3>
+<ul>
+<li><strong>跨越“语义鸿沟”建立像素到语义的映射</strong></li>
+<li>影响因素很多：
+<ol>
+<li>视角</li>
+<li>光照</li>
+<li>尺度</li>
+<li>遮挡</li>
+<li>形变</li>
+<li>背景杂波</li>
+<li>类内形变</li>
+<li>运动模糊</li>
+<li>类别繁多</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-3-数据驱动">2.3 数据驱动</h3>
+<ol>
+<li><strong>数据集构建</strong></li>
+<li><strong>分类器设计与学习</strong></li>
+<li><strong>分类器决策</strong></li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-7.png" alt="C1-7" style="zoom:67%;" /> 
+<h3 id="2-4-范式">2.4 范式</h3>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-7-2.png" alt="C1-7-2" style="zoom: 50%;" /> 
+<ul>
+<li>
+<h4 id="图像表示">图像表示</h4>
+<ul>
+<li>像素表示</li>
+<li>全局特征表示（如GIST）</li>
+<li>局部特征表示（如SIFT特征+词袋模型）</li>
+</ul>
+</li>
+<li>
+<h4 id="分类器">分类器</h4>
+<ul>
+<li>近邻分类器</li>
+<li>贝叶斯分类器</li>
+<li><strong>线性分类器</strong></li>
+<li>支撑向量机分类器</li>
+<li><strong>神经网络分类器</strong></li>
+<li>随机森林</li>
+</ul>
+</li>
+<li>
+<h4 id="损失函数">损失函数</h4>
+<ul>
+<li>0-1损失</li>
+<li>多类支撑向量机损失</li>
+<li>交叉熵损失</li>
+</ul>
+</li>
+<li>
+<h4 id="优化方法">优化方法</h4>
+<ul>
+<li>一阶方法
+<ol>
+<li>梯度下降</li>
+<li>随机梯度下降</li>
+<li>小批量随机梯度下降</li>
+</ol>
+</li>
+<li>二阶方法
+<ol>
+<li>牛顿法</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="训练过程">训练过程</h4>
+<ul>
+<li>训练过程</li>
+<li>数据预处理</li>
+<li>数据增强</li>
+<li>欠拟合与过拟合
+<ul>
+<li>减小算法复杂度</li>
+<li>使用权重正则项</li>
+<li>使用droput正则化</li>
+</ul>
+</li>
+<li>超参数调整</li>
+<li>模型集成</li>
+</ul>
+</li>
+<li>
+<h4 id="评价指标">评价指标</h4>
+<ul>
+<li>正确率（accuracy）= 分对的样本数/全部样本数</li>
+<li>错误率（error rate) = 1 – 正确率</li>
+</ul>
+<blockquote>
+<p>Top1指标与Top5指标</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="三、线性分类器">三、线性分类器</h2>
+<blockquote>
+<p>为什么从线性分类器开始？</p>
+<ol>
+<li>形式简单、易于理解</li>
+<li>通过层级结构（神经网络）或者高维映射（支撑向量机）可以形成功能强大的非线性模型</li>
+</ol>
+<ul>
+<li><strong><a href="http://vision.stanford.edu/teaching/cs231n-demos/linear-classify/">线性分类器体验</a></strong></li>
+</ul>
+</blockquote>
+<h3 id="3-1-定义">3.1 定义</h3>
+<ul>
+<li>
+<h4 id="线性分类器">线性分类器</h4>
+<p>是一种线性映射，将输入的图像特征映射为类别分数。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-9.png" alt="C1-9" style="zoom: 50%;" /> 
+</li>
+<li>
+<h4 id="示例">示例</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-10.png" alt="C1-10" style="zoom:50%;" /> 
+</li>
+</ul>
+<h3 id="3-2-参数">3.2 参数</h3>
+<ul>
+<li>
+<h4 id="矩阵表示">矩阵表示</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/image-20240504182700821.png" alt="image-20240504182700821" style="zoom:50%;" /> 
+<ul>
+<li>
+<h4 id="权值向量">权值向量</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-12.png" alt="C1-12" style="zoom: 50%;" /> 
+<ul>
+<li>
+<h4 id="决策边界">决策边界</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-13.png" alt="C1-13" style="zoom:67%;" /> 
+<h3 id="3-3-图像表示">3.3 图像表示</h3>
+<p>将图像转换成向量的方法有很多，这里我们用一种最简单的方法，直接将图像矩阵转换成向量。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-8.png" alt="C1-8" style="zoom:67%;" /> 
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-8-2.png" alt="C1-8-2" style="zoom: 33%;" /> 
+</blockquote>
+<h3 id="3-4-损失函数">3.4 损失函数</h3>
+<blockquote>
+<p>对示例样本，分类器1与分类器2的分类谁的效果更好？</p>
+<p>需要损失函数来帮忙！</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>损失函数搭建了模型性能与模型参数之间的桥梁，指导模型参数优化</strong>。</p>
+<ul>
+<li>损失函数是一个函数，用于度量给定分类器的预测值与真实值的不一致程度，其输出通常是一个非负实值。</li>
+<li>其输出的非负实值可以作为反馈信号来对分类器参数进行调整，以降低当前示例对应的损失值，提升分类器的分类效果。</li>
+</ul>
+</li>
+<li>
+<h4 id="一般定义">一般定义</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-14.png" alt="C1-14" style="zoom:67%;" /> 
+</li>
+</ul>
+<h4 id="多类支撑向量机损失">多类支撑向量机损失</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-15.png" alt="C1-15" style="zoom: 50%;" /> 
+<blockquote>
+<ul>
+<li>
+<h5 id="示例-2">示例</h5>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-16.png" alt="C1-16" style="zoom:50%;" /> 
+</li>
+</ul>
+</blockquote>
+<h4 id="疑问">疑问</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-17.png" alt="C1-17" style="zoom:50%;" /> 
+<ul>
+<li>
+<p>多类支撑向量机损失 L 的最大/最小值会是多少？</p>
+<p>最大：无穷大</p>
+<p>最小：0</p>
+</li>
+<li>
+<p>如果初始化时w和b很小，损失 L 会是多少？</p>
+<p>类别数目减一。（可用于检测损失函数是否写对了）</p>
+</li>
+<li>
+<p>在总损失计算时，如果用求和代替平均?</p>
+<p>可以，但是若是每个分组的大小不同，就不可以。</p>
+</li>
+<li>
+<p>若使用平方损失，最后模型会一样吗？</p>
+<p>不一样。</p>
+</li>
+</ul>
+<h3 id="3-5-正则项">3.5 正则项</h3>
+<blockquote>
+<p>假设存在一个W使损失函数L=0，这个W是唯一的吗？</p>
+<p>不唯一！</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-18.png" alt="C1-18" style="zoom: 50%;" /> 
+<p>不唯一的W ，那么选择哪个更好呢？</p>
+<p>加入正则项，使得结果一定唯一！</p>
+</blockquote>
+<ul>
+<li>
+<h4 id="正则损失与超参数">正则损失与超参数</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-19.png" alt="C1-19" style="zoom: 50%;" />  
+</li>
+<li>
+<p>正则项让模型有了偏好！</p>
+</li>
+<li>
+<h4 id="常用">常用</h4>
+<ul>
+<li>
+<p><strong>L1正则项</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>k</mi></munder><munder><mo>∑</mo><mi>j</mi></munder><mi mathvariant="normal">∣</mi><msub><mi>w</mi><mrow><mi>k</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">R(W) = \sum \limits_{k} \sum \limits_{j} |w_{k,j}|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.8638em;vertical-align:-1.1138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.0979em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.1223em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span></p>
+</li>
+<li>
+<p><strong>L2正则项</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>k</mi></munder><munder><mo>∑</mo><mi>j</mi></munder><msubsup><mi>w</mi><mrow><mi>k</mi><mo separator="true">,</mo><mi>j</mi></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">R(W) = \sum \limits_{k} \sum \limits_{j} w_{k,j}^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.9279em;vertical-align:-1.1138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.0979em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.1223em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4169em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4192em;"><span></span></span></span></span></span></span></span></span></span></p>
+<blockquote>
+<p>L2正则损失对大数值权值进行惩罚，喜欢分散权值，鼓励分类器将所有维度的特征都用起来，而不是强烈的依赖其中少数几维特征。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Elastic net(L1+L2)</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>k</mi></munder><munder><mo>∑</mo><mi>j</mi></munder><mi>β</mi><msubsup><mi>w</mi><mrow><mi>k</mi><mo separator="true">,</mo><mi>j</mi></mrow><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">∣</mi><msub><mi>w</mi><mrow><mi>k</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">R(W) = \sum \limits_{k} \sum \limits_{j} \beta w_{k,j}^{2} + |w_{k,j}|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.9279em;vertical-align:-1.1138em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.0979em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-2.1223em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop op-symbol small-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1138em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4169em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4192em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>示例：</p>
+<ul>
+<li>
+<p>样本：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">x=[1,1,1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></p>
+</li>
+<li>
+<p>分类器</p>
+<ul>
+<li>分类器1：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">w_1 = [1,0,0,0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">]</span></span></span></span></li>
+<li>分类器2：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>2</mn></msub><mo>=</mo><mo stretchy="false">[</mo><mn>0.25</mn><mo separator="true">,</mo><mn>0.25</mn><mo separator="true">,</mo><mn>0.25</mn><mo separator="true">,</mo><mn>0.25</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">w_2 = [0.25,0.25,0.25,0.25]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0.25</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.25</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.25</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.25</span><span class="mclose">]</span></span></span></span></li>
+</ul>
+</li>
+<li>
+<p>输出</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>w</mi><mn>1</mn><mi>T</mi></msubsup><mi>x</mi><mo>=</mo><msubsup><mi>w</mi><mn>2</mn><mi>T</mi></msubsup><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w_1^T x = w_2^T x =1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0894em;vertical-align:-0.2481em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.4519em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2481em;"><span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0894em;vertical-align:-0.2481em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.4519em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2481em;"><span></span></span></span></span></span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></p>
+</li>
+<li>
+<p>L2正则损失</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">R(w_1) = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mn>0.25</mn></mrow><annotation encoding="application/x-tex">R(w_2) = 0.25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0269em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.25</span></span></span></span></p>
+</li>
+</ul>
+<p>分类器2总损失小</p>
+</blockquote>
+<h3 id="3-6-参数优化">3.6 参数优化</h3>
+<ul>
+<li>
+<p>参数优化是机器学习的核心步骤之一。</p>
+</li>
+<li>
+<p>它利用<strong>损失函数的输出值</strong>作为<strong>反馈信号</strong>来<strong>调整分类器参数</strong>，以<strong>提升</strong>分类器对训练样本的<strong>预测性能</strong>。</p>
+</li>
+<li>
+<p>目标</p>
+<p>损失函数 L 是一个与参数 w 有关的函数，</p>
+<p>优化的目标就是找到<strong>使损失函数 L 达到最优的那组参数 w</strong> 。</p>
+</li>
+<li>
+<p>方法</p>
+<ol>
+<li>
+<p>直接对 w 求偏导，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>L</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>w</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{\partial L}{\partial w} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal mtight">L</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>​ 的点的 w 就是最优参数。</p>
+<p>通常，L 形式比较复杂，很难从这个等式直接求解出 W！</p>
+<p>因此，需要后面的方法。</p>
+</li>
+<li>
+<p>梯度下降</p>
+</li>
+<li>
+<p>随机梯度下降</p>
+</li>
+<li>
+<p>小批量梯度下降</p>
+</li>
+</ol>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-27.png" alt="C1-27" style="zoom:50%;" /> 
+</blockquote>
+</li>
+</ul>
+<h4 id="（1）梯度下降">（1）梯度下降</h4>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-20.png" alt="C1-20" style="zoom:50%;" /> 
+</blockquote>
+<ul>
+<li>
+<p>一种简单而高效的迭代优化方法！</p>
+</li>
+<li>
+<h4 id="利用所有样本计算损失并更新梯度。">利用所有样本计算损失并更新梯度。</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-21.png" alt="C1-21" style="zoom: 67%;" /> 
+<ul>
+<li>
+<h4 id="计算梯度的方法">计算梯度的方法</h4>
+<ol>
+<li>数值梯度: 近似, 慢, 易写</li>
+<li>解析梯度: 精确, 快, 易错</li>
+</ol>
+<blockquote>
+<p>既然如此，数值梯度有什么作用？</p>
+<p>答：求梯度时一般使用解析梯度，而数值梯度主要用于解析梯度的正确性校验（梯度检查）。</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-22.png" alt="C1-22" style="zoom:50%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-23.png" alt="C1-23" style="zoom: 50%;" /> 
+</li>
+<li>
+<h4 id="计算效率">计算效率</h4>
+<p>由于利用<strong>所有</strong>样本<strong>计算</strong>损失并更新梯度，</p>
+<p>当N很大时，权值的梯度计算量很大！</p>
+<p>由此引出后面的 随机梯度下降 和 小批量随机梯度下降。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-24.png" alt="C1-24" style="zoom: 50%;" /> 
+</li>
+</ul>
+<h4 id="（2）随机梯度下降">（2）随机梯度下降</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-25.png" alt="C1-25" style="zoom: 50%;" /> 
+<h4 id="（3）小批量梯度下降">（3）小批量梯度下降</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/image-20240504193058460.png" alt="image-20240504193058460" style="zoom: 50%;" /> 
+<h3 id="3-7-数据集划分">3.7 数据集划分</h3>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-28.png" alt="C1-28" style="zoom: 67%;" /> 
+<ol>
+<li><strong>训练集</strong>用于给定的超参数时<strong>分类器参数</strong>的学习</li>
+<li><strong>验证集</strong>用于选择<strong>超参数</strong></li>
+<li><strong>测试集</strong>评估<strong>泛化能力</strong></li>
+</ol>
+<blockquote>
+<p>问题：</p>
+<p>如果数据很少，那么可能验证集包含的样本就太少，从而无法在统计上代表数据。</p>
+<p>发现：</p>
+<p>如果在划分数据前进行不同的随机打乱，最终得到的模型性能差别很大，那么就存在这个问题。</p>
+<p>接下来会介绍 <strong>K 折验证</strong>与<strong>重复的K 折验证</strong>，它们是解决这一问题的两种方法。</p>
+</blockquote>
+<ul>
+<li>
+<h4 id="K折交叉验证">K折交叉验证</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-29.png" alt="C1-29" style="zoom:50%;" /> 
+</li>
+<li>
+<h4 id="带有打乱数据的重复K折验证">带有打乱数据的重复K折验证</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-30.png" alt="C1-30" style="zoom:50%;" /> 
+</li>
+</ul>
+<h3 id="3-8-数据预处理">3.8 数据预处理</h3>
+<ul>
+<li>
+<h4 id="处理方法1">处理方法1</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-31.png" alt="C1-31" style="zoom:50%;" /> 
+</li>
+<li>
+<h4 id="处理方法2">处理方法2</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-32.png" alt="C1-32" style="zoom:50%;" /> 
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉</tag>
+      </tags>
+  </entry>
 </search>
