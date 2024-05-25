@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>《计算机视觉与深度学习》Notes | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="《计算机视觉与深度学习》Notes  来源：B站 - 计算机视觉与深度学习 北京邮电大学 鲁鹏 清晰版合集（完整版） 学习笔记@isSeymour 起止：2024-05-04 ~ 2024-06-00  [TOC] 一、前言  本课程参考 CS231n: Convolutional Neural Networks for Visual Recognition  1.1 计算机视觉简介   什么是计">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>《计算机视觉与深度学习》Notes | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="《计算机视觉与深度学习》Notes  来源：B站 - 计算机视觉与深度学习 北京邮电大学 鲁鹏 清晰版合集（完整版） 学习笔记@isSeymour pdf 版 见本站右上角 功能 - 下载 - 文本类 起止：2024-05-04 ~ 2024-06-00  [TOC] 一、前言  本课程参考 CS231n: Convolutional Neural Networks for Visual Reco">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《计算机视觉与深度学习》Notes">
 <meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/05/04/CVDL-bupt/index.html">
 <meta property="og:site_name" content="isSeymour">
-<meta property="og:description" content="《计算机视觉与深度学习》Notes  来源：B站 - 计算机视觉与深度学习 北京邮电大学 鲁鹏 清晰版合集（完整版） 学习笔记@isSeymour 起止：2024-05-04 ~ 2024-06-00  [TOC] 一、前言  本课程参考 CS231n: Convolutional Neural Networks for Visual Recognition  1.1 计算机视觉简介   什么是计">
+<meta property="og:description" content="《计算机视觉与深度学习》Notes  来源：B站 - 计算机视觉与深度学习 北京邮电大学 鲁鹏 清晰版合集（完整版） 学习笔记@isSeymour pdf 版 见本站右上角 功能 - 下载 - 文本类 起止：2024-05-04 ~ 2024-06-00  [TOC] 一、前言  本课程参考 CS231n: Convolutional Neural Networks for Visual Reco">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif">
 <meta property="article:published_time" content="2024-05-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-05-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-24T16:00:00.000Z">
 <meta property="article:author" content="isSeymour">
 <meta property="article:tag" content="计算机视觉">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-05-04 00:00:00'
+  postUpdate: '2024-05-25 00:00:00'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -161,10 +161,11 @@
       }
     }
     detectApple()
-    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《计算机视觉与深度学习》Notes</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-03T16:00:00.000Z" title="发表于 2024-05-04 00:00:00">2024-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-03T16:00:00.000Z" title="更新于 2024-05-04 00:00:00">2024-05-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《计算机视觉与深度学习》Notes"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>《计算机视觉与深度学习》Notes</h1>
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《计算机视觉与深度学习》Notes</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-03T16:00:00.000Z" title="发表于 2024-05-04 00:00:00">2024-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-24T16:00:00.000Z" title="更新于 2024-05-25 00:00:00">2024-05-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《计算机视觉与深度学习》Notes"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>《计算机视觉与深度学习》Notes</h1>
 <blockquote>
 <p>来源：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1V54y1B7K3/">B站 - 计算机视觉与深度学习 北京邮电大学 鲁鹏 清晰版合集（完整版）</a></p>
 <p>学习笔记@isSeymour</p>
+<p><strong>pdf 版</strong> 见本站右上角 <code>功能 - 下载 - 文本类</code></p>
 <p>起止：2024-05-04 ~ 2024-06-00</p>
 </blockquote>
 <p>[TOC]</p>
@@ -557,7 +558,7 @@
 </blockquote>
 </li>
 </ul>
-<h4 id="（1）梯度下降">（1）梯度下降</h4>
+<h4 id="1-梯度下降">(1) 梯度下降</h4>
 <blockquote>
 <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-20.png" alt="C1-20" style="zoom:50%;" /> 
 </blockquote>
@@ -592,9 +593,9 @@
 <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-24.png" alt="C1-24" style="zoom: 50%;" /> 
 </li>
 </ul>
-<h4 id="（2）随机梯度下降">（2）随机梯度下降</h4>
+<h4 id="2-随机梯度下降">(2) 随机梯度下降</h4>
 <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-25.png" alt="C1-25" style="zoom: 50%;" /> 
-<h4 id="（3）小批量梯度下降">（3）小批量梯度下降</h4>
+<h4 id="3-小批量梯度下降">(3) 小批量梯度下降</h4>
 <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/image-20240504193058460.png" alt="image-20240504193058460" style="zoom: 50%;" /> 
 <h3 id="3-7-数据集划分">3.7 数据集划分</h3>
 <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-28.png" alt="C1-28" style="zoom: 67%;" /> 
@@ -631,7 +632,505 @@
 <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/C1-32.png" alt="C1-32" style="zoom:50%;" /> 
 </li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/05/04/CVDL-bupt/">https://isseymour.github.io/butterflyblog/2024/05/04/CVDL-bupt/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2024/05/01/Crypto-Graphic/" title="《图解密码技术》Notes"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/Crypto-Graphic/P0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">《图解密码技术》Notes</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2024/05/12/WP-TJ2024/" title="同济@复旦第一届网络安全竞赛WP"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">同济@复旦第一届网络安全竞赛WP</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区（暂时不可用），输入QQ邮箱，不用登陆，即可评论！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">《计算机视觉与深度学习》Notes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1 计算机视觉简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%9F"><span class="toc-text">什么是计算机视觉？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">计算机视觉的目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="toc-text">图形包含哪些信息？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95"><span class="toc-text">研究进展</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.2 课程介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-text">深度学习三要素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E7%9B%AE%E6%A0%87"><span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%AE%89%E6%8E%92"><span class="toc-text">课程安排</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB"><span class="toc-text">二、图像分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">2.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%9A%BE%E7%82%B9"><span class="toc-text">2.2 难点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8"><span class="toc-text">2.3 数据驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%8C%83%E5%BC%8F"><span class="toc-text">2.4 范式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">图像表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">优化方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-text">训练过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">评价指标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">三、线性分类器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1 定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">线性分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%8F%82%E6%95%B0"><span class="toc-text">3.2 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="toc-text">矩阵表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%83%E5%80%BC%E5%90%91%E9%87%8F"><span class="toc-text">权值向量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E8%BE%B9%E7%95%8C"><span class="toc-text">决策边界</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">3.3 图像表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">3.4 损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%AE%9A%E4%B9%89"><span class="toc-text">一般定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%B1%BB%E6%94%AF%E6%92%91%E5%90%91%E9%87%8F%E6%9C%BA%E6%8D%9F%E5%A4%B1"><span class="toc-text">多类支撑向量机损失</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%96%91%E9%97%AE"><span class="toc-text">疑问</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E6%AD%A3%E5%88%99%E9%A1%B9"><span class="toc-text">3.5 正则项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E6%8D%9F%E5%A4%B1%E4%B8%8E%E8%B6%85%E5%8F%82%E6%95%B0"><span class="toc-text">正则损失与超参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8"><span class="toc-text">常用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="toc-text">3.6 参数优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">（1）梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E6%89%80%E6%9C%89%E6%A0%B7%E6%9C%AC%E8%AE%A1%E7%AE%97%E6%8D%9F%E5%A4%B1%E5%B9%B6%E6%9B%B4%E6%96%B0%E6%A2%AF%E5%BA%A6%E3%80%82"><span class="toc-text">利用所有样本计算损失并更新梯度。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%A2%AF%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">计算梯度的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%95%88%E7%8E%87"><span class="toc-text">计算效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">（2）随机梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%B0%8F%E6%89%B9%E9%87%8F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">（3）小批量梯度下降</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86"><span class="toc-text">3.7 数据集划分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#K%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-text">K折交叉验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E6%89%93%E4%B9%B1%E6%95%B0%E6%8D%AE%E7%9A%84%E9%87%8D%E5%A4%8DK%E6%8A%98%E9%AA%8C%E8%AF%81"><span class="toc-text">带有打乱数据的重复K折验证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">3.8 数据预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%951"><span class="toc-text">处理方法1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%952"><span class="toc-text">处理方法2</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/05/12/WP-TJ2024/" title="同济@复旦第一届网络安全竞赛WP"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="同济@复旦第一届网络安全竞赛WP"/></a><div class="content"><a class="title" href="/butterflyblog/2024/05/12/WP-TJ2024/" title="同济@复旦第一届网络安全竞赛WP">同济@复旦第一届网络安全竞赛WP</a><time datetime="2024-05-11T16:00:00.000Z" title="发表于 2024-05-12 00:00:00">2024-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/05/04/CVDL-bupt/" title="《计算机视觉与深度学习》Notes"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="《计算机视觉与深度学习》Notes"/></a><div class="content"><a class="title" href="/butterflyblog/2024/05/04/CVDL-bupt/" title="《计算机视觉与深度学习》Notes">《计算机视觉与深度学习》Notes</a><time datetime="2024-05-03T16:00:00.000Z" title="发表于 2024-05-04 00:00:00">2024-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/05/01/Crypto-Graphic/" title="《图解密码技术》Notes"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/Crypto-Graphic/P0.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="《图解密码技术》Notes"/></a><div class="content"><a class="title" href="/butterflyblog/2024/05/01/Crypto-Graphic/" title="《图解密码技术》Notes">《图解密码技术》Notes</a><time datetime="2024-04-30T16:00:00.000Z" title="发表于 2024-05-01 00:00:00">2024-05-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+<h2 id="四、全连接神经网络">四、全连接神经网络</h2>
+<h3 id="4-0-整体架构">4.0 整体架构</h3>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-0-1.png" alt="FN-0-1" style="zoom:60%;" /> 
+<blockquote>
+<ul>
+<li>
+<h4 id="图像表示-2">图像表示</h4>
+<p>与前面一样，直接利用原始像素作为特征，展开为列向量。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-0-2.png" alt="FN-0-2" style="zoom:60%;" /> 
+</li>
+</ul>
+</blockquote>
+<h3 id="4-1-多层感知器">4.1 多层感知器</h3>
+<blockquote>
+<p>回顾前面，线性分类器是：</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-1.png" alt="FN-1-1" style="zoom: 50%;" /> 
+</blockquote>
+<ul>
+<li>
+<h4 id="全连接神经网络：">全连接神经网络：</h4>
+<p>全连接神经网络<strong>级联多个变换</strong>来实现输入到输出的映射。</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-2.png" alt="FN-1-2" style="zoom:60%;" /> 
+<blockquote>
+<p>注：非线性操作是不可以去掉！</p>
+</blockquote>
+<ul>
+<li>
+<h4 id="理解权值">理解权值</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-3.png" alt="FN-1-3" style="zoom:60%;" /> 
+<blockquote>
+<p>全联接神经网络的描述能力更强。</p>
+<p>因为<strong>调整 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">W_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 行数</strong> 等于 增加<strong>模板个数</strong>，分类器有机会学到两个不同方向的马的模板。</p>
+</blockquote>
+<ul>
+<li>
+<h4 id="线性可分：线性分类器">线性可分：线性分类器</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-4.png" alt="FN-1-4" style="zoom:50%;" /> 
+<ul>
+<li>
+<h4 id="线性不可分：全连接神经网络">线性不可分：全连接神经网络</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-5.png" alt="FN-1-5" style="zoom:50%;" /> 
+<blockquote>
+<ul>
+<li>
+<h4 id="绘制">绘制</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-6.png" alt="FN-1-6" style="zoom:60%;" /> 
+<ul>
+<li>
+<h4 id="命名">命名</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-1-7.png" alt="FN-1-7" style="zoom:60%;" /> 
+</blockquote>
+<h3 id="4-2-激活函数">4.2 激活函数</h3>
+<blockquote>
+<p>激活函数是全连接神经网络中的一个重要部分，缺少了激活函数，全连接神经网络将<strong>退化</strong>为线性分类器。</p>
+</blockquote>
+<ul>
+<li>
+<h4 id="必要性">必要性</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-2-1.png" alt="FN-2-1" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="常用的激活函数">常用的激活函数</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-2-2.png" alt="FN-2-2" style="zoom:60%;" />  
+</li>
+<li>
+<h3 id="网络结构设计">网络结构设计</h3>
+<ol>
+<li>
+<p>用不用隐层，用一个还是用几个隐层？（深度设计）</p>
+</li>
+<li>
+<p>每隐层设置多少个神经元比较合适？（宽度设计）</p>
+</li>
+</ol>
+<p><strong>没有统一的答案！</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-2-3.png" alt="FN-2-3" style="zoom:60%;" /> 
+<p>结论：</p>
+<ul>
+<li>神经元<strong>个数越多</strong>，分界面就可以<strong>越复杂</strong>，在<strong>这个集合上</strong>的<strong>分类能力就越强</strong>。</li>
+</ul>
+<blockquote>
+<p>依据分类任务的难易程度来调整神经网络模型的复杂程度。</p>
+<p>分类任务越难，我们设计的神经网络结构就应该越深、越宽。</p>
+<p>但是，需要注意的是对训练集分类精度最高的全连接神经网络模型，在真实场景下识别性能未必是最好的（过拟合） 。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-3-SOFTMAX与交叉熵">4.3 SOFTMAX与交叉熵</h3>
+<ul>
+<li>
+<h4 id="Softmax">Softmax</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-3-1.png" alt="FN-3-1" style="zoom:60%;" /> 
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-3-2.png" alt="FN-3-2" style="zoom:60%;" /> 
+</blockquote>
+</li>
+<li>
+<h4 id="交叉熵损失">交叉熵损失</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-3-3.png" alt="FN-3-3" style="zoom:60%;" /> 
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-3-4.png" alt="FN-3-4" style="zoom:60%;" /> 
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-3-5.png" alt="FN-3-5" style="zoom:60%;" /> 
+</li>
+</ul>
+<h3 id="4-4-对比多类支撑向量机损失">4.4 对比多类支撑向量机损失</h3>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-4-1.png" alt="FN-4-1" style="zoom:60%;" /> 
+<blockquote>
+<ul>
+<li>
+<h4 id="问：-相同分数下两种分类器的损失有什么区别？">问： 相同分数下两种分类器的损失有什么区别？</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-4-2.png" alt="FN-4-2" style="zoom:60%;" /> 
+</li>
+</ul>
+</blockquote>
+<h3 id="4-5-计算图与反向传播">4.5 计算图与反向传播</h3>
+<ul>
+<li>
+<h4 id="什么是计算图？">什么是计算图？</h4>
+<p>计算图是一种有向图，它用来表达输入、输出以及中间变量之间的计算关系，图中的每个节点对应着一种数学运算。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-5-1.png" alt="FN-5-1" style="zoom:60%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-5-2.png" alt="FN-5-1" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>任意复杂的函数，都可以用计算图的形式表示</p>
+</li>
+<li>
+<p>在整个计算图中，每个门单元都会得到一些输入，然后，进行下面两个计算：</p>
+<ol>
+<li>
+<p>这个门的<strong>输出值</strong></p>
+</li>
+<li>
+<p>其输出值关于输入值的<strong>局部梯度</strong>。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>利用<strong>链式法则</strong>，门单元应该将回传的梯度乘以它对其的输入的局部梯度，从而得到整个网络的输出对该门单元的每个输入值的梯度。</p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="颗粒度">颗粒度</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-5-3.png" alt="FN-5-3" style="zoom:67%;" /> 
+</li>
+<li>
+<h4 id="常见的门单元">常见的门单元</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-5-4.png" alt="FN-5-4" style="zoom:60%;" /> 
+</li>
+</ul>
+<h3 id="4-6-再谈激活函数">4.6 再谈激活函数</h3>
+<ul>
+<li>
+<h4 id="梯度消失">梯度消失</h4>
+<p>梯度消失是神经网络训练中非常致命的一个问题，其本质是由于链式法则的乘法特性导致的。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-6-1.png" alt="FN-6-1" style="zoom:60%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-6-2.png" alt="FN-6-2" style="zoom:60%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-6-3.png" alt="FN-6-3" style="zoom:60%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-6-4.png" alt="FN-6-4" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="梯度爆炸">梯度爆炸</h4>
+<p>梯度爆炸也是由于链式法则的乘法特性导致的。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-6-5.png" alt="FN-6-5" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="激活函数选择总结">激活函数选择总结</h4>
+<p>尽量选择 <strong>ReLU 函数</strong>或者 <strong>Leakly ReLU 函数</strong>，</p>
+<p>相对于Sigmoid/tanh，ReLU函数或者Leakly ReLU函数会让<strong>梯度流更加顺畅</strong>，训练过程<strong>收敛得更快</strong>。</p>
+</li>
+</ul>
+<h3 id="4-7-动量法与自适应梯度">4.7 动量法与自适应梯度</h3>
+<ul>
+<li>
+<h4 id="梯度下降算法存在的问题">梯度下降算法存在的问题</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-7-1.png" alt="FN-7-1" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="梯度算法改进">梯度算法改进</h4>
+</li>
+</ul>
+<h4 id="1-动量法">(1) 动量法</h4>
+<ul>
+<li>
+<p><strong>目标</strong></p>
+<p>改进梯度下降算法存在的问题，即减少震荡，加速通往谷低</p>
+</li>
+<li>
+<p><strong>改进思想</strong></p>
+<p>利用<strong>累加历史</strong>梯度信息更新梯度</p>
+</li>
+<li>
+<p><strong>算法</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-7-2.png" alt="FN-7-2" style="zoom: 80%;" /> 
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>为什么有效？</p>
+<p>累加过程中震荡方向相互抵消，平坦方向得到加强。</p>
+</li>
+<li>
+<p>动量法还有什么效果？</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-7-3.png" alt="FN-7-3" style="zoom:60%;" /> 
+</li>
+</ul>
+</blockquote>
+<h4 id="2-自适应梯度与RMSProp">(2) 自适应梯度与RMSProp</h4>
+<ul>
+<li>
+<p>思想</p>
+<p>自适应梯度法通过<strong>减小震荡方向步长</strong>，<strong>增大平坦方向步长</strong>来减小震荡，加速通往谷底方向</p>
+</li>
+<li>
+<p>如何区分震荡方向与平坦方向？</p>
+<ul>
+<li>梯度幅度的平方较大的方向是震荡方向</li>
+<li>梯度幅度的平方较小的方向是平坦方向</li>
+</ul>
+ <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-7-4.png" alt="FN-7-4" style="zoom:80%;" /> 
+</li>
+<li>
+<p>算法</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-7-5.png" alt="FN-7-5" style="zoom: 80%;" /> 
+</li>
+</ul>
+<h4 id="3-结合：ADAM">(3) 结合：ADAM</h4>
+<ul>
+<li>同时使用<strong>动量</strong>与<strong>自适应梯度</strong>思想</li>
+<li>注：<strong>修正偏差</strong> 步骤可以极大缓解算法初期的冷启动问题</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-7-6.png" alt="FN-7-6" style="zoom: 80%;" /> 
+<h3 id="4-8-权值初始化">4.8 权值初始化</h3>
+<ul>
+<li>
+<h4 id="全零初始化">全零初始化</h4>
+<p>网络中不同的神经元有相同的输出，进行<strong>同样的参数更新</strong>。</p>
+<p>因此，这些神经元<strong>学到的参数都一样</strong>，<strong>等价于一个神经元</strong>。</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-1.png" alt="FN-8-1" style="zoom:60%;" /> 
+<ul>
+<li>
+<h4 id="随机权值初始化">随机权值初始化</h4>
+<blockquote>
+<ul>
+<li>
+<p><strong>实验</strong>：采用不同的高斯分布进行随机</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-2.png" alt="FN-8-2" style="zoom:60%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-3.png" alt="FN-8-3" style="zoom:60%;" /> 
+</li>
+<li>
+<p><strong>实验结论</strong></p>
+<p>初始化时只是简单地让权值不相等，并<strong>不能</strong>保证网络能够正常的被训练。</p>
+</li>
+<li>
+<p><strong>有效的初始化方法</strong></p>
+<p>使网络各层的激活值和局部梯度的<strong>方差</strong>在<strong>传播过程中尽量保持一致</strong>；</p>
+<p>以保持网络中正向和反向数据流动。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<h4 id="Xavier初始化">Xavier初始化</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-4.png" alt="FN-8-4" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>对于 <strong>双曲正切</strong>激活函数</p>
+<p>很好！</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-5.png" alt="FN-8-5" style="zoom:60%;" /> 
+</li>
+<li>
+<p>对于 <strong>ReLu</strong> 激活函数</p>
+<p>不好！</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-6.png" alt="FN-8-6" style="zoom:60%;" /> 
+</li>
+</ul>
+</li>
+<li>
+<h4 id="HE初始化">HE初始化</h4>
+<ul>
+<li><strong>ReLu</strong> 激活函数</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-8-7.png" alt="FN-8-7" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="总结">总结</h4>
+<ul>
+<li>好的初始化方法可以防止前向传播过程中的信息消失，也可以解决反向传递过程中的梯度消失。</li>
+<li>激活函数选择<strong>双曲正切或者Sigmoid</strong>时，建议使用<strong>Xaizer初始化</strong>方法；</li>
+<li>激活函数选择<strong>ReLU或Leakly ReLU</strong>时，推荐使用<strong>He初始化</strong>方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-9-批归一化">4.9 批归一化</h3>
+<ul>
+<li>
+<p>方法</p>
+<p>直接对神经元的输出进行批归一化。</p>
+<p>如果每一层的每个神经元进行批归一化，就能解决前向传递过程中的信号消失问题。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-9-1.png" alt="FN-9-1" style="zoom:60%;" /> 
+<blockquote>
+<ul>
+<li>
+<p><strong>小批量梯度下降算法</strong>回顾</p>
+<p>每次迭代时会读入一批数据，比如32个样本；</p>
+<p>经过当前神经元后会有3个输出值y1,…,y32。</p>
+</li>
+<li>
+<p><strong>批归一化</strong>操作</p>
+<p>对这32个输出进行<strong>减均值除方差</strong>操作；</p>
+<p>可保证当前神经元的输出值的分布符合<strong>0均值1方差</strong>。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-9-2.png" alt="FN-9-2" style="zoom:67%;" /> 
+<ul>
+<li>
+<h4 id="算法">算法</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-9-3.png" alt="FN-9-3" style="zoom:60%;" /> 
+<blockquote>
+<p>注：这里的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 对应前面的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> ，只是用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 表示。</p>
+<p>即，是继续对已经输出的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>​ 处理。</p>
+<ul>
+<li>
+<p>问题：输出的0均值1方差的正态分布是最有利于网络分类的分布吗？</p>
+<p>不一定，所以说，才有“平移缩放”——再次调整方差、均值。</p>
+<p>根据对分类的贡献自行决定数据分布的均值与方差。</p>
+</li>
+<li>
+<p>问题：单张样本测试时，均值和方差怎么设置？</p>
+<p>来自于训练中。</p>
+<p>累加训练时每个批次的均值和方差，最后进行平均，用平均后的结果作为预测时的均值和方差。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-10-欠拟合、过拟合与-Dropout">4.10 欠拟合、过拟合与 Dropout</h3>
+<ul>
+<li>
+<h4 id="过拟合">过拟合</h4>
+<p>是指学习时选择的模型所包含的<strong>参数过多</strong>，</p>
+<p>以至于出现这一模型对<strong>已知数据预测的很好</strong>，但对<strong>未知数据预测得很差</strong>的现象。</p>
+<p>这种情况下模型<strong>可能只是记住了训练集数据</strong>，而<strong>不是学习到了数据特征</strong>。</p>
+</li>
+<li>
+<h4 id="欠拟合">欠拟合</h4>
+<p>模型<strong>描述能力太弱</strong>，以至于不能很好地学习到数据中的规律。</p>
+<p>产生欠拟合的原因通常是<strong>模型过于简单</strong>。</p>
+</li>
+<li>
+<h4 id="优化、泛化">优化、泛化</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-10-1.png" alt="FN-10-1" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="应对过拟合">应对过拟合</h4>
+<ul>
+<li>
+<p><strong>最优方案</strong>——获取更多的训练数据</p>
+<blockquote>
+<p>全世界数据都在，就算模型是记住的，那也无所谓。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>次优方案</strong>——调节模型允许存储的信息量或者对模型允许存储的信息加以约束，该类方法也称为正则化。</p>
+<ol>
+<li>
+<p>调节模型大小</p>
+</li>
+<li>
+<p>约束模型权重，即权重正则化（常用的有L1、L2正则化）</p>
+</li>
+<li>
+<p>随机失活（Dropout）</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="L2正则化">L2正则化</h4>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-10-2.png" alt="FN-10-2" style="zoom:60%;" /> 
+<ul>
+<li>
+<h4 id="随机失活（Dropout）">随机失活（Dropout）</h4>
+<p>让隐层的神经元以一定的概率不被激活。</p>
+<ul>
+<li>
+<p>实现方式</p>
+<p>训练过程中，对某一层使用Dropout，就是随机将该层的一些输出舍弃(输出值设置为0），</p>
+<p>这些被舍弃的神经元就好像被网络删除了一样。</p>
+</li>
+<li>
+<p>随机失活比率（ Dropout ratio）</p>
+<p>是被设为 0 的特征所占的比例，通常在 0.2——0.5范围内。</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-10-3.png" alt="FN-10-3" style="zoom:60%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-10-4.png" alt="FN-10-4" style="zoom:60%;" /> 
+<blockquote>
+<p>随机失活为什么能够防止过拟合呢？</p>
+<ul>
+<li>
+<p>解释1</p>
+<p>随机失活使得<strong>每次更新</strong>梯度时参与计算的网络<strong>参数减少</strong>了，<strong>降低了模型容量</strong>，所以能防止过拟合。</p>
+</li>
+<li>
+<p>解释2</p>
+<p>随机失活鼓励<strong>权重分散</strong>，从这个角度来看随机失活也能<strong>起到正则化的作用</strong>，进而防止过拟合。</p>
+</li>
+<li>
+<p>解释3</p>
+<p>Dropout 可以看作是<strong>模型集成</strong>。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-11-模型正则与超参数调优">4.11 模型正则与超参数调优</h3>
+<ul>
+<li>
+<h4 id="超参数">超参数</h4>
+<ul>
+<li>网络结构——隐层神经元个数，网络层数，非线性单元选择等</li>
+<li>优化相关——<strong>学习率</strong>、dropout比率、正则项强度等</li>
+</ul>
+<p>超参数的重要性，如何找到合适的超参数？</p>
+</li>
+<li>
+<h4 id="学习率">学习率</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-11-1.png" alt="FN-11-1" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="超参数优化方法">超参数优化方法</h4>
+<ul>
+<li>
+<p><strong>网格搜索法：</strong></p>
+<ol>
+<li>
+<p>每个超参数分别取几个值，组合这些超参数值，形成多组超参数；</p>
+</li>
+<li>
+<p>在验证集上评估每组超参数的模型性能；</p>
+</li>
+<li>
+<p>选择性能最优的模型所采用的那组值作为最终的超参数的值。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>随机搜索法：</strong></p>
+<ol>
+<li>
+<p>参数空间内随机取点，每个点对应一组超参数；</p>
+</li>
+<li>
+<p>在验证集上评估每组超参数的模型性能；</p>
+</li>
+<li>
+<p>选择性能最优的模型所采用的那组值作为最终的超参数的值。</p>
+</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-11-2.png" alt="FN-11-2" style="zoom:60%;" /> 
+</li>
+</ul>
+</li>
+<li>
+<h4 id="超参数搜索策略">超参数搜索策略</h4>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-11-3.png" alt="FN-11-3" style="zoom:60%;" /> 
+</li>
+<li>
+<h4 id="超参数的标尺空间">超参数的标尺空间</h4>
+<p>建议：对于学习率、正则项强度这类超参数，在<strong>对数空间</strong>上进行随机采样更合适！</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/FN-11-4.png" alt="FN-11-4" style="zoom:60%;" /> 
+</li>
+</ul>
+<h2 id="五、卷积神经网络">五、卷积神经网络</h2>
+<h3 id="5-0">5.0</h3>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/05/04/CVDL-bupt/">https://isseymour.github.io/butterflyblog/2024/05/04/CVDL-bupt/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2024/05/01/Crypto-Graphic/" title="《图解密码技术》Notes"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/Crypto-Graphic/P0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">《图解密码技术》Notes</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2024/05/12/WP-TJ2024/" title="同济@复旦第一届网络安全竞赛WP"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">同济@复旦第一届网络安全竞赛WP</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区（暂时不可用），输入QQ邮箱，不用登陆，即可评论！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">《计算机视觉与深度学习》Notes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1 计算机视觉简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%9F"><span class="toc-text">什么是计算机视觉？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">计算机视觉的目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%85%E5%90%AB%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="toc-text">图形包含哪些信息？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E8%BF%9B%E5%B1%95"><span class="toc-text">研究进展</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.2 课程介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="toc-text">深度学习三要素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E7%9B%AE%E6%A0%87"><span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%AE%89%E6%8E%92"><span class="toc-text">课程安排</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB"><span class="toc-text">二、图像分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">2.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%9A%BE%E7%82%B9"><span class="toc-text">2.2 难点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8"><span class="toc-text">2.3 数据驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%8C%83%E5%BC%8F"><span class="toc-text">2.4 范式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">图像表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">优化方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-text">训练过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">评价指标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">三、线性分类器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1 定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">线性分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%8F%82%E6%95%B0"><span class="toc-text">3.2 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA"><span class="toc-text">矩阵表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%83%E5%80%BC%E5%90%91%E9%87%8F"><span class="toc-text">权值向量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E8%BE%B9%E7%95%8C"><span class="toc-text">决策边界</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">3.3 图像表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-text">3.4 损失函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%AE%9A%E4%B9%89"><span class="toc-text">一般定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%B1%BB%E6%94%AF%E6%92%91%E5%90%91%E9%87%8F%E6%9C%BA%E6%8D%9F%E5%A4%B1"><span class="toc-text">多类支撑向量机损失</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%96%91%E9%97%AE"><span class="toc-text">疑问</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E6%AD%A3%E5%88%99%E9%A1%B9"><span class="toc-text">3.5 正则项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E6%8D%9F%E5%A4%B1%E4%B8%8E%E8%B6%85%E5%8F%82%E6%95%B0"><span class="toc-text">正则损失与超参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8"><span class="toc-text">常用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="toc-text">3.6 参数优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">(1) 梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E6%89%80%E6%9C%89%E6%A0%B7%E6%9C%AC%E8%AE%A1%E7%AE%97%E6%8D%9F%E5%A4%B1%E5%B9%B6%E6%9B%B4%E6%96%B0%E6%A2%AF%E5%BA%A6%E3%80%82"><span class="toc-text">利用所有样本计算损失并更新梯度。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%A2%AF%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">计算梯度的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%95%88%E7%8E%87"><span class="toc-text">计算效率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">(2) 随机梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B0%8F%E6%89%B9%E9%87%8F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">(3) 小批量梯度下降</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86"><span class="toc-text">3.7 数据集划分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#K%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="toc-text">K折交叉验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E6%9C%89%E6%89%93%E4%B9%B1%E6%95%B0%E6%8D%AE%E7%9A%84%E9%87%8D%E5%A4%8DK%E6%8A%98%E9%AA%8C%E8%AF%81"><span class="toc-text">带有打乱数据的重复K折验证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">3.8 数据预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%951"><span class="toc-text">处理方法1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%952"><span class="toc-text">处理方法2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">四、全连接神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-0-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">4.0 整体架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA-2"><span class="toc-text">图像表示</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E5%99%A8"><span class="toc-text">4.1 多层感知器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="toc-text">全连接神经网络：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E6%9D%83%E5%80%BC"><span class="toc-text">理解权值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">线性可分：线性分类器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E4%B8%8D%E5%8F%AF%E5%88%86%EF%BC%9A%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">线性不可分：全连接神经网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%98%E5%88%B6"><span class="toc-text">绘制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D"><span class="toc-text">命名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">4.2 激活函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%85%E8%A6%81%E6%80%A7"><span class="toc-text">必要性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">常用的激活函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">网络结构设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-SOFTMAX%E4%B8%8E%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="toc-text">4.3 SOFTMAX与交叉熵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Softmax"><span class="toc-text">Softmax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1"><span class="toc-text">交叉熵损失</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%AF%B9%E6%AF%94%E5%A4%9A%E7%B1%BB%E6%94%AF%E6%92%91%E5%90%91%E9%87%8F%E6%9C%BA%E6%8D%9F%E5%A4%B1"><span class="toc-text">4.4 对比多类支撑向量机损失</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%EF%BC%9A-%E7%9B%B8%E5%90%8C%E5%88%86%E6%95%B0%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%88%86%E7%B1%BB%E5%99%A8%E7%9A%84%E6%8D%9F%E5%A4%B1%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">问： 相同分数下两种分类器的损失有什么区别？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">4.5 计算图与反向传播</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%A1%E7%AE%97%E5%9B%BE%EF%BC%9F"><span class="toc-text">什么是计算图？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%97%E7%B2%92%E5%BA%A6"><span class="toc-text">颗粒度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%A8%E5%8D%95%E5%85%83"><span class="toc-text">常见的门单元</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%86%8D%E8%B0%88%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">4.6 再谈激活函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1"><span class="toc-text">梯度消失</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8"><span class="toc-text">梯度爆炸</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E9%80%89%E6%8B%A9%E6%80%BB%E7%BB%93"><span class="toc-text">激活函数选择总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%8A%A8%E9%87%8F%E6%B3%95%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94%E6%A2%AF%E5%BA%A6"><span class="toc-text">4.7 动量法与自适应梯度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">梯度下降算法存在的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E7%AE%97%E6%B3%95%E6%94%B9%E8%BF%9B"><span class="toc-text">梯度算法改进</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8A%A8%E9%87%8F%E6%B3%95"><span class="toc-text">(1) 动量法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%87%AA%E9%80%82%E5%BA%94%E6%A2%AF%E5%BA%A6%E4%B8%8ERMSProp"><span class="toc-text">(2) 自适应梯度与RMSProp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%BB%93%E5%90%88%EF%BC%9AADAM"><span class="toc-text">(3) 结合：ADAM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">4.8 权值初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E9%9B%B6%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">全零初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%9D%83%E5%80%BC%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">随机权值初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Xavier%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">Xavier初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">HE初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-%E6%89%B9%E5%BD%92%E4%B8%80%E5%8C%96"><span class="toc-text">4.9 批归一化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-%E6%AC%A0%E6%8B%9F%E5%90%88%E3%80%81%E8%BF%87%E6%8B%9F%E5%90%88%E4%B8%8E-Dropout"><span class="toc-text">4.10 欠拟合、过拟合与 Dropout</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88"><span class="toc-text">过拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="toc-text">欠拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E3%80%81%E6%B3%9B%E5%8C%96"><span class="toc-text">优化、泛化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E5%AF%B9%E8%BF%87%E6%8B%9F%E5%90%88"><span class="toc-text">应对过拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#L2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">L2正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E5%A4%B1%E6%B4%BB%EF%BC%88Dropout%EF%BC%89"><span class="toc-text">随机失活（Dropout）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-%E6%A8%A1%E5%9E%8B%E6%AD%A3%E5%88%99%E4%B8%8E%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98"><span class="toc-text">4.11 模型正则与超参数调优</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0"><span class="toc-text">超参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="toc-text">学习率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-text">超参数优化方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5"><span class="toc-text">超参数搜索策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E7%9A%84%E6%A0%87%E5%B0%BA%E7%A9%BA%E9%97%B4"><span class="toc-text">超参数的标尺空间</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">五、卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-0"><span class="toc-text">5.0</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/05/12/WP-TJ2024/" title="同济@复旦第一届网络安全竞赛WP"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="同济@复旦第一届网络安全竞赛WP"/></a><div class="content"><a class="title" href="/butterflyblog/2024/05/12/WP-TJ2024/" title="同济@复旦第一届网络安全竞赛WP">同济@复旦第一届网络安全竞赛WP</a><time datetime="2024-05-11T16:00:00.000Z" title="发表于 2024-05-12 00:00:00">2024-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/05/04/CVDL-bupt/" title="《计算机视觉与深度学习》Notes"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="《计算机视觉与深度学习》Notes"/></a><div class="content"><a class="title" href="/butterflyblog/2024/05/04/CVDL-bupt/" title="《计算机视觉与深度学习》Notes">《计算机视觉与深度学习》Notes</a><time datetime="2024-05-03T16:00:00.000Z" title="发表于 2024-05-04 00:00:00">2024-05-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/05/01/Crypto-Graphic/" title="《图解密码技术》Notes"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/Crypto-Graphic/P0.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="《图解密码技术》Notes"/></a><div class="content"><a class="title" href="/butterflyblog/2024/05/01/Crypto-Graphic/" title="《图解密码技术》Notes">《图解密码技术》Notes</a><time datetime="2024-04-30T16:00:00.000Z" title="发表于 2024-05-01 00:00:00">2024-05-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
   document.querySelectorAll('#article-container span.katex-display').forEach(item => {
     btf.wrap(item, 'div', { class: 'katex-wrap'})
   })
