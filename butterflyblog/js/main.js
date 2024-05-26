@@ -58,9 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const scrollDownInIndex = () => {
     const $scrollDownEle = document.getElementById('scroll-down')
     $scrollDownEle && $scrollDownEle.addEventListener('click', function () {
+      btf.scrollToDest(btf.getEleTop(document.getElementById('content-inner')), 300)
       // btf.scrollToDest(document.getElementById('content-inner').offsetTop, 300)
-      // 更改源代码
-      btf.scrollToDest(decodeURI(document.getElementById('content-inner').offsetTop), 300)
     })
   }
 
