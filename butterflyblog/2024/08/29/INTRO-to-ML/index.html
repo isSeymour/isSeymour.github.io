@@ -1,0 +1,627 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>INTRO to ML - Kaggle 官方课程 | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="INTRO to Machine Learning  来源：Introduction to Machine Learning 2024-08-29@isSeymour  1. 训练与验证 12345# Set up filepathsimport osif not os.path.exists(&quot;..&#x2F;input&#x2F;train.csv&quot;):    os.symlink(&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="INTRO to ML - Kaggle 官方课程">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/08/29/INTRO-to-ML/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="INTRO to Machine Learning  来源：Introduction to Machine Learning 2024-08-29@isSeymour  1. 训练与验证 12345# Set up filepathsimport osif not os.path.exists(&quot;..&#x2F;input&#x2F;train.csv&quot;):    os.symlink(&amp;quot">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg">
+<meta property="article:published_time" content="2024-08-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-28T16:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2024/08/29/INTRO-to-ML/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'INTRO to ML - Kaggle 官方课程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-29 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">51</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">INTRO to ML - Kaggle 官方课程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-28T16:00:00.000Z" title="发表于 2024-08-29 00:00:00">2024-08-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-28T16:00:00.000Z" title="更新于 2024-08-29 00:00:00">2024-08-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="INTRO to ML - Kaggle 官方课程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>INTRO to Machine Learning</h1>
+<blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.kaggle.com/learn/intro-to-machine-learning">Introduction to Machine Learning</a><br>
+2024-08-29@isSeymour</p>
+</blockquote>
+<h2 id="1-训练与验证">1. 训练与验证</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set up filepaths</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">&quot;../input/train.csv&quot;</span>):</span><br><span class="line">    os.symlink(<span class="string">&quot;../input/home-data-for-ml-course/train.csv&quot;</span>, <span class="string">&quot;../input/train.csv&quot;</span>)  </span><br><span class="line">    os.symlink(<span class="string">&quot;../input/home-data-for-ml-course/test.csv&quot;</span>, <span class="string">&quot;../input/test.csv&quot;</span>) </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import helpful libraries</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the data, and separate the target</span></span><br><span class="line">iowa_file_path = <span class="string">&#x27;../input/train.csv&#x27;</span></span><br><span class="line">home_data = pd.read_csv(iowa_file_path)</span><br><span class="line">y = home_data.SalePrice</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create X (After completing the exercise, you can return to modify this line!)</span></span><br><span class="line">features = [<span class="string">&#x27;LotArea&#x27;</span>, <span class="string">&#x27;YearBuilt&#x27;</span>, <span class="string">&#x27;1stFlrSF&#x27;</span>, <span class="string">&#x27;2ndFlrSF&#x27;</span>, <span class="string">&#x27;FullBath&#x27;</span>, <span class="string">&#x27;BedroomAbvGr&#x27;</span>, <span class="string">&#x27;TotRmsAbvGrd&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select columns corresponding to features, and preview the data</span></span><br><span class="line">X = home_data[features]</span><br><span class="line"><span class="built_in">print</span>(X.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split into validation and training data</span></span><br><span class="line">train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define a random forest model</span></span><br><span class="line">rf_model = RandomForestRegressor(random_state=<span class="number">1</span>)</span><br><span class="line">rf_model.fit(train_X, train_y)</span><br><span class="line">rf_val_predictions = rf_model.predict(val_X)</span><br><span class="line">rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE for Random Forest Model: &#123;:,.0f&#125;&quot;</span>.<span class="built_in">format</span>(rf_val_mae))</span><br></pre></td></tr></table></figure>
+<pre><code>   LotArea  YearBuilt  1stFlrSF  2ndFlrSF  FullBath  BedroomAbvGr  \
+0     8450       2003       856       854         2             3   
+1     9600       1976      1262         0         2             3   
+2    11250       2001       920       866         2             3   
+3     9550       1915       961       756         1             3   
+4    14260       2000      1145      1053         2             4   
+
+   TotRmsAbvGrd  
+0             8  
+1             6  
+2             6  
+3             7  
+4             9  
+Validation MAE for Random Forest Model: 21,857
+</code></pre>
+<h2 id="2-产出模型">2. 产出模型</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># To improve accuracy, create a new Random Forest model which you will train on all training data</span></span><br><span class="line">rf_model_on_full_data = RandomForestRegressor(random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fit rf_model_on_full_data on all data from the training data</span></span><br><span class="line">rf_model_on_full_data.fit(X, y)</span><br></pre></td></tr></table></figure>
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestRegressor(random_state=1)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;RandomForestRegressor<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor(random_state=1)</pre></div> </div></div></div></div>
+<h2 id="3-模型预测">3. 模型预测</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># path to file you will use for predictions</span></span><br><span class="line">test_data_path = <span class="string">&#x27;../input/test.csv&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># read test data file using pandas</span></span><br><span class="line">test_data = pd.read_csv(test_data_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create test_X which comes from test_data but includes only the columns you used for prediction.</span></span><br><span class="line"><span class="comment"># The list of columns is stored in a variable called features</span></span><br><span class="line">test_X = test_data[features]</span><br><span class="line"></span><br><span class="line"><span class="comment"># make predictions which we will submit. </span></span><br><span class="line">test_preds = rf_model_on_full_data.predict(test_X)</span><br></pre></td></tr></table></figure>
+<h2 id="4-导出结果">4. 导出结果</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Run the code to save predictions in the format used for competition scoring</span></span><br><span class="line">output = pd.DataFrame(&#123;<span class="string">&#x27;Id&#x27;</span>: test_data.Id,</span><br><span class="line">                       <span class="string">&#x27;SalePrice&#x27;</span>: test_preds&#125;)</span><br><span class="line">output.to_csv(<span class="string">&#x27;submission.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/08/29/INTRO-to-ML/">https://isseymour.github.io/butterflyblog/2024/08/29/INTRO-to-ML/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/Machine-Learning/">Machine Learning</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2024/07/21/MarkdownEmoji/" title="Markdown 表情包"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/MarkdownEmoji/MD-P0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Markdown 表情包</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2024/08/30/Pandas-Course/" title="Pandas - Kaggle 官方课程"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/pandas.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Pandas - Kaggle 官方课程</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">51</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card" style="color: #000000;"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili" style="color: #000000;"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #000000;"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区正式上线！GitHub官方评论！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">INTRO to Machine Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-text">1. 训练与验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BA%A7%E5%87%BA%E6%A8%A1%E5%9E%8B"><span class="toc-text">2. 产出模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B"><span class="toc-text">3. 模型预测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AF%BC%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-text">4. 导出结果</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/08/30/Pandas-Course/" title="Pandas - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/pandas.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Pandas - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/08/30/Pandas-Course/" title="Pandas - Kaggle 官方课程">Pandas - Kaggle 官方课程</a><time datetime="2024-08-29T16:00:00.000Z" title="发表于 2024-08-30 00:00:00">2024-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/08/29/INTRO-to-ML/" title="INTRO to ML - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="INTRO to ML - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/08/29/INTRO-to-ML/" title="INTRO to ML - Kaggle 官方课程">INTRO to ML - Kaggle 官方课程</a><time datetime="2024-08-28T16:00:00.000Z" title="发表于 2024-08-29 00:00:00">2024-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/07/21/MarkdownEmoji/" title="Markdown 表情包"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/MarkdownEmoji/MD-P0.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Markdown 表情包"/></a><div class="content"><a class="title" href="/butterflyblog/2024/07/21/MarkdownEmoji/" title="Markdown 表情包">Markdown 表情包</a><time datetime="2024-07-21T10:30:00.000Z" title="发表于 2024-07-21 18:30:00">2024-07-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liAZxomGv7Hapw8g',
+      clientSecret: 'f7cafde192c4ada8bef4b76952c422d90575cf8b',
+      repo: 'gitalk',
+      owner: 'isSeymour',
+      admin: ['isSeymour'],
+      id: '1e19a4883832e489be90fe5f154fceb7',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></div></body></html>
