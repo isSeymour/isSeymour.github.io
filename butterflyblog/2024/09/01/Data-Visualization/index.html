@@ -1,0 +1,1141 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Data Visualization - Kaggle 官方课程 | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="来源：Kaggle 官方课程 Data Visualization 2024-09-01@isSeymour  Data Visualization  总览：   展现内容：   Trends 趋势    代码 功能     lineplot 折线图 用于展示数据随时间或其他连续变量的变化趋势      Relationship 关系    代码 功能     barplot 柱状图 用于展示不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Visualization - Kaggle 官方课程">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/09/01/Data-Visualization/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="来源：Kaggle 官方课程 Data Visualization 2024-09-01@isSeymour  Data Visualization  总览：   展现内容：   Trends 趋势    代码 功能     lineplot 折线图 用于展示数据随时间或其他连续变量的变化趋势      Relationship 关系    代码 功能     barplot 柱状图 用于展示不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg">
+<meta property="article:published_time" content="2024-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-31T16:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2024/09/01/Data-Visualization/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Data Visualization - Kaggle 官方课程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-01 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Data Visualization - Kaggle 官方课程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-31T16:00:00.000Z" title="发表于 2024-09-01 00:00:00">2024-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-31T16:00:00.000Z" title="更新于 2024-09-01 00:00:00">2024-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Data Visualization - Kaggle 官方课程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.kaggle.com/learn/data-visualization">Kaggle 官方课程 Data Visualization</a><br>
+2024-09-01@isSeymour</p>
+</blockquote>
+<h1>Data Visualization</h1>
+<blockquote>
+<p>总览：<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/DataVisualization-SNS.png" alt="Data Visualization - sns"></p>
+</blockquote>
+<p>展现内容：</p>
+<ol>
+<li>
+<p>Trends 趋势</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lineplot 折线图</code></td>
+<td>用于展示数据随时间或其他连续变量的变化趋势</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Relationship 关系</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>barplot 柱状图</code></td>
+<td>用于展示不同类别或分组数据的数量或频率</td>
+</tr>
+<tr>
+<td><code>heatmap 热图</code></td>
+<td>用于显示数据的密度或强度，通过颜色的深浅来表示数值的大小</td>
+</tr>
+<tr>
+<td><code>scatterplot 散点图</code></td>
+<td>用于展示两个变量之间关系</td>
+</tr>
+<tr>
+<td><code>swarmplot 蜂群图</code></td>
+<td>用于显示数据分布的可视化图表，通过将数据点以散点的方式展示在类别上，并避免数据点重叠。它适用于展示单变量或多变量的离散数据分布，特别是当数据量较小或希望看到每个数据点的具体位置时</td>
+</tr>
+<tr>
+<td><code>regplot 回归图</code></td>
+<td>用于展示回归分析结果的数据可视化工具。它通常包括一个散点图和一条回归线，帮助直观地展示两个变量之间的关系及其回归模型的拟合效果</td>
+</tr>
+<tr>
+<td><code>lmplot 线性回归图</code></td>
+<td>用于展示线性回归分析结果的可视化工具。它通过将散点图和线性回归线结合在一起，帮助直观地理解自变量与因变量之间的线性关系</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Distribution 分布</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jointplot 联合图</code></td>
+<td>是一种综合了散点图和边际直方图的数据可视化工具，用于展示两个变量之间的关系及其各自的分布情况。联合图通过将散点图与边际分布图结合，提供了对数据关系和分布的全面视角</td>
+</tr>
+<tr>
+<td><code>kdeplot 核密度估计图</code></td>
+<td>用于估计和可视化数据分布的图表。它通过核密度估计方法将数据的概率密度函数平滑化，提供了数据分布的平滑估计</td>
+</tr>
+<tr>
+<td><code>histplot 直方图</code></td>
+<td>用于展示数据分布情况的图表。它通过将数据分成多个区间（或称为“桶”）并计算每个区间中的数据点数目，直观地表示了数据的分布情况</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2 id="0-导入库">0. 导入库</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">pd.plotting.register_matplotlib_converters()</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Setup Complete&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Setup Complete
+</code></pre>
+<h2 id="1-Trends-趋势">1. Trends 趋势</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">museum_filepath = <span class="string">&quot;../input/museum_visitors.csv&quot;</span></span><br><span class="line">museum_data = pd.read_csv(museum_filepath, index_col=<span class="string">&quot;Date&quot;</span>, parse_dates=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Shape: &quot;</span>, museum_data.shape)</span><br><span class="line">museum_data.tail()</span><br></pre></td></tr></table></figure>
+<pre><code>Shape:  (59, 4)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Avila Adobe</th>
+      <th>Firehouse Museum</th>
+      <th>Chinese American Museum</th>
+      <th>America Tropical Interpretive Center</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2018-07-01</th>
+      <td>23136</td>
+      <td>4191</td>
+      <td>2620</td>
+      <td>4718</td>
+    </tr>
+    <tr>
+      <th>2018-08-01</th>
+      <td>20815</td>
+      <td>4866</td>
+      <td>2409</td>
+      <td>3891</td>
+    </tr>
+    <tr>
+      <th>2018-09-01</th>
+      <td>21020</td>
+      <td>4956</td>
+      <td>2146</td>
+      <td>3180</td>
+    </tr>
+    <tr>
+      <th>2018-10-01</th>
+      <td>19280</td>
+      <td>4622</td>
+      <td>2364</td>
+      <td>3775</td>
+    </tr>
+    <tr>
+      <th>2018-11-01</th>
+      <td>17163</td>
+      <td>4082</td>
+      <td>2385</td>
+      <td>4562</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 折线图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>,<span class="number">6</span>))</span><br><span class="line">sns.lineplot(data=museum_data)</span><br><span class="line">plt.title(<span class="string">&quot;Monthly Vistors&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5, 1.0, 'Monthly Vistors')
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_8_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 折线图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>,<span class="number">6</span>))</span><br><span class="line">plt.title(<span class="string">&quot;Monthly Vistors to Avila Adobe&quot;</span>)</span><br><span class="line">sns.lineplot(data=museum_data[<span class="string">&quot;Avila Adobe&quot;</span>])</span><br><span class="line">plt.xlabel(<span class="string">&quot;Date&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5, 0, 'Date')
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_9_1.png" alt="png"><br>
+​</p>
+<h2 id="2-Relationship-关系">2. Relationship 关系</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ign_filepath = <span class="string">&quot;../input/ign_scores.csv&quot;</span></span><br><span class="line">ign_data = pd.read_csv(ign_filepath, index_col=<span class="string">&quot;Platform&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Shape: &quot;</span>, ign_data.shape)</span><br><span class="line">ign_data</span><br></pre></td></tr></table></figure>
+<pre><code>Shape:  (21, 12)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Action</th>
+      <th>Action, Adventure</th>
+      <th>Adventure</th>
+      <th>Fighting</th>
+      <th>Platformer</th>
+      <th>Puzzle</th>
+      <th>RPG</th>
+      <th>Racing</th>
+      <th>Shooter</th>
+      <th>Simulation</th>
+      <th>Sports</th>
+      <th>Strategy</th>
+    </tr>
+    <tr>
+      <th>Platform</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Dreamcast</th>
+      <td>6.882857</td>
+      <td>7.511111</td>
+      <td>6.281818</td>
+      <td>8.200000</td>
+      <td>8.340000</td>
+      <td>8.088889</td>
+      <td>7.700000</td>
+      <td>7.042500</td>
+      <td>7.616667</td>
+      <td>7.628571</td>
+      <td>7.272222</td>
+      <td>6.433333</td>
+    </tr>
+    <tr>
+      <th>Game Boy Advance</th>
+      <td>6.373077</td>
+      <td>7.507692</td>
+      <td>6.057143</td>
+      <td>6.226316</td>
+      <td>6.970588</td>
+      <td>6.532143</td>
+      <td>7.542857</td>
+      <td>6.657143</td>
+      <td>6.444444</td>
+      <td>6.928571</td>
+      <td>6.694444</td>
+      <td>7.175000</td>
+    </tr>
+    <tr>
+      <th>Game Boy Color</th>
+      <td>6.272727</td>
+      <td>8.166667</td>
+      <td>5.307692</td>
+      <td>4.500000</td>
+      <td>6.352941</td>
+      <td>6.583333</td>
+      <td>7.285714</td>
+      <td>5.897436</td>
+      <td>4.500000</td>
+      <td>5.900000</td>
+      <td>5.790698</td>
+      <td>7.400000</td>
+    </tr>
+    <tr>
+      <th>GameCube</th>
+      <td>6.532584</td>
+      <td>7.608333</td>
+      <td>6.753846</td>
+      <td>7.422222</td>
+      <td>6.665714</td>
+      <td>6.133333</td>
+      <td>7.890909</td>
+      <td>6.852632</td>
+      <td>6.981818</td>
+      <td>8.028571</td>
+      <td>7.481319</td>
+      <td>7.116667</td>
+    </tr>
+    <tr>
+      <th>Nintendo 3DS</th>
+      <td>6.670833</td>
+      <td>7.481818</td>
+      <td>7.414286</td>
+      <td>6.614286</td>
+      <td>7.503448</td>
+      <td>8.000000</td>
+      <td>7.719231</td>
+      <td>6.900000</td>
+      <td>7.033333</td>
+      <td>7.700000</td>
+      <td>6.388889</td>
+      <td>7.900000</td>
+    </tr>
+    <tr>
+      <th>Nintendo 64</th>
+      <td>6.649057</td>
+      <td>8.250000</td>
+      <td>7.000000</td>
+      <td>5.681250</td>
+      <td>6.889655</td>
+      <td>7.461538</td>
+      <td>6.050000</td>
+      <td>6.939623</td>
+      <td>8.042857</td>
+      <td>5.675000</td>
+      <td>6.967857</td>
+      <td>6.900000</td>
+    </tr>
+    <tr>
+      <th>Nintendo DS</th>
+      <td>5.903608</td>
+      <td>7.240000</td>
+      <td>6.259804</td>
+      <td>6.320000</td>
+      <td>6.840000</td>
+      <td>6.604615</td>
+      <td>7.222619</td>
+      <td>6.038636</td>
+      <td>6.965217</td>
+      <td>5.874359</td>
+      <td>5.936667</td>
+      <td>6.644737</td>
+    </tr>
+    <tr>
+      <th>Nintendo DSi</th>
+      <td>6.827027</td>
+      <td>8.500000</td>
+      <td>6.090909</td>
+      <td>7.500000</td>
+      <td>7.250000</td>
+      <td>6.810526</td>
+      <td>7.166667</td>
+      <td>6.563636</td>
+      <td>6.500000</td>
+      <td>5.195652</td>
+      <td>5.644444</td>
+      <td>6.566667</td>
+    </tr>
+    <tr>
+      <th>PC</th>
+      <td>6.805791</td>
+      <td>7.334746</td>
+      <td>7.136798</td>
+      <td>7.166667</td>
+      <td>7.410938</td>
+      <td>6.924706</td>
+      <td>7.759930</td>
+      <td>7.032418</td>
+      <td>7.084878</td>
+      <td>7.104889</td>
+      <td>6.902424</td>
+      <td>7.310207</td>
+    </tr>
+    <tr>
+      <th>PlayStation</th>
+      <td>6.016406</td>
+      <td>7.933333</td>
+      <td>6.313725</td>
+      <td>6.553731</td>
+      <td>6.579070</td>
+      <td>6.757895</td>
+      <td>7.910000</td>
+      <td>6.773387</td>
+      <td>6.424000</td>
+      <td>6.918182</td>
+      <td>6.751220</td>
+      <td>6.496875</td>
+    </tr>
+    <tr>
+      <th>PlayStation 2</th>
+      <td>6.467361</td>
+      <td>7.250000</td>
+      <td>6.315152</td>
+      <td>7.306349</td>
+      <td>7.068421</td>
+      <td>6.354545</td>
+      <td>7.473077</td>
+      <td>6.585065</td>
+      <td>6.641667</td>
+      <td>7.152632</td>
+      <td>7.197826</td>
+      <td>7.238889</td>
+    </tr>
+    <tr>
+      <th>PlayStation 3</th>
+      <td>6.853819</td>
+      <td>7.306154</td>
+      <td>6.820988</td>
+      <td>7.710938</td>
+      <td>7.735714</td>
+      <td>7.350000</td>
+      <td>7.436111</td>
+      <td>6.978571</td>
+      <td>7.219553</td>
+      <td>7.142857</td>
+      <td>7.485816</td>
+      <td>7.355172</td>
+    </tr>
+    <tr>
+      <th>PlayStation 4</th>
+      <td>7.550000</td>
+      <td>7.835294</td>
+      <td>7.388571</td>
+      <td>7.280000</td>
+      <td>8.390909</td>
+      <td>7.400000</td>
+      <td>7.944000</td>
+      <td>7.590000</td>
+      <td>7.804444</td>
+      <td>9.250000</td>
+      <td>7.430000</td>
+      <td>6.566667</td>
+    </tr>
+    <tr>
+      <th>PlayStation Portable</th>
+      <td>6.467797</td>
+      <td>7.000000</td>
+      <td>6.938095</td>
+      <td>6.822222</td>
+      <td>7.194737</td>
+      <td>6.726667</td>
+      <td>6.817778</td>
+      <td>6.401961</td>
+      <td>7.071053</td>
+      <td>6.761538</td>
+      <td>6.956790</td>
+      <td>6.550000</td>
+    </tr>
+    <tr>
+      <th>PlayStation Vita</th>
+      <td>7.173077</td>
+      <td>6.133333</td>
+      <td>8.057143</td>
+      <td>7.527273</td>
+      <td>8.568750</td>
+      <td>8.250000</td>
+      <td>7.337500</td>
+      <td>6.300000</td>
+      <td>7.660000</td>
+      <td>5.725000</td>
+      <td>7.130000</td>
+      <td>8.900000</td>
+    </tr>
+    <tr>
+      <th>Wii</th>
+      <td>6.262718</td>
+      <td>7.294643</td>
+      <td>6.234043</td>
+      <td>6.733333</td>
+      <td>7.054255</td>
+      <td>6.426984</td>
+      <td>7.410345</td>
+      <td>5.011667</td>
+      <td>6.479798</td>
+      <td>6.327027</td>
+      <td>5.966901</td>
+      <td>6.975000</td>
+    </tr>
+    <tr>
+      <th>Wireless</th>
+      <td>7.041699</td>
+      <td>7.312500</td>
+      <td>6.972414</td>
+      <td>6.740000</td>
+      <td>7.509091</td>
+      <td>7.360550</td>
+      <td>8.260000</td>
+      <td>6.898305</td>
+      <td>6.906780</td>
+      <td>7.802857</td>
+      <td>7.417699</td>
+      <td>7.542857</td>
+    </tr>
+    <tr>
+      <th>Xbox</th>
+      <td>6.819512</td>
+      <td>7.479032</td>
+      <td>6.821429</td>
+      <td>7.029630</td>
+      <td>7.303448</td>
+      <td>5.125000</td>
+      <td>8.277778</td>
+      <td>7.021591</td>
+      <td>7.485417</td>
+      <td>7.155556</td>
+      <td>7.884397</td>
+      <td>7.313333</td>
+    </tr>
+    <tr>
+      <th>Xbox 360</th>
+      <td>6.719048</td>
+      <td>7.137838</td>
+      <td>6.857353</td>
+      <td>7.552239</td>
+      <td>7.559574</td>
+      <td>7.141026</td>
+      <td>7.650000</td>
+      <td>6.996154</td>
+      <td>7.338153</td>
+      <td>7.325000</td>
+      <td>7.317857</td>
+      <td>7.112245</td>
+    </tr>
+    <tr>
+      <th>Xbox One</th>
+      <td>7.702857</td>
+      <td>7.566667</td>
+      <td>7.254545</td>
+      <td>7.171429</td>
+      <td>6.733333</td>
+      <td>8.100000</td>
+      <td>8.291667</td>
+      <td>8.163636</td>
+      <td>8.020000</td>
+      <td>7.733333</td>
+      <td>7.331818</td>
+      <td>8.500000</td>
+    </tr>
+    <tr>
+      <th>iPhone</th>
+      <td>6.865445</td>
+      <td>7.764286</td>
+      <td>7.745833</td>
+      <td>6.087500</td>
+      <td>7.471930</td>
+      <td>7.810784</td>
+      <td>7.185185</td>
+      <td>7.315789</td>
+      <td>6.995588</td>
+      <td>7.328571</td>
+      <td>7.152174</td>
+      <td>7.534921</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 柱状图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">6</span>))</span><br><span class="line">plt.title(<span class="string">&quot;Average Score for Racing Games, for Platform&quot;</span>)</span><br><span class="line">sns.barplot(x=ign_data[<span class="string">&quot;Racing&quot;</span>], y=ign_data.index)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Racing Score&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5, 0, 'Racing Score')
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_12_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 热图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.title(<span class="string">&quot;Average Game Score, by Platform and Genre&quot;</span>)</span><br><span class="line">sns.heatmap(data=ign_data, annot=<span class="literal">True</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Genre&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5, 80.7222222222222, 'Genre')
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_13_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">candy_filepath = <span class="string">&quot;../input/candy.csv&quot;</span></span><br><span class="line">candy_data = pd.read_csv(candy_filepath, index_col=<span class="string">&quot;id&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Shape: &quot;</span>, candy_data.shape)</span><br><span class="line">candy_data.head()</span><br></pre></td></tr></table></figure>
+<pre><code>Shape:  (83, 13)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>competitorname</th>
+      <th>chocolate</th>
+      <th>fruity</th>
+      <th>caramel</th>
+      <th>peanutyalmondy</th>
+      <th>nougat</th>
+      <th>crispedricewafer</th>
+      <th>hard</th>
+      <th>bar</th>
+      <th>pluribus</th>
+      <th>sugarpercent</th>
+      <th>pricepercent</th>
+      <th>winpercent</th>
+    </tr>
+    <tr>
+      <th>id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100 Grand</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>0.732</td>
+      <td>0.860</td>
+      <td>66.971725</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3 Musketeers</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>0.604</td>
+      <td>0.511</td>
+      <td>67.602936</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Air Heads</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.906</td>
+      <td>0.511</td>
+      <td>52.341465</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Almond Joy</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>0.465</td>
+      <td>0.767</td>
+      <td>50.347546</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Baby Ruth</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>0.604</td>
+      <td>0.767</td>
+      <td>56.914547</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 散点图</span></span><br><span class="line">sns.scatterplot(x=candy_data[<span class="string">&quot;sugarpercent&quot;</span>], y=candy_data[<span class="string">&#x27;winpercent&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Axes: xlabel='sugarpercent', ylabel='winpercent'&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_15_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 散点图</span></span><br><span class="line">sns.scatterplot(x=candy_data[<span class="string">&#x27;pricepercent&#x27;</span>], y=candy_data[<span class="string">&#x27;winpercent&#x27;</span>], hue=candy_data[<span class="string">&#x27;chocolate&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Axes: xlabel='pricepercent', ylabel='winpercent'&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_16_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回归图</span></span><br><span class="line">sns.regplot(x=candy_data[<span class="string">&#x27;sugarpercent&#x27;</span>], y=candy_data[<span class="string">&#x27;winpercent&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Axes: xlabel='sugarpercent', ylabel='winpercent'&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_17_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 线性回归图</span></span><br><span class="line">sns.lmplot(x=<span class="string">&#x27;pricepercent&#x27;</span>, y=<span class="string">&#x27;winpercent&#x27;</span>, hue=<span class="string">&#x27;chocolate&#x27;</span>, data=candy_data)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x163884c10&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_18_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 蜂群图</span></span><br><span class="line">sns.swarmplot(x=candy_data[<span class="string">&#x27;chocolate&#x27;</span>], y=candy_data[<span class="string">&#x27;winpercent&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Axes: xlabel='chocolate', ylabel='winpercent'&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_19_1.png" alt="png"><br>
+​</p>
+<h2 id="3-Distributions-分布">3. Distributions 分布</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cancer_filepath = <span class="string">&#x27;../input/cancer.csv&#x27;</span></span><br><span class="line">cancer_data = pd.read_csv(cancer_filepath, index_col=<span class="string">&#x27;Id&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Shape: &quot;</span>, cancer_data.shape)</span><br><span class="line">cancer_data.head()</span><br></pre></td></tr></table></figure>
+<pre><code>Shape:  (569, 31)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Diagnosis</th>
+      <th>Radius (mean)</th>
+      <th>Texture (mean)</th>
+      <th>Perimeter (mean)</th>
+      <th>Area (mean)</th>
+      <th>Smoothness (mean)</th>
+      <th>Compactness (mean)</th>
+      <th>Concavity (mean)</th>
+      <th>Concave points (mean)</th>
+      <th>Symmetry (mean)</th>
+      <th>...</th>
+      <th>Radius (worst)</th>
+      <th>Texture (worst)</th>
+      <th>Perimeter (worst)</th>
+      <th>Area (worst)</th>
+      <th>Smoothness (worst)</th>
+      <th>Compactness (worst)</th>
+      <th>Concavity (worst)</th>
+      <th>Concave points (worst)</th>
+      <th>Symmetry (worst)</th>
+      <th>Fractal dimension (worst)</th>
+    </tr>
+    <tr>
+      <th>Id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8510426</th>
+      <td>B</td>
+      <td>13.540</td>
+      <td>14.36</td>
+      <td>87.46</td>
+      <td>566.3</td>
+      <td>0.09779</td>
+      <td>0.08129</td>
+      <td>0.06664</td>
+      <td>0.047810</td>
+      <td>0.1885</td>
+      <td>...</td>
+      <td>15.110</td>
+      <td>19.26</td>
+      <td>99.70</td>
+      <td>711.2</td>
+      <td>0.14400</td>
+      <td>0.17730</td>
+      <td>0.23900</td>
+      <td>0.12880</td>
+      <td>0.2977</td>
+      <td>0.07259</td>
+    </tr>
+    <tr>
+      <th>8510653</th>
+      <td>B</td>
+      <td>13.080</td>
+      <td>15.71</td>
+      <td>85.63</td>
+      <td>520.0</td>
+      <td>0.10750</td>
+      <td>0.12700</td>
+      <td>0.04568</td>
+      <td>0.031100</td>
+      <td>0.1967</td>
+      <td>...</td>
+      <td>14.500</td>
+      <td>20.49</td>
+      <td>96.09</td>
+      <td>630.5</td>
+      <td>0.13120</td>
+      <td>0.27760</td>
+      <td>0.18900</td>
+      <td>0.07283</td>
+      <td>0.3184</td>
+      <td>0.08183</td>
+    </tr>
+    <tr>
+      <th>8510824</th>
+      <td>B</td>
+      <td>9.504</td>
+      <td>12.44</td>
+      <td>60.34</td>
+      <td>273.9</td>
+      <td>0.10240</td>
+      <td>0.06492</td>
+      <td>0.02956</td>
+      <td>0.020760</td>
+      <td>0.1815</td>
+      <td>...</td>
+      <td>10.230</td>
+      <td>15.66</td>
+      <td>65.13</td>
+      <td>314.9</td>
+      <td>0.13240</td>
+      <td>0.11480</td>
+      <td>0.08867</td>
+      <td>0.06227</td>
+      <td>0.2450</td>
+      <td>0.07773</td>
+    </tr>
+    <tr>
+      <th>854941</th>
+      <td>B</td>
+      <td>13.030</td>
+      <td>18.42</td>
+      <td>82.61</td>
+      <td>523.8</td>
+      <td>0.08983</td>
+      <td>0.03766</td>
+      <td>0.02562</td>
+      <td>0.029230</td>
+      <td>0.1467</td>
+      <td>...</td>
+      <td>13.300</td>
+      <td>22.81</td>
+      <td>84.46</td>
+      <td>545.9</td>
+      <td>0.09701</td>
+      <td>0.04619</td>
+      <td>0.04833</td>
+      <td>0.05013</td>
+      <td>0.1987</td>
+      <td>0.06169</td>
+    </tr>
+    <tr>
+      <th>85713702</th>
+      <td>B</td>
+      <td>8.196</td>
+      <td>16.84</td>
+      <td>51.71</td>
+      <td>201.9</td>
+      <td>0.08600</td>
+      <td>0.05943</td>
+      <td>0.01588</td>
+      <td>0.005917</td>
+      <td>0.1769</td>
+      <td>...</td>
+      <td>8.964</td>
+      <td>21.96</td>
+      <td>57.26</td>
+      <td>242.2</td>
+      <td>0.12970</td>
+      <td>0.13570</td>
+      <td>0.06880</td>
+      <td>0.02564</td>
+      <td>0.3105</td>
+      <td>0.07409</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Histogram 直方图</span></span><br><span class="line">sns.histplot(data=cancer_data, x=<span class="string">&#x27;Area (mean)&#x27;</span>, hue=<span class="string">&#x27;Diagnosis&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Axes: xlabel='Area (mean)', ylabel='Count'&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_22_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># KDE 核密度估计图</span></span><br><span class="line">sns.kdeplot(data=cancer_data, x=<span class="string">&#x27;Radius (mean)&#x27;</span>, hue=<span class="string">&#x27;Diagnosis&#x27;</span>, fill=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;Axes: xlabel='Radius (mean)', ylabel='Density'&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_23_1.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># joint Plot 联合图</span></span><br><span class="line">sns.jointplot(x=cancer_data[<span class="string">&#x27;Radius (mean)&#x27;</span>], y=cancer_data[<span class="string">&#x27;Texture (mean)&#x27;</span>], kind=<span class="string">&quot;kde&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;seaborn.axisgrid.JointGrid at 0x163ab5190&gt;
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_24_1.png" alt="png"><br>
+​</p>
+<h2 id="Custom-Styles-自定义样式">Custom Styles 自定义样式</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (1)&quot;darkgrid&quot;, (2)&quot;whitegrid&quot;, (3)&quot;dark&quot;, (4)&quot;white&quot;, and (5)&quot;ticks&quot;</span></span><br><span class="line">sns.set_style(<span class="string">&quot;darkgrid&quot;</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>,<span class="number">6</span>))</span><br><span class="line">sns.lineplot(data=museum_data)</span><br><span class="line">plt.title(<span class="string">&quot;Monthly Vistors&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Text(0.5, 1.0, 'Monthly Vistors')
+</code></pre>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/output_26_1.png" alt="png"><br>
+​</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/09/01/Data-Visualization/">https://isseymour.github.io/butterflyblog/2024/09/01/Data-Visualization/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/ML/">ML</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/butterflyblog/2024/08/31/Intermediate-ML/" title="Intermediate ML - Kaggle 官方课程"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intermediate-machine-learning.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Intermediate ML - Kaggle 官方课程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/butterflyblog/2024/08/29/INTRO-to-ML/" title="INTRO to ML - Kaggle 官方课程"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intro-to-machine-learning.svg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-29</div><div class="title">INTRO to ML - Kaggle 官方课程</div></div></a></div><div><a href="/butterflyblog/2024/08/31/Intermediate-ML/" title="Intermediate ML - Kaggle 官方课程"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intermediate-machine-learning.svg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-31</div><div class="title">Intermediate ML - Kaggle 官方课程</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card" style="color: #000000;"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili" style="color: #000000;"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #000000;"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区正式上线！GitHub官方评论！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Data Visualization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%AF%BC%E5%85%A5%E5%BA%93"><span class="toc-text">0. 导入库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Trends-%E8%B6%8B%E5%8A%BF"><span class="toc-text">1. Trends 趋势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Relationship-%E5%85%B3%E7%B3%BB"><span class="toc-text">2. Relationship 关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Distributions-%E5%88%86%E5%B8%83"><span class="toc-text">3. Distributions 分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Styles-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F"><span class="toc-text">Custom Styles 自定义样式</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/09/01/Data-Visualization/" title="Data Visualization - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Data Visualization - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/09/01/Data-Visualization/" title="Data Visualization - Kaggle 官方课程">Data Visualization - Kaggle 官方课程</a><time datetime="2024-08-31T16:00:00.000Z" title="发表于 2024-09-01 00:00:00">2024-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/08/31/Intermediate-ML/" title="Intermediate ML - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intermediate-machine-learning.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Intermediate ML - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/08/31/Intermediate-ML/" title="Intermediate ML - Kaggle 官方课程">Intermediate ML - Kaggle 官方课程</a><time datetime="2024-08-30T16:00:00.000Z" title="发表于 2024-08-31 00:00:00">2024-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/08/30/Pandas-Course/" title="Pandas - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/pandas.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Pandas - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/08/30/Pandas-Course/" title="Pandas - Kaggle 官方课程">Pandas - Kaggle 官方课程</a><time datetime="2024-08-29T16:00:00.000Z" title="发表于 2024-08-30 00:00:00">2024-08-30</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liAZxomGv7Hapw8g',
+      clientSecret: 'f7cafde192c4ada8bef4b76952c422d90575cf8b',
+      repo: 'gitalk',
+      owner: 'isSeymour',
+      admin: ['isSeymour'],
+      id: '4f73983838d0b4c2f4fe02a05afea79c',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></div></body></html>
