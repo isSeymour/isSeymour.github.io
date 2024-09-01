@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>INTRO to DL - Kaggle 官方课程 | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="来源：Kaggle 官方课程 Intro to Deep Learning 2024-09-01@isSeymour  Intro to Deep Learning  Exercise: Binary Classification  1.导入数据 123456789101112import pandas as pdimport matplotlib.pyplot as pltfrom sklea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="INTRO to DL - Kaggle 官方课程">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/09/01/INTRO-to-DL/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="来源：Kaggle 官方课程 Intro to Deep Learning 2024-09-01@isSeymour  Intro to Deep Learning  Exercise: Binary Classification  1.导入数据 123456789101112import pandas as pdimport matplotlib.pyplot as pltfrom sklea">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/intro-to-deep-learning.svg">
+<meta property="article:published_time" content="2024-09-01T09:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-31T16:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="DL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/intro-to-deep-learning.svg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2024/09/01/INTRO-to-DL/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'INTRO to DL - Kaggle 官方课程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-01 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/intro-to-deep-learning.svg')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">INTRO to DL - Kaggle 官方课程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-01T09:00:00.000Z" title="发表于 2024-09-01 17:00:00">2024-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-31T16:00:00.000Z" title="更新于 2024-09-01 00:00:00">2024-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="INTRO to DL - Kaggle 官方课程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.kaggle.com/learn/intro-to-deep-learning">Kaggle 官方课程 Intro to Deep Learning</a><br>
+2024-09-01@isSeymour</p>
+</blockquote>
+<h1>Intro to Deep Learning</h1>
+<blockquote>
+<p>Exercise: Binary Classification</p>
+</blockquote>
+<h2 id="1-导入数据">1.导入数据</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler, OneHotEncoder</span><br><span class="line"><span class="keyword">from</span> sklearn.impute <span class="keyword">import</span> SimpleImputer</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.compose <span class="keyword">import</span> make_column_transformer</span><br><span class="line"></span><br><span class="line">hotel = pd.read_csv(<span class="string">&#x27;../input/hotel.csv&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Shape: &quot;</span>, hotel.shape)</span><br><span class="line">hotel.head()</span><br></pre></td></tr></table></figure>
+<pre><code>Shape:  (119390, 32)
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hotel</th>
+      <th>is_canceled</th>
+      <th>lead_time</th>
+      <th>arrival_date_year</th>
+      <th>arrival_date_month</th>
+      <th>arrival_date_week_number</th>
+      <th>arrival_date_day_of_month</th>
+      <th>stays_in_weekend_nights</th>
+      <th>stays_in_week_nights</th>
+      <th>adults</th>
+      <th>...</th>
+      <th>deposit_type</th>
+      <th>agent</th>
+      <th>company</th>
+      <th>days_in_waiting_list</th>
+      <th>customer_type</th>
+      <th>adr</th>
+      <th>required_car_parking_spaces</th>
+      <th>total_of_special_requests</th>
+      <th>reservation_status</th>
+      <th>reservation_status_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Resort Hotel</td>
+      <td>0</td>
+      <td>342</td>
+      <td>2015</td>
+      <td>July</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>No Deposit</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>Transient</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Check-Out</td>
+      <td>2015-07-01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Resort Hotel</td>
+      <td>0</td>
+      <td>737</td>
+      <td>2015</td>
+      <td>July</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>...</td>
+      <td>No Deposit</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>Transient</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Check-Out</td>
+      <td>2015-07-01</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Resort Hotel</td>
+      <td>0</td>
+      <td>7</td>
+      <td>2015</td>
+      <td>July</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>No Deposit</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>Transient</td>
+      <td>75.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Check-Out</td>
+      <td>2015-07-02</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Resort Hotel</td>
+      <td>0</td>
+      <td>13</td>
+      <td>2015</td>
+      <td>July</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>No Deposit</td>
+      <td>304.0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>Transient</td>
+      <td>75.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Check-Out</td>
+      <td>2015-07-02</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Resort Hotel</td>
+      <td>0</td>
+      <td>14</td>
+      <td>2015</td>
+      <td>July</td>
+      <td>27</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>No Deposit</td>
+      <td>240.0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>Transient</td>
+      <td>98.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Check-Out</td>
+      <td>2015-07-03</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div>
+<h2 id="2-数据清洗">2. 数据清洗</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">X = hotel.copy()</span><br><span class="line">y = X.pop(<span class="string">&#x27;is_canceled&#x27;</span>)</span><br><span class="line"></span><br><span class="line">X[<span class="string">&#x27;arrival_date_month&#x27;</span>] = \</span><br><span class="line">    X[<span class="string">&#x27;arrival_date_month&#x27;</span>].<span class="built_in">map</span>(</span><br><span class="line">        &#123;<span class="string">&#x27;January&#x27;</span>:<span class="number">1</span>, <span class="string">&#x27;February&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;March&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">         <span class="string">&#x27;April&#x27;</span>:<span class="number">4</span>, <span class="string">&#x27;May&#x27;</span>:<span class="number">5</span>, <span class="string">&#x27;June&#x27;</span>:<span class="number">6</span>, <span class="string">&#x27;July&#x27;</span>:<span class="number">7</span>,</span><br><span class="line">         <span class="string">&#x27;August&#x27;</span>:<span class="number">8</span>, <span class="string">&#x27;September&#x27;</span>:<span class="number">9</span>, <span class="string">&#x27;October&#x27;</span>:<span class="number">10</span>,</span><br><span class="line">         <span class="string">&#x27;November&#x27;</span>:<span class="number">11</span>, <span class="string">&#x27;December&#x27;</span>:<span class="number">12</span>&#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">features_num = [</span><br><span class="line">    <span class="string">&quot;lead_time&quot;</span>, </span><br><span class="line">    <span class="string">&quot;arrival_date_week_number&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arrival_date_day_of_month&quot;</span>, </span><br><span class="line">    <span class="string">&quot;stays_in_weekend_nights&quot;</span>,</span><br><span class="line">    <span class="string">&quot;stays_in_week_nights&quot;</span>, </span><br><span class="line">    <span class="string">&quot;adults&quot;</span>, </span><br><span class="line">    <span class="string">&quot;children&quot;</span>, </span><br><span class="line">    <span class="string">&quot;babies&quot;</span>,</span><br><span class="line">    <span class="string">&quot;is_repeated_guest&quot;</span>, </span><br><span class="line">    <span class="string">&quot;previous_cancellations&quot;</span>,</span><br><span class="line">    <span class="string">&quot;previous_bookings_not_canceled&quot;</span>, </span><br><span class="line">    <span class="string">&quot;required_car_parking_spaces&quot;</span>,</span><br><span class="line">    <span class="string">&quot;total_of_special_requests&quot;</span>, </span><br><span class="line">    <span class="string">&quot;adr&quot;</span>,</span><br><span class="line">]</span><br><span class="line">features_cat = [</span><br><span class="line">    <span class="string">&quot;hotel&quot;</span>, </span><br><span class="line">    <span class="string">&quot;arrival_date_month&quot;</span>, </span><br><span class="line">    <span class="string">&quot;meal&quot;</span>,</span><br><span class="line">    <span class="string">&quot;market_segment&quot;</span>, </span><br><span class="line">    <span class="string">&quot;distribution_channel&quot;</span>,</span><br><span class="line">    <span class="string">&quot;reserved_room_type&quot;</span>, </span><br><span class="line">    <span class="string">&quot;deposit_type&quot;</span>, </span><br><span class="line">    <span class="string">&quot;customer_type&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">transformer_num = make_pipeline(</span><br><span class="line">    SimpleImputer(strategy=<span class="string">&quot;constant&quot;</span>),   <span class="comment"># 缺失值填充</span></span><br><span class="line">    StandardScaler(),                     <span class="comment"># 标准化 0 均值 1 方差</span></span><br><span class="line">)</span><br><span class="line">transformer_cat = make_pipeline(</span><br><span class="line">    SimpleImputer(strategy=<span class="string">&quot;constant&quot;</span>, fill_value=<span class="string">&quot;NA&quot;</span>),   <span class="comment"># 缺失值填充</span></span><br><span class="line">    OneHotEncoder(handle_unknown=<span class="string">&#x27;ignore&#x27;</span>),                <span class="comment"># 独热编码</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">preprocessor = make_column_transformer(</span><br><span class="line">    (transformer_num, features_num),</span><br><span class="line">    (transformer_cat, features_cat),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># stratify 拆分</span></span><br><span class="line">X_train, X_valid, y_train, y_valid = \</span><br><span class="line">    train_test_split(X, y, stratify=y, train_size=<span class="number">0.75</span>)</span><br><span class="line"></span><br><span class="line">X_train = preprocessor.fit_transform(X_train)</span><br><span class="line">X_valid = preprocessor.transform(X_valid)</span><br><span class="line"></span><br><span class="line">input_shape = [X_train.shape[<span class="number">1</span>]]</span><br></pre></td></tr></table></figure>
+<h2 id="3-定义模型、损失函数、优化器">3. 定义模型、损失函数、优化器</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, TensorDataset</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义模型结构</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyModel</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, input_shape</span>):</span><br><span class="line">        <span class="built_in">super</span>(MyModel, self).__init__()</span><br><span class="line">        self.model = nn.Sequential(</span><br><span class="line">            nn.BatchNorm1d(input_shape),</span><br><span class="line">            nn.Linear(input_shape, <span class="number">256</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">256</span>),</span><br><span class="line">            nn.Dropout(<span class="number">0.3</span>),</span><br><span class="line">            nn.Linear(<span class="number">256</span>, <span class="number">256</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">256</span>),</span><br><span class="line">            nn.Dropout(<span class="number">0.3</span>),</span><br><span class="line">            nn.Linear(<span class="number">256</span>, <span class="number">1</span>),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.model(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设输入形状为 input_shape</span></span><br><span class="line">input_shape = X_train.shape[<span class="number">1</span>]</span><br><span class="line">model = MyModel(input_shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.BCELoss()</span><br><span class="line">optimizer = optim.Adam(model.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备数据</span></span><br><span class="line"><span class="comment"># 如果 X_train, y_train, X_valid, y_valid 是 Pandas DataFrame 或 Series</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isinstance</span>(X_train, pd.DataFrame) <span class="keyword">or</span> <span class="built_in">isinstance</span>(X_train, pd.Series):</span><br><span class="line">    X_train = X_train.values</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isinstance</span>(y_train, pd.DataFrame) <span class="keyword">or</span> <span class="built_in">isinstance</span>(y_train, pd.Series):</span><br><span class="line">    y_train = y_train.values</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isinstance</span>(X_valid, pd.DataFrame) <span class="keyword">or</span> <span class="built_in">isinstance</span>(X_valid, pd.Series):</span><br><span class="line">    X_valid = X_valid.values</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isinstance</span>(y_valid, pd.DataFrame) <span class="keyword">or</span> <span class="built_in">isinstance</span>(y_valid, pd.Series):</span><br><span class="line">    y_valid = y_valid.values</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 NumPy 数组转换为 PyTorch 张量</span></span><br><span class="line">X_train_tensor = torch.tensor(X_train, dtype=torch.float32)</span><br><span class="line">y_train_tensor = torch.tensor(y_train, dtype=torch.float32)</span><br><span class="line">X_valid_tensor = torch.tensor(X_valid, dtype=torch.float32)</span><br><span class="line">y_valid_tensor = torch.tensor(y_valid, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 TensorDataset</span></span><br><span class="line">train_dataset = TensorDataset(X_train_tensor, y_train_tensor)</span><br><span class="line">valid_dataset = TensorDataset(X_valid_tensor, y_valid_tensor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 DataLoader</span></span><br><span class="line">train_loader = DataLoader(train_dataset, batch_size=<span class="number">512</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line">valid_loader = DataLoader(valid_dataset, batch_size=<span class="number">512</span>, shuffle=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="4-训练模型">4. 训练模型</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练模型</span></span><br><span class="line">epochs = <span class="number">20</span></span><br><span class="line">train_loss_history = []</span><br><span class="line">valid_loss_history = []</span><br><span class="line">train_acc_history = []</span><br><span class="line">valid_acc_history = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    model.train()</span><br><span class="line">    train_loss = <span class="number">0</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> inputs, targets <span class="keyword">in</span> train_loader:</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        outputs = model(inputs).squeeze()</span><br><span class="line">        loss = criterion(outputs, targets)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        train_loss += loss.item() * inputs.size(<span class="number">0</span>)</span><br><span class="line">        predicted = (outputs &gt; <span class="number">0.5</span>).<span class="built_in">float</span>()</span><br><span class="line">        correct += (predicted == targets).<span class="built_in">sum</span>().item()</span><br><span class="line">        total += targets.size(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    train_loss /= total</span><br><span class="line">    train_acc = correct / total</span><br><span class="line">    train_loss_history.append(train_loss)</span><br><span class="line">    train_acc_history.append(train_acc)</span><br><span class="line"></span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    valid_loss = <span class="number">0</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> inputs, targets <span class="keyword">in</span> valid_loader:</span><br><span class="line">            outputs = model(inputs).squeeze()</span><br><span class="line">            loss = criterion(outputs, targets)</span><br><span class="line">            valid_loss += loss.item() * inputs.size(<span class="number">0</span>)</span><br><span class="line">            predicted = (outputs &gt; <span class="number">0.5</span>).<span class="built_in">float</span>()</span><br><span class="line">            correct += (predicted == targets).<span class="built_in">sum</span>().item()</span><br><span class="line">            total += targets.size(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    valid_loss /= total</span><br><span class="line">    valid_acc = correct / total</span><br><span class="line">    valid_loss_history.append(valid_loss)</span><br><span class="line">    valid_acc_history.append(valid_acc)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;epochs&#125;</span> - Loss: <span class="subst">&#123;train_loss:<span class="number">.4</span>f&#125;</span>, Accuracy: <span class="subst">&#123;train_acc:<span class="number">.4</span>f&#125;</span>, Val Loss: <span class="subst">&#123;valid_loss:<span class="number">.4</span>f&#125;</span>, Val Accuracy: <span class="subst">&#123;valid_acc:<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch 1/20 - Loss: 0.4443, Accuracy: 0.7889, Val Loss: 0.4133, Val Accuracy: 0.8053
+Epoch 2/20 - Loss: 0.4100, Accuracy: 0.8080, Val Loss: 0.3998, Val Accuracy: 0.8106
+Epoch 3/20 - Loss: 0.4000, Accuracy: 0.8129, Val Loss: 0.3966, Val Accuracy: 0.8168
+Epoch 4/20 - Loss: 0.3934, Accuracy: 0.8168, Val Loss: 0.3875, Val Accuracy: 0.8167
+Epoch 5/20 - Loss: 0.3886, Accuracy: 0.8197, Val Loss: 0.3830, Val Accuracy: 0.8240
+Epoch 6/20 - Loss: 0.3844, Accuracy: 0.8210, Val Loss: 0.3817, Val Accuracy: 0.8239
+Epoch 7/20 - Loss: 0.3794, Accuracy: 0.8249, Val Loss: 0.3814, Val Accuracy: 0.8252
+Epoch 8/20 - Loss: 0.3761, Accuracy: 0.8262, Val Loss: 0.3743, Val Accuracy: 0.8283
+Epoch 9/20 - Loss: 0.3738, Accuracy: 0.8278, Val Loss: 0.3762, Val Accuracy: 0.8282
+Epoch 10/20 - Loss: 0.3713, Accuracy: 0.8290, Val Loss: 0.3709, Val Accuracy: 0.8290
+Epoch 11/20 - Loss: 0.3678, Accuracy: 0.8299, Val Loss: 0.3697, Val Accuracy: 0.8312
+Epoch 12/20 - Loss: 0.3655, Accuracy: 0.8320, Val Loss: 0.3705, Val Accuracy: 0.8309
+Epoch 13/20 - Loss: 0.3639, Accuracy: 0.8321, Val Loss: 0.3681, Val Accuracy: 0.8310
+Epoch 14/20 - Loss: 0.3629, Accuracy: 0.8330, Val Loss: 0.3676, Val Accuracy: 0.8317
+Epoch 15/20 - Loss: 0.3596, Accuracy: 0.8337, Val Loss: 0.3653, Val Accuracy: 0.8320
+Epoch 16/20 - Loss: 0.3581, Accuracy: 0.8353, Val Loss: 0.3651, Val Accuracy: 0.8319
+Epoch 17/20 - Loss: 0.3560, Accuracy: 0.8354, Val Loss: 0.3611, Val Accuracy: 0.8338
+Epoch 18/20 - Loss: 0.3559, Accuracy: 0.8362, Val Loss: 0.3664, Val Accuracy: 0.8335
+Epoch 19/20 - Loss: 0.3541, Accuracy: 0.8371, Val Loss: 0.3653, Val Accuracy: 0.8333
+Epoch 20/20 - Loss: 0.3513, Accuracy: 0.8384, Val Loss: 0.3596, Val Accuracy: 0.8349
+</code></pre>
+<h2 id="5-训练可视化">5. 训练可视化</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制损失和准确率曲线</span></span><br><span class="line">history_df = pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">&#x27;loss&#x27;</span>: train_loss_history,</span><br><span class="line">    <span class="string">&#x27;val_loss&#x27;</span>: valid_loss_history,</span><br><span class="line">    <span class="string">&#x27;binary_accuracy&#x27;</span>: train_acc_history,</span><br><span class="line">    <span class="string">&#x27;val_binary_accuracy&#x27;</span>: valid_acc_history,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">history_df[[<span class="string">&#x27;loss&#x27;</span>, <span class="string">&#x27;val_loss&#x27;</span>]].plot(title=<span class="string">&quot;Cross-entropy&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">history_df[[<span class="string">&#x27;binary_accuracy&#x27;</span>, <span class="string">&#x27;val_binary_accuracy&#x27;</span>]].plot(title=<span class="string">&quot;Accuracy&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/output_12_0.png" alt="png"><br>
+​</p>
+<p><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/output_12_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/09/01/INTRO-to-DL/">https://isseymour.github.io/butterflyblog/2024/09/01/INTRO-to-DL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/DL/">DL</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/intro-to-deep-learning.svg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/butterflyblog/2024/09/01/Data-Visualization/" title="Data Visualization - Kaggle 官方课程"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Data Visualization - Kaggle 官方课程</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card" style="color: #000000;"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili" style="color: #000000;"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #000000;"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论区正式上线！GitHub官方评论！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Intro to Deep Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">1.导入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="toc-text">2. 数据清洗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E3%80%81%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E3%80%81%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-text">3. 定义模型、损失函数、优化器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-text">4. 训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%AE%AD%E7%BB%83%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">5. 训练可视化</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/09/01/INTRO-to-DL/" title="INTRO to DL - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/intro-to-deep-learning.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="INTRO to DL - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/09/01/INTRO-to-DL/" title="INTRO to DL - Kaggle 官方课程">INTRO to DL - Kaggle 官方课程</a><time datetime="2024-09-01T09:00:00.000Z" title="发表于 2024-09-01 17:00:00">2024-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/09/01/Data-Visualization/" title="Data Visualization - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/Data-Visualization/data-visualization.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Data Visualization - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/09/01/Data-Visualization/" title="Data Visualization - Kaggle 官方课程">Data Visualization - Kaggle 官方课程</a><time datetime="2024-09-01T05:00:00.000Z" title="发表于 2024-09-01 13:00:00">2024-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/08/31/Intermediate-ML/" title="Intermediate ML - Kaggle 官方课程"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/intermediate-machine-learning.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="Intermediate ML - Kaggle 官方课程"/></a><div class="content"><a class="title" href="/butterflyblog/2024/08/31/Intermediate-ML/" title="Intermediate ML - Kaggle 官方课程">Intermediate ML - Kaggle 官方课程</a><time datetime="2024-08-30T16:00:00.000Z" title="发表于 2024-08-31 00:00:00">2024-08-31</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/Kaggle/INTRO-DL/intro-to-deep-learning.svg')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liAZxomGv7Hapw8g',
+      clientSecret: 'f7cafde192c4ada8bef4b76952c422d90575cf8b',
+      repo: 'gitalk',
+      owner: 'isSeymour',
+      admin: ['isSeymour'],
+      id: '36ec716500c37bec58caf0cdb425dc7f',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></div></body></html>
