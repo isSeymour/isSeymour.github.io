@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PageRank:《哈利·波特》人物节点重要度 | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PageRank:《哈利·波特》人物节点重要度  数据来源：http:&#x2F;&#x2F;data.openkg.cn&#x2F;dataset&#x2F;a-harry-potter-kg  0. 理论知识 G 矩阵    其中：  每个节点A的重要度由指向A 的节点B、C、D重要度决定（B&#x2F;C&#x2F;D 本身可能指向了多个，则均摊出去） 为了防止陷入问题，添加 Teleport 传送概率   示例     可用于推荐系统   总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PageRank:《哈利·波特》人物节点重要度">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/10/12/Graph-PageRank/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="PageRank:《哈利·波特》人物节点重要度  数据来源：http:&#x2F;&#x2F;data.openkg.cn&#x2F;dataset&#x2F;a-harry-potter-kg  0. 理论知识 G 矩阵    其中：  每个节点A的重要度由指向A 的节点B、C、D重要度决定（B&#x2F;C&#x2F;D 本身可能指向了多个，则均摊出去） 为了防止陷入问题，添加 Teleport 传送概率   示例     可用于推荐系统   总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png">
+<meta property="article:published_time" content="2024-10-12T14:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-12T14:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="PageRank">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2024/10/12/Graph-PageRank/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PageRank:《哈利·波特》人物节点重要度',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-12 22:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-university"></i><span> 算法</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/algorithm/hot100/"><i class="fa-fw fa-solid fa-fire"></i><span> HOT100</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/template/"><i class="fa-fw fa-solid fa-code"></i><span> Template</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-university"></i><span> 算法</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/algorithm/hot100/"><i class="fa-fw fa-solid fa-fire"></i><span> HOT100</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/template/"><i class="fa-fw fa-solid fa-code"></i><span> Template</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PageRank:《哈利·波特》人物节点重要度</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-12T14:00:00.000Z" title="发表于 2024-10-12 22:00:00">2024-10-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-12T14:00:00.000Z" title="更新于 2024-10-12 22:00:00">2024-10-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/CS224W/">CS224W</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PageRank:《哈利·波特》人物节点重要度"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>PageRank:《哈利·波特》人物节点重要度</h1>
+<blockquote>
+<p>数据来源：<a target="_blank" rel="noopener" href="http://data.openkg.cn/dataset/a-harry-potter-kg">http://data.openkg.cn/dataset/a-harry-potter-kg</a></p>
+</blockquote>
+<h2 id="0-理论知识">0. 理论知识</h2>
+<h3 id="G-矩阵">G 矩阵</h3>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/GoogleMatrix.png" alt="GoogleMatrix" style="zoom:33%;" /> 
+<blockquote>
+<p>其中：</p>
+<ul>
+<li>每个节点A的重要度由指向A 的节点B、C、D重要度决定（B/C/D 本身可能指向了多个，则均摊出去）</li>
+<li>为了防止陷入问题，添加 Teleport 传送概率</li>
+</ul>
+</blockquote>
+<h3 id="示例">示例</h3>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Teleports.png" alt="Teleports" style="zoom:33%;" /> 
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Example.png" alt="Example" style="zoom:33%;" /> 
+<h3 id="可用于推荐系统">可用于推荐系统</h3>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png" alt="Algorithm" style="zoom:33%;" /> 
+<h3 id="总结">总结</h3>
+<blockquote>
+<p>很巧妙的是，实际上后续的两个变种，就是把传送矩阵的均等传送的概率改成非均等、有偏好的传送，就形成了推荐系统的效果。下面是总结：</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Summary.png" alt="Summary" style="zoom:33%;" /> 
+<h2 id="1-环境准备">1. 环境准备</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install networkx numpy matplotlib pandas</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="comment"># 使用macOS系统自带的中文字体</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.family&#x27;</span>] = [<span class="string">&#x27;STHeiti&#x27;</span>]</span><br><span class="line"><span class="comment"># 设置负号正常显示</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-数据">2. 数据</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">&#x27;harrypotter.csv&#x27;</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>head</th>
+      <th>tail</th>
+      <th>relation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>C.沃林顿</td>
+      <td>斯莱特林魁地奇球队</td>
+      <td>从属</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C.沃林顿</td>
+      <td>调查行动组</td>
+      <td>从属</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>C.沃林顿</td>
+      <td>霍格沃茨魔法学校</td>
+      <td>从属</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>乔治·韦斯莱</td>
+      <td>亚瑟·韦斯莱</td>
+      <td>父亲</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>乔治·韦斯莱</td>
+      <td>凤凰社</td>
+      <td>从属</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1733</th>
+      <td>鲍曼·赖特的父亲</td>
+      <td>赖特夫人</td>
+      <td>妻子</td>
+    </tr>
+    <tr>
+      <th>1734</th>
+      <td>鲍曼·赖特的父亲</td>
+      <td>鲍曼·赖特</td>
+      <td>儿子</td>
+    </tr>
+    <tr>
+      <th>1735</th>
+      <td>齐格蒙特·巴奇</td>
+      <td>作家</td>
+      <td>职业</td>
+    </tr>
+    <tr>
+      <th>1736</th>
+      <td>齐格蒙特·巴奇</td>
+      <td>巴奇夫人</td>
+      <td>母亲</td>
+    </tr>
+    <tr>
+      <th>1737</th>
+      <td>齐格蒙特·巴奇</td>
+      <td>药剂师</td>
+      <td>职业</td>
+    </tr>
+  </tbody>
+</table>
+<p>1738 rows × 3 columns</p>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">edges = [edge <span class="keyword">for</span> edge <span class="keyword">in</span> <span class="built_in">zip</span>(df[<span class="string">&#x27;head&#x27;</span>], df[<span class="string">&#x27;tail&#x27;</span>])]</span><br><span class="line"></span><br><span class="line">G = nx.DiGraph()</span><br><span class="line">G.add_edges_from(edges)</span><br><span class="line"><span class="built_in">print</span>(G)</span><br><span class="line">G.nodes</span><br></pre></td></tr></table></figure>
+<pre><code>DiGraph with 648 nodes and 1716 edges
+
+
+
+
+
+NodeView(('C.沃林顿', '斯莱特林魁地奇球队', '调查行动组', '霍格沃茨魔法学校', '乔治·韦斯莱', '亚瑟·韦斯莱', '凤凰社', '吉迪翁·普威特', '哈利·波特', '塞德瑞拉·布莱克', '塞德里克·迪戈里', '塞普蒂默斯·韦斯莱', '奥黛丽·韦斯莱', '安吉利娜·约翰逊', '弗雷德·韦斯莱', '弗雷德·韦斯莱二世', '普威特先生', '普威特夫人', '普威特家族', '查理·韦斯莱', '格兰芬多学院', '格兰芬多魁地奇球队', '比利尔斯', '比尔·韦斯莱', '珀西·韦斯莱', '纳威·隆巴顿', '罗克珊·韦斯莱', '罗恩·韦斯莱', '芙蓉·德拉库尔', '莫丽·韦斯莱', 
+...
+'弗林特家族', '马法尔达·霍普柯克', '马琳·麦金农', '麦金农家庭', '格洛普的父亲', '海格先生', '海格家庭', '霍格沃茨保护神奇动物课', '霍格沃茨钥匙保管员和猎场看守', '傲罗办公室主任(曾经)', '魔法部部长(曾经)', '鲁弗斯·福吉', '福吉夫人', '福吉家庭', '鲍曼·赖特的父亲', '赖特夫人', '鲍曼·赖特', '齐格蒙特·巴奇', '巴奇夫人', '药剂师'))
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pos = nx.spring_layout(G, iterations=<span class="number">3</span>, seed=<span class="number">5</span>)</span><br><span class="line">nx.draw(G, pos, with_labels=<span class="literal">True</span>, font_family=<span class="string">&#x27;STHeiti&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/PageRank_8_0.png" alt="png"><br>
+​</p>
+<h2 id="3-PageRank">3. PageRank</h2>
+<h3 id="计算">计算</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pagerank = nx.pagerank(G,           <span class="comment"># 有向图，无向图则自动转为双向</span></span><br><span class="line">                       alpha=<span class="number">0.85</span>,  <span class="comment"># Damping factor 阻尼系数</span></span><br><span class="line">                       personalization=<span class="literal">None</span>,   <span class="comment"># 是否开启，传送到某些节点的概率更高、更低</span></span><br><span class="line">                       max_iter=<span class="number">100</span>, <span class="comment"># 最大迭代次数</span></span><br><span class="line">                       tol=<span class="number">1e-6</span>,     <span class="comment"># 判定收敛的误差</span></span><br><span class="line">                       nstart=<span class="literal">None</span>,  <span class="comment"># 每个节点的初始 PageRank</span></span><br><span class="line">                       dangling=<span class="literal">None</span>,<span class="comment"># Dead End 死胡同节点</span></span><br><span class="line">                       )</span><br><span class="line">pagerank</span><br></pre></td></tr></table></figure>
+<pre><code>&#123;'C.沃林顿': 0.0011475314330162943,
+ '斯莱特林魁地奇球队': 0.0027238782181771616,
+ '调查行动组': 0.0018337860389585634,
+ '霍格沃茨魔法学校': 0.025270377379097698,
+ '乔治·韦斯莱': 0.0016518470047273744,
+ '亚瑟·韦斯莱': 0.001919820640437418,
+ '凤凰社': 0.0041597878081630684,
+ '吉迪翁·普威特': 0.0015170376893856247,
+ '哈利·波特': 0.0034783399159879504,
+ '塞德瑞拉·布莱克': 0.0015202090673998125,
+ '塞德里克·迪戈里': 0.0016668229203842615,
+ ...
+ '齐格蒙特·巴奇': 0.0011475314330162943,
+ '巴奇夫人': 0.0014727490521785147,
+ '药剂师': 0.0014727490521785147&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从高到低排序</span></span><br><span class="line"><span class="built_in">sorted</span>(pagerank.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[('霍格沃茨魔法学校', 0.025270377379097698),
+ ('美国魔法国会', 0.0111635122688707),
+ ('英国魔法部', 0.01055747811015212),
+ ('魔法部', 0.00598102537466373),
+ ('莫迪丝蒂·巴瑞波恩', 0.00446446534557678),
+ ('秋·张', 0.004367509036089586),
+ ('凤凰社', 0.0041597878081630684),
+ ('小亨利·肖', 0.00396574661310703),
+ ('鼻涕虫俱乐部', 0.003716185458476508),
+ ('食死徒', 0.0036920571771065606),
+ ('斯莱特林', 0.0036914791301060497),
+ ('哈利·波特', 0.0034783399159879504),
+ ('兰登·肖', 0.0033818974877009474),
+ ('老亨利·肖', 0.0033818974877009474),
+ ('威廉一世', 0.0033412088969898153),
+ ('邓布利多军', 0.003262377574330015),
+ ('霍格沃茨', 0.003157988749458249),
+ ('梅森家庭', 0.0030988371479896176),
+ ('雅各布·科瓦尔斯基', 0.0030988371479896176),
+ ('格兰芬多', 0.0030933172566557504),
+ ...
+ ('鲍曼·赖特的父亲', 0.0011475314330162943),
+ ('齐格蒙特·巴奇', 0.0011475314330162943)]
+</code></pre>
+<h3 id="尺寸可视化">尺寸可视化</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 节点尺寸</span></span><br><span class="line">node_sizes = (np.array(<span class="built_in">list</span>(pagerank.values())) * <span class="number">8000</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">node_sizes</span><br></pre></td></tr></table></figure>
+<pre><code>array([  9,  21,  14, 202,  13,  15,  33,  12,  27,  12,  13,  11,  12,
+        12,  16,  11,  13,  13,  14,  12,  12,  20,  13,  12,  13,  23,
+        12,  16,  16,  14,  12,  12,  24,  26,  15,  11,  13,  10,   9,
+        16,  26,  11,   9,  17,  89,  19,   9,   9,  11,   9,   9,  11,
+        ...
+        10,  10,   9,   9,  11,   9,   9,  13,  10,  10,  10,  10,  10,
+        10,  10,   9,  11,  11,   9,  13,  13,   9,  11,  11])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 颜色</span></span><br><span class="line">M = G.number_of_edges()</span><br><span class="line">edge_colors = <span class="built_in">range</span>(<span class="number">2</span>, M+<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制节点</span></span><br><span class="line">nodes = nx.draw_networkx_nodes(G, pos, node_size=node_sizes, node_color=node_sizes)</span><br><span class="line"><span class="comment"># 绘制边</span></span><br><span class="line">edges = nx.draw_networkx_edges(</span><br><span class="line">    G,</span><br><span class="line">    pos,</span><br><span class="line">    node_size=node_sizes,</span><br><span class="line">    arrowstyle=<span class="string">&#x27;-&gt;&#x27;</span>,</span><br><span class="line">    arrowsize=<span class="number">20</span>,</span><br><span class="line">    edge_color=edge_colors,</span><br><span class="line">    edge_cmap=plt.cm.plasma,   <span class="comment"># 连线配色方案，可选plt.cm.Blues</span></span><br><span class="line">    width=<span class="number">4</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 透明度</span></span><br><span class="line">edge_alphas = [(<span class="number">5</span>+i)/(M+<span class="number">4</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(M)]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(M):</span><br><span class="line">    edges[i].set_alpha(edge_alphas[i])</span><br><span class="line"></span><br><span class="line">ax = plt.gca()</span><br><span class="line">ax.set_axis_off()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/PageRank_14_0.png" alt="png"><br>
+​</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/10/12/Graph-PageRank/">https://isseymour.github.io/butterflyblog/2024/10/12/Graph-PageRank/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/PageRank/">PageRank</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2024/10/10/CS224W_Colab_1/" title="CS224W - Colab 1"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Colab1/output_41_0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CS224W - Colab 1</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2024/10/14/GCN/" title="GCN 图卷积神经网络"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/GCN/DeepGraphEncoders.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GCN 图卷积神经网络</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card" style="color: #000000;"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili" style="color: #000000;"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #000000;"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">PageRank:《哈利·波特》人物节点重要度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="toc-text">0. 理论知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#G-%E7%9F%A9%E9%98%B5"><span class="toc-text">G 矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F"><span class="toc-text">可用于推荐系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">1. 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE"><span class="toc-text">2. 数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-PageRank"><span class="toc-text">3. PageRank</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97"><span class="toc-text">计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">尺寸可视化</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/10/14/CS224W_Colab_2/" title="CS224W - Colab 2"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/GCN/shared-parameters.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="CS224W - Colab 2"/></a><div class="content"><a class="title" href="/butterflyblog/2024/10/14/CS224W_Colab_2/" title="CS224W - Colab 2">CS224W - Colab 2</a><time datetime="2024-10-14T14:00:00.000Z" title="发表于 2024-10-14 22:00:00">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/10/14/GCN/" title="GCN 图卷积神经网络"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/GCN/DeepGraphEncoders.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="GCN 图卷积神经网络"/></a><div class="content"><a class="title" href="/butterflyblog/2024/10/14/GCN/" title="GCN 图卷积神经网络">GCN 图卷积神经网络</a><time datetime="2024-10-14T09:00:00.000Z" title="发表于 2024-10-14 17:00:00">2024-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2024/10/12/Graph-PageRank/" title="PageRank:《哈利·波特》人物节点重要度"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="PageRank:《哈利·波特》人物节点重要度"/></a><div class="content"><a class="title" href="/butterflyblog/2024/10/12/Graph-PageRank/" title="PageRank:《哈利·波特》人物节点重要度">PageRank:《哈利·波特》人物节点重要度</a><time datetime="2024-10-12T14:00:00.000Z" title="发表于 2024-10-12 22:00:00">2024-10-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/PageRank/Algorithm.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liAZxomGv7Hapw8g',
+      clientSecret: 'f7cafde192c4ada8bef4b76952c422d90575cf8b',
+      repo: 'gitalk',
+      owner: 'isSeymour',
+      admin: ['isSeymour'],
+      id: 'ea6f0c106d304c75ec348961d4b9c687',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></div></body></html>
