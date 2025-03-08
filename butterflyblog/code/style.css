@@ -6,7 +6,8 @@
 }
 
 /* 微软雅黑 */
-@font-face {
+/* 去下载：https://github.com/chengda/popular-fonts/tree/master */
+/* @font-face {
     font-family: "Microsoft-YaHei";
     src: url("./Microsoft-YaHei/Microsoft-YaHei.ttf");
     font-weight: normal;
@@ -17,7 +18,7 @@
     src: url("./Microsoft-YaHei/Microsoft-YaHei-Blod.ttf");
     font-weight: bold;
     font-style: normal;
-}
+} */
 
 
 /* 代码字体 */
