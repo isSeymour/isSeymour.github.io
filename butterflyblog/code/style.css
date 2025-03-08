@@ -1,8 +1,24 @@
 /* 网站标题字体isSeymour（只能英文） */
+/* Roboto */
 @font-face {
     font-family: "Roboto-BoldItalic";
     src: url("./Roboto-BoldItalic.ttf");
 }
+
+/* 微软雅黑 */
+@font-face {
+    font-family: "Microsoft-YaHei";
+    src: url("./Microsoft-YaHei/Microsoft-YaHei.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Microsoft-YaHei";
+    src: url("./Microsoft-YaHei/Microsoft-YaHei-Blod.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
 
 /* 代码字体 */
 @font-face {
