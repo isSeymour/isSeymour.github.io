@@ -8,7 +8,7 @@
 # Site Settings
 title                    : "Xincheng Wang"
 description              : "Personal homepage of Xincheng Wang, showcasing research and scholarly work"
-repository               : "isSeymour/isSeymour.github.io/acad-homepage"
+repository               : "isSeymour/isSeymour.github.io/"
 google_scholar_stats_use_cdn : true
 
 # google analytics
