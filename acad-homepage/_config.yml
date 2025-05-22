@@ -8,7 +8,7 @@
 # Site Settings
 title                    : "Xincheng Wang"
 description              : "Personal homepage of Xincheng Wang, showcasing research and scholarly work"
-repository               : "isSeymour/isSeymour.github.io/"
+repository               : "isSeymour/isSeymour.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
@@ -161,3 +161,7 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
+
+webrick:
+  suppress_errors: true
