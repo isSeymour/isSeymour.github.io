@@ -23,7 +23,7 @@ group :jekyll_plugins do
   # gem "jekyll-archives"
   gem "jekyll-feed"
   gem 'jekyll-sitemap'
-  gem 'hawkins'
+  # gem 'hawkins', "~> 2.0.5"
 end
 
 gem "webrick", "~> 1.9"
