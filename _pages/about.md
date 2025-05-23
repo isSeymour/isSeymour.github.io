@@ -43,7 +43,7 @@ I am an undergraduate student in Information Security at the School of Computer 
 
 Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.
 
-[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+**Project**
 - Proposed GSRGNN framework with generative feature reconstruction and structural enhancement modules
 - Achieved dual defense against local adversarial perturbations through adaptive fusion mechanism
 - Demonstrated SOTA robustness on Web Chat Pay and commercial datasets
