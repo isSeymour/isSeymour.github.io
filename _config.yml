@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Xincheng Wang"
-description              : "Personal homepage, showcasing research and scholarly work"
+description              : "Happiness Is All U Need"
 repository               : "isSeymour/isSeymour.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -27,7 +27,7 @@ author:
   location         : "Shanghai, China"
   employer         :
   pubmed           : 
-  googlescholar    : "https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID"
+  googlescholar    : # "https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID"
   email            : "seymour0314@163.com"
   researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri              :

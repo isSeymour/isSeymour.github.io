@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Node2Vec 图嵌入：《悲惨世界》人物关系 | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Node2Vec 图嵌入: 《悲惨世界》人物关系  参考资料： Elior Cohen 代码：https:&#x2F;&#x2F;github.com&#x2F;eliorc&#x2F;node2vec Elior Cohen 博客：https:&#x2F;&#x2F;maelfabien.github.io&#x2F;machinelearning&#x2F;graph_5&#x2F;  1. 环境准备 安装工具包 1!pip install node2vec networkx nu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node2Vec 图嵌入：《悲惨世界》人物关系">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/10/09/Graph-Node2Vec-les/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="Node2Vec 图嵌入: 《悲惨世界》人物关系  参考资料： Elior Cohen 代码：https:&#x2F;&#x2F;github.com&#x2F;eliorc&#x2F;node2vec Elior Cohen 博客：https:&#x2F;&#x2F;maelfabien.github.io&#x2F;machinelearning&#x2F;graph_5&#x2F;  1. 环境准备 安装工具包 1!pip install node2vec networkx nu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_13_0.png">
+<meta property="article:published_time" content="2024-10-09T11:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-09T11:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="Node2Vec">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_13_0.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2024/10/09/Graph-Node2Vec-les/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Node2Vec 图嵌入：《悲惨世界》人物关系',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-09 19:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-university"></i><span> 算法</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/algorithm/hot100/"><i class="fa-fw fa-solid fa-fire"></i><span> HOT100</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/labuladong/"><i class="fa-fw fa-solid fa-coffee"></i><span> labuladong</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/luogu/"><i class="fa-fw fa-solid fa-magnet"></i><span> 洛谷</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/template/"><i class="fa-fw fa-solid fa-code"></i><span> Template</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-plane"></i><span> 旅途</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/journey/diary/"><i class="fa-fw fa-solid fa-hashtag"></i><span> 心路</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/english/"><i class="fa-fw fa-solid fa-globe"></i><span> 英语</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/major/"><i class="fa-fw fa-solid fa-map"></i><span> 专业课</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/mathAI/"><i class="fa-fw fa-solid fa-bar-chart"></i><span> 数学&amp;AI</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/RecSys/"><i class="fa-fw fa-solid fa-thumbs-up"></i><span> RecSys</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_13_0.png')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-university"></i><span> 算法</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/algorithm/hot100/"><i class="fa-fw fa-solid fa-fire"></i><span> HOT100</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/labuladong/"><i class="fa-fw fa-solid fa-coffee"></i><span> labuladong</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/luogu/"><i class="fa-fw fa-solid fa-magnet"></i><span> 洛谷</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/template/"><i class="fa-fw fa-solid fa-code"></i><span> Template</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-plane"></i><span> 旅途</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/journey/diary/"><i class="fa-fw fa-solid fa-hashtag"></i><span> 心路</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/english/"><i class="fa-fw fa-solid fa-globe"></i><span> 英语</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/major/"><i class="fa-fw fa-solid fa-map"></i><span> 专业课</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/mathAI/"><i class="fa-fw fa-solid fa-bar-chart"></i><span> 数学&amp;AI</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/RecSys/"><i class="fa-fw fa-solid fa-thumbs-up"></i><span> RecSys</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Node2Vec 图嵌入：《悲惨世界》人物关系</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-09T11:00:00.000Z" title="发表于 2024-10-09 19:00:00">2024-10-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-09T11:00:00.000Z" title="更新于 2024-10-09 19:00:00">2024-10-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/CS224W/">CS224W</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Node2Vec 图嵌入：《悲惨世界》人物关系"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>Node2Vec 图嵌入: 《悲惨世界》人物关系</h1>
+<blockquote>
+<p>参考资料：</p>
+<p>Elior Cohen 代码：<a target="_blank" rel="noopener" href="https://github.com/eliorc/node2vec">https://github.com/eliorc/node2vec</a></p>
+<p>Elior Cohen 博客：<a target="_blank" rel="noopener" href="https://maelfabien.github.io/machinelearning/graph_5/">https://maelfabien.github.io/machinelearning/graph_5/</a></p>
+</blockquote>
+<h2 id="1-环境准备">1. 环境准备</h2>
+<h3 id="安装工具包">安装工具包</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install node2vec networkx numpy matplotlib</span><br></pre></td></tr></table></figure>
+<h3 id="导入工具包">导入工具包</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 图数据挖掘</span></span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据分析</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机数</span></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据可视化</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-数据">2. 数据</h2>
+<h3 id="初始化">初始化</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 空手道俱乐部</span></span><br><span class="line"><span class="comment"># G = nx.karate_club_graph()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 悲惨世界 人物</span></span><br><span class="line">G = nx.les_miserables_graph()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G.nodes</span><br></pre></td></tr></table></figure>
+<pre><code>NodeView(('Napoleon', 'Myriel', 'MlleBaptistine', 'MmeMagloire', 'CountessDeLo', 'Geborand', 'Champtercier', 'Cravatte', 'Count', 'OldMan', 'Valjean', 'Labarre', 'Marguerite', 'MmeDeR', 'Isabeau', 'Gervais', 'Listolier', 'Tholomyes', 'Fameuil', 'Blacheville', 'Favourite', 'Dahlia', 'Zephine', 'Fantine', 'MmeThenardier', 'Thenardier', 'Cosette', 'Javert', 'Fauchelevent', 'Bamatabois', 'Perpetue', 'Simplice', 'Scaufflaire', 'Woman1', 'Judge', 'Champmathieu', 'Brevet', 'Chenildieu', 'Cochepaille', 'Pontmercy', 'Boulatruelle', 'Eponine', 'Anzelma', 'Woman2', 'MotherInnocent', 'Gribier', 'MmeBurgon', 'Jondrette', 'Gavroche', 'Gillenormand', 'Magnon', 'MlleGillenormand', 'MmePontmercy', 'MlleVaubois', 'LtGillenormand', 'Marius', 'BaronessT', 'Mabeuf', 'Enjolras', 'Combeferre', 'Prouvaire', 'Feuilly', 'Courfeyrac', 'Bahorel', 'Bossuet', 'Joly', 'Grantaire', 'MotherPlutarch', 'Gueulemer', 'Babet', 'Claquesous', 'Montparnasse', 'Toussaint', 'Child1', 'Child2', 'Brujon', 'MmeHucheloup'))
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">len</span>(G)</span><br></pre></td></tr></table></figure>
+<pre><code>77
+</code></pre>
+<h3 id="可视化">可视化</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">14</span>))</span><br><span class="line">pos = nx.spring_layout(G, seed=<span class="number">5</span>)</span><br><span class="line">nx.draw(G, pos, with_labels=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_13_0.png" alt="png"><br>
+​</p>
+<h2 id="3-构建-Node2Vec-模型">3. 构建 Node2Vec 模型</h2>
+<h3 id="Node2Vec-嵌入">Node2Vec 嵌入</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> node2vec <span class="keyword">import</span> Node2Vec</span><br><span class="line"></span><br><span class="line">n2v = Node2Vec(G,</span><br><span class="line">               dimensions=<span class="number">32</span>,   <span class="comment"># 嵌入维度 </span></span><br><span class="line">               p=<span class="number">2</span>,             <span class="comment"># p参数（回）</span></span><br><span class="line">               q=<span class="number">0.5</span>,           <span class="comment"># q参数（去）</span></span><br><span class="line">               walk_length=<span class="number">30</span>,  <span class="comment"># 随机游走序列长度</span></span><br><span class="line">               num_walks=<span class="number">600</span>,   <span class="comment"># 每个节点作为起始节点的次数</span></span><br><span class="line">               workers=<span class="number">4</span>        <span class="comment"># 并行线程数</span></span><br><span class="line">              )</span><br><span class="line"></span><br><span class="line"><span class="comment"># p, q 都是越小，则影响越大</span></span><br><span class="line"><span class="comment"># p=1, q=0.5, n_clusters=6  : DFS深度优先搜索，挖掘同质社群</span></span><br><span class="line"><span class="comment"># p=0.5, q=1, n_clusters=3  : BFS广度优先搜索，挖掘结构特征</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练 Node2Vec</span></span><br><span class="line">model = n2v.fit(window=<span class="number">3</span>,     <span class="comment"># Skip-Gram窗口大小</span></span><br><span class="line">                min_count=<span class="number">1</span>,  <span class="comment"># 忽略出现次数低于此阈值的节点</span></span><br><span class="line">                batch_words=<span class="number">4</span> <span class="comment"># 每个线程处理的数据量</span></span><br><span class="line">               )</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出嵌入结果向量</span></span><br><span class="line">X = model.wv.vectors</span><br></pre></td></tr></table></figure>
+<pre><code>Computing transition probabilities: 100%|█████████████████████████████████████████████| 77/77 [00:00&lt;00:00, 4949.22it/s]
+Generating walks (CPU: 1): 100%|██████████| 150/150 [00:00&lt;00:00, 330.07it/s]
+Generating walks (CPU: 4): 100%|██████████| 150/150 [00:00&lt;00:00, 337.63it/s]
+Generating walks (CPU: 2): 100%|██████████| 150/150 [00:00&lt;00:00, 326.68it/s]
+Generating walks (CPU: 3): 100%|██████████| 150/150 [00:00&lt;00:00, 328.33it/s]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(77, 32)
+</code></pre>
+<h3 id="KMeans-聚类可视化">KMeans 聚类可视化</h3>
+<blockquote>
+<p>Kmeans 聚类算法讲解：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HJ411P7cs/">https://www.bilibili.com/video/BV1HJ411P7cs/</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># # DBSCAN 聚类</span></span><br><span class="line"><span class="comment"># from sklearn.cluster import DBSCAN</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cluster_labels = DBSCAN(eps=0.5, min_samples=6).fit(X).labels_</span></span><br><span class="line"><span class="comment"># print(cluster_labels)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># KMeans 聚类</span></span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">cluster_labels = KMeans(n_clusters=<span class="number">3</span>).fit(X).labels_</span><br><span class="line"><span class="built_in">print</span>(cluster_labels)</span><br></pre></td></tr></table></figure>
+<pre><code>[2 1 1 1 2 2 1 1 1 2 2 2 1 2 1 1 1 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 1 1 0 0 2
+ 1 2 0 0 0 0 2 1 2 1 1 1 2 1 2 2 2 2 2 2 1 1 2 2 2 1 2 2 2 1 2 2 2 1 2 2 2
+ 2 2 2]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">colors = []</span><br><span class="line">nodes = <span class="built_in">list</span>(G.nodes)</span><br><span class="line"><span class="comment"># 按照 networkx 的顺序把颜色标注出来</span></span><br><span class="line"><span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">    idx = model.wv.key_to_index[<span class="built_in">str</span>(node)]</span><br><span class="line">    colors.append(cluster_labels[idx])</span><br><span class="line">    </span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">14</span>))</span><br><span class="line">pos = nx.spring_layout(G, seed=<span class="number">10</span>)</span><br><span class="line">nx.draw(G, pos, node_color=colors, with_labels=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_21_0.png" alt="png"><br>
+​</p>
+<h3 id="PCA-降维可视化">PCA 降维可视化</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br><span class="line">pca = PCA(n_components=<span class="number">2</span>)</span><br><span class="line">embed_2d = pca.fit_transform(X)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # TSNE 降维</span></span><br><span class="line"><span class="comment"># from sklearn.manifold import TSNE</span></span><br><span class="line"><span class="comment"># tsne = TSNE(n_components=2, n_iter=5000)</span></span><br><span class="line"><span class="comment"># embed_2d = tsne.fit_transform(X)</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">6</span>,<span class="number">5</span>))</span><br><span class="line">plt.scatter(embed_2d[:,<span class="number">0</span>], embed_2d[:,<span class="number">1</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>​<br>
+<img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_23_0.png" alt="png"><br>
+​</p>
+<h3 id="分析-Embedding">分析 Embedding</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.wv.get_vector(<span class="string">&#x27;Napoleon&#x27;</span>).shape</span><br></pre></td></tr></table></figure>
+<pre><code>(32,)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看节点的 Embedding</span></span><br><span class="line">model.wv.get_vector(<span class="string">&#x27;Napoleon&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 0.16437183, -0.05719004,  0.7591357 ,  0.5262734 , -0.28540358,
+        0.3609386 , -0.0202415 ,  0.59487563,  0.16668592, -0.36358935,
+       -0.31636822, -0.24678008,  0.07872051,  0.2453149 ,  0.47021243,
+        0.14235401, -0.24516489, -0.06233275, -0.7360416 ,  0.5266324 ,
+        0.25197074,  0.8208004 ,  0.1812625 ,  0.4639347 , -0.02985335,
+        0.46994781, -0.01152692,  0.50284547,  0.06440508, -0.58088064,
+        0.41836476,  0.20175534], dtype=float32)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找相似节点</span></span><br><span class="line">model.wv.most_similar(<span class="string">&#x27;Napoleon&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[('Count', 0.9734092950820923),
+ ('Geborand', 0.9711518883705139),
+ ('Champtercier', 0.9699333310127258),
+ ('CountessDeLo', 0.9690977931022644),
+ ('OldMan', 0.9581858515739441),
+ ('Cravatte', 0.9463319182395935),
+ ('MmeMagloire', 0.9301953911781311),
+ ('MlleBaptistine', 0.9220814108848572),
+ ('Myriel', 0.8496583104133606),
+ ('Labarre', 0.43950924277305603)]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.wv.similar_by_word(<span class="string">&#x27;Napoleon&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[('Count', 0.9734092950820923),
+ ('Geborand', 0.9711518883705139),
+ ('Champtercier', 0.9699333310127258),
+ ('CountessDeLo', 0.9690977931022644),
+ ('OldMan', 0.9581858515739441),
+ ('Cravatte', 0.9463319182395935),
+ ('MmeMagloire', 0.9301953911781311),
+ ('MlleBaptistine', 0.9220814108848572),
+ ('Myriel', 0.8496583104133606),
+ ('Labarre', 0.43950924277305603)]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看任意两个节点的相似度</span></span><br><span class="line">model.wv.similarity(<span class="string">&#x27;Napoleon&#x27;</span>, <span class="string">&#x27;Napoleon&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>1.0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.wv.similarity(<span class="string">&#x27;Napoleon&#x27;</span>, <span class="string">&#x27;OldMan&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0.9581857
+</code></pre>
+<h2 id="4-对连接做-Embedding">4. 对连接做 Embedding</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> node2vec.edges <span class="keyword">import</span> HadamardEmbedder</span><br><span class="line"></span><br><span class="line"><span class="comment"># Hadamard 二元操作：两个 Embedding 对应元素相乘</span></span><br><span class="line">edges_embs = HadamardEmbedder(keyed_vectors=model.wv)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看两个节点之间连接的 Embedding</span></span><br><span class="line">edges_embs[(<span class="string">&#x27;Napoleon&#x27;</span>, <span class="string">&#x27;OldMan&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 0.02212512,  0.01081607,  0.49410883,  0.25259754,  0.09594341,
+        0.08860359,  0.00081227,  0.37484962,  0.03543219,  0.09974428,
+        0.06573805,  0.01136922,  0.00543256,  0.04992007,  0.1747883 ,
+       -0.00262563,  0.01901744,  0.01046612,  0.63943666,  0.2961468 ,
+        0.11473472,  0.5845541 ,  0.05060175,  0.23471911,  0.00586544,
+        0.29180774, -0.00227471,  0.16711667, -0.00148958,  0.39783025,
+        0.15422934,  0.0504636 ], dtype=float32)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算所有 Edge 的 Embedding</span></span><br><span class="line">edges_kv = edges_embs.as_keyed_vectors()</span><br></pre></td></tr></table></figure>
+<pre><code>Generating edge features: 100%|███████████████████████████████████████████████| 3003/3003.0 [00:00&lt;00:00, 248123.53it/s]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">len</span>(edges_kv.index_to_key)</span><br></pre></td></tr></table></figure>
+<pre><code>3003
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">edges_kv.index_to_key</span><br></pre></td></tr></table></figure>
+<pre><code>[&quot;('Valjean', 'Valjean')&quot;,
+ &quot;('Marius', 'Valjean')&quot;,
+ &quot;('Enjolras', 'Valjean')&quot;,
+ &quot;('Courfeyrac', 'Valjean')&quot;,
+ ...]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看关系与 节点对 最相似的节点对</span></span><br><span class="line">edges_kv.most_similar(<span class="built_in">str</span>((<span class="string">&#x27;Napoleon&#x27;</span>, <span class="string">&#x27;OldMan&#x27;</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&quot;('Count', 'OldMan')&quot;, 0.9915876388549805),
+ (&quot;('CountessDeLo', 'OldMan')&quot;, 0.9897369742393494),
+ (&quot;('CountessDeLo', 'Napoleon')&quot;, 0.9895244240760803),
+ (&quot;('Geborand', 'Napoleon')&quot;, 0.9881743788719177),
+ (&quot;('Champtercier', 'OldMan')&quot;, 0.9877184629440308),
+ (&quot;('Geborand', 'OldMan')&quot;, 0.9872523546218872),
+ (&quot;('Count', 'Napoleon')&quot;, 0.9845482707023621),
+ (&quot;('OldMan', 'OldMan')&quot;, 0.9842210412025452),
+ (&quot;('Napoleon', 'Napoleon')&quot;, 0.9839144349098206),
+ (&quot;('Cravatte', 'OldMan')&quot;, 0.9834887385368347)]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/10/09/Graph-Node2Vec-les/">https://isseymour.github.io/butterflyblog/2024/10/09/Graph-Node2Vec-les/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/Node2Vec/">Node2Vec</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_13_0.png" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2024/10/06/Graph-DeepWalk/" title="DeepWalk 图嵌入：维基百科词条"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/DeepWalk/DW.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">DeepWalk 图嵌入：维基百科词条</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2024/10/09/Graph-Node2Vec/" title="Node2Vec 官方代码解读"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/PQ.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Node2Vec 官方代码解读</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/butterflyblog/2024/10/09/Graph-Node2Vec/" title="Node2Vec 官方代码解读"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/PQ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-09</div><div class="title">Node2Vec 官方代码解读</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card" style="color: #000000;"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili" style="color: #000000;"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #000000;"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Node2Vec 图嵌入: 《悲惨世界》人物关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">1. 环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="toc-text">安装工具包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="toc-text">导入工具包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE"><span class="toc-text">2. 数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">可视化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E5%BB%BA-Node2Vec-%E6%A8%A1%E5%9E%8B"><span class="toc-text">3. 构建 Node2Vec 模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node2Vec-%E5%B5%8C%E5%85%A5"><span class="toc-text">Node2Vec 嵌入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KMeans-%E8%81%9A%E7%B1%BB%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">KMeans 聚类可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PCA-%E9%99%8D%E7%BB%B4%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">PCA 降维可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90-Embedding"><span class="toc-text">分析 Embedding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AF%B9%E8%BF%9E%E6%8E%A5%E5%81%9A-Embedding"><span class="toc-text">4. 对连接做 Embedding</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2025/04/27/LLM4Rec_abc_5/" title="大模型推荐系统 (应用)"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/llm4rec_abc/5/llm4rec-abc-5-Page.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="大模型推荐系统 (应用)"/></a><div class="content"><a class="title" href="/butterflyblog/2025/04/27/LLM4Rec_abc_5/" title="大模型推荐系统 (应用)">大模型推荐系统 (应用)</a><time datetime="2025-04-27T08:00:00.000Z" title="发表于 2025-04-27 16:00:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2025/04/26/LLM4Rec_abc_4/" title="大模型推荐系统（4）直接推荐范式"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/llm4rec_abc/4/llm4rec-abc-4-Page.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="大模型推荐系统（4）直接推荐范式"/></a><div class="content"><a class="title" href="/butterflyblog/2025/04/26/LLM4Rec_abc_4/" title="大模型推荐系统（4）直接推荐范式">大模型推荐系统（4）直接推荐范式</a><time datetime="2025-04-26T10:00:00.000Z" title="发表于 2025-04-26 18:00:00">2025-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2025/04/26/LLM4Rec_abc_3/" title="大模型推荐系统（3）微调范式"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/llm4rec_abc/3/llm4rec-abc-3-Page.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="大模型推荐系统（3）微调范式"/></a><div class="content"><a class="title" href="/butterflyblog/2025/04/26/LLM4Rec_abc_3/" title="大模型推荐系统（3）微调范式">大模型推荐系统（3）微调范式</a><time datetime="2025-04-26T09:00:00.000Z" title="发表于 2025-04-26 17:00:00">2025-04-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/CS224W/Node2Vec/les/output_13_0.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liAZxomGv7Hapw8g',
+      clientSecret: 'f7cafde192c4ada8bef4b76952c422d90575cf8b',
+      repo: 'gitalk',
+      owner: 'isSeymour',
+      admin: ['isSeymour'],
+      id: '58b26f03c70e2252dd4b06ccbd59eeea',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></div></body></html>

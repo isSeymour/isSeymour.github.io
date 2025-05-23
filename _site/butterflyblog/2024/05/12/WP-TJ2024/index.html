@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>同济@复旦第一届网络安全竞赛WP | isSeymour</title><meta name="author" content="isSeymour"><meta name="copyright" content="isSeymour"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="同济@复旦第一届网络安全竞赛 Write up   选手 1用户名：isseymour   目录 [TOC]    一、WEB 题目：游戏   打开调试，查看源代码   读懂代码逻辑，一般来说，游戏都是最后会有个 GameOver或者success之类的。   本题发现是在 g._f_()里面会输出胜利的结果。   我直接把在g.state_GAMEOVER里加入这个函数执行，使得最后结束一定会输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同济@复旦第一届网络安全竞赛WP">
+<meta property="og:url" content="https://isseymour.github.io/butterflyblog/2024/05/12/WP-TJ2024/index.html">
+<meta property="og:site_name" content="isSeymour">
+<meta property="og:description" content="同济@复旦第一届网络安全竞赛 Write up   选手 1用户名：isseymour   目录 [TOC]    一、WEB 题目：游戏   打开调试，查看源代码   读懂代码逻辑，一般来说，游戏都是最后会有个 GameOver或者success之类的。   本题发现是在 g._f_()里面会输出胜利的结果。   我直接把在g.state_GAMEOVER里加入这个函数执行，使得最后结束一定会输">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png">
+<meta property="article:published_time" content="2024-05-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-11T16:00:00.000Z">
+<meta property="article:author" content="isSeymour">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/IC1011.ico"><link rel="canonical" href="https://isseymour.github.io/butterflyblog/2024/05/12/WP-TJ2024/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/butterflyblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/butterflyblog/',
+  algolia: undefined,
+  localSearch: {"path":"/butterflyblog/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '同济@复旦第一届网络安全竞赛WP',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-12 00:00:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/butterflyblog/code/style.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-university"></i><span> 算法</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/algorithm/hot100/"><i class="fa-fw fa-solid fa-fire"></i><span> HOT100</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/labuladong/"><i class="fa-fw fa-solid fa-coffee"></i><span> labuladong</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/luogu/"><i class="fa-fw fa-solid fa-magnet"></i><span> 洛谷</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/template/"><i class="fa-fw fa-solid fa-code"></i><span> Template</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-plane"></i><span> 旅途</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/journey/diary/"><i class="fa-fw fa-solid fa-hashtag"></i><span> 心路</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/english/"><i class="fa-fw fa-solid fa-globe"></i><span> 英语</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/major/"><i class="fa-fw fa-solid fa-map"></i><span> 专业课</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/mathAI/"><i class="fa-fw fa-solid fa-bar-chart"></i><span> 数学&amp;AI</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/RecSys/"><i class="fa-fw fa-solid fa-thumbs-up"></i><span> RecSys</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png')"><nav id="nav"><span id="blog-info"><a href="/butterflyblog/" title="isSeymour"><span class="site-name">isSeymour</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 总览</span></a></li><li><a class="site-page child" href="/butterflyblog/tags/"><i class="fa-fw fa-sharp fa-solid fa-hashtag"></i><span> 标签</span></a></li><li><a class="site-page child" href="/butterflyblog/categories/"><i class="fa-fw fa-sharp fa-solid fa-folder"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-sharp fa-solid fa-list"></i><span> 功能</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/ctf/"><i class="fa-fw fa-solid fa-shield-halved"></i><span> CTF</span></a></li><li><a class="site-page child" href="/butterflyblog/music/"><i class="fa-fw fa-solid fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/butterflyblog/tools/"><i class="fa-fw fa-solid fa-screwdriver-wrench"></i><span> 下载</span></a></li><li><a class="site-page child" href="/butterflyblog/link/"><i class="fa-fw fa-solid fa-paper-plane"></i><span> 链接</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-university"></i><span> 算法</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/algorithm/hot100/"><i class="fa-fw fa-solid fa-fire"></i><span> HOT100</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/labuladong/"><i class="fa-fw fa-solid fa-coffee"></i><span> labuladong</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/luogu/"><i class="fa-fw fa-solid fa-magnet"></i><span> 洛谷</span></a></li><li><a class="site-page child" href="/butterflyblog/algorithm/template/"><i class="fa-fw fa-solid fa-code"></i><span> Template</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-plane"></i><span> 旅途</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/journey/diary/"><i class="fa-fw fa-solid fa-hashtag"></i><span> 心路</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/english/"><i class="fa-fw fa-solid fa-globe"></i><span> 英语</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/major/"><i class="fa-fw fa-solid fa-map"></i><span> 专业课</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/mathAI/"><i class="fa-fw fa-solid fa-bar-chart"></i><span> 数学&amp;AI</span></a></li><li><a class="site-page child" href="/butterflyblog/journey/RecSys/"><i class="fa-fw fa-solid fa-thumbs-up"></i><span> RecSys</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-regular fa-user"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/butterflyblog/about/"><i class="fa-fw fa-regular fa-user"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/butterflyblog/message/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/butterflyblog/develop/"><i class="fa-fw fa-brands fa-windows"></i><span> 开发日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">同济@复旦第一届网络安全竞赛WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-11T16:00:00.000Z" title="发表于 2024-05-12 00:00:00">2024-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-11T16:00:00.000Z" title="更新于 2024-05-12 00:00:00">2024-05-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/butterflyblog/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="同济@复旦第一届网络安全竞赛WP"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>同济@复旦第一届网络安全竞赛 Write up</h1>
+<ul>
+<li>
+<h4 id="选手">选手</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名：isseymour</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h4 id="目录">目录</h4>
+<p>[TOC]</p>
+</li>
+</ul>
+<hr>
+<h2 id="一、WEB">一、WEB</h2>
+<h3 id="题目：游戏">题目：游戏</h3>
+<ul>
+<li>
+<p>打开调试，查看源代码</p>
+</li>
+<li>
+<p>读懂代码逻辑，一般来说，游戏都是最后会有个 <code>GameOver</code>或者<code>success</code>之类的。</p>
+</li>
+<li>
+<p>本题发现是<strong>在 <code>g._f_()</code>里面会输出胜利的结果</strong>。</p>
+</li>
+<li>
+<p>我直接把在<code>g.state_GAMEOVER</code>里加入这个函数执行，使得最后结束一定会输出成功的逻辑。</p>
+</li>
+<li>
+<p>至此，只需要直接进入一局游戏，直接死掉即可。</p>
+</li>
+<li>
+<p>得到 flag （见下图）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;java3cr1qtG3&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/WEB-T1-1.png" alt="T1-1" style="zoom:60%;" /> 
+<h3 id="题目：laohuji">题目：laohuji</h3>
+<ul>
+<li>
+<p>一看是个老虎机游戏，那就是猜数字了。</p>
+</li>
+<li>
+<p>查看源代码，发现在下面的代码是核心：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">numRand</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> x = <span class="number">9999</span>; <span class="comment">//上限</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> y = <span class="number">1111</span>; <span class="comment">//下限</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> rand = <span class="built_in">parseInt</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * (x - y + <span class="number">1</span>) + y);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> rand;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">login1</span>(<span class="params">result</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">url</span>: <span class="string">&quot;result.php&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">data</span>: &#123;<span class="attr">number</span>: result,<span class="attr">sign</span>:<span class="title function_">md5</span>(result)&#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">type</span>: <span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//dataType: &quot;json&quot;,</span></span></span><br><span class="line"><span class="language-javascript">        <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            data = jQuery.<span class="title function_">parseJSON</span>(data);</span></span><br><span class="line"><span class="language-javascript">            $(<span class="string">&#x27;#res&#x27;</span>).<span class="title function_">text</span>(data.<span class="property">flag</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>也就是实际上，每次<strong>通过<code>login1()</code>向服务器发请求</strong>，收到回复来确认是否正确。</p>
+</li>
+<li>
+<p>而且<strong>数字只可能是四位数</strong>，所以那就直接爆就行。</p>
+<p>（注：<strong>不能爆太快</strong>，服务器会不响应，间隔10ms）</p>
+</li>
+<li>
+<p><strong>JS方式爆：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loginAll</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;=<span class="number">9999</span>;i++)</span><br><span class="line">&#123; </span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&quot;result.php&quot;</span>,</span><br><span class="line">        <span class="attr">data</span>: &#123;<span class="attr">number</span>: i,<span class="attr">sign</span>:<span class="title function_">md5</span>(i)&#125;,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">        <span class="comment">//dataType: &quot;json&quot;,</span></span><br><span class="line">        <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">            data = jQuery.<span class="title function_">parseJSON</span>(data);</span><br><span class="line">            $(<span class="string">&#x27;#res&#x27;</span>).<span class="title function_">text</span>(data.<span class="property">flag</span>);</span><br><span class="line">             <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">flag</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;, i*<span class="number">10</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+ <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/WEB-T2-2.png" alt="T2-2" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>看到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;rIhhOr&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="二、REVERSE">二、REVERSE</h2>
+<h3 id="题目：Just-met">题目：Just met</h3>
+<ul>
+<li>打开IDA 64位反汇编看一下</li>
+<li>找到main函数处，查看到如下代码：</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/REV-T1-1.png" alt="T1-1" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>分析发现，虽然是两个 <code>strcmp</code>，但是<code>dest</code>的值是固定的，那么实际上输入的密码必须就是<code>dest</code>的值</p>
+</li>
+<li>
+<p><code>dest</code> 的值是由 <code>src</code> 复制而来，因此值就是 <code>src</code>的值。</p>
+</li>
+<li>
+<p>然而，我交上去，答案错误。。。。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;sedecrem&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>分析了好久，后面是看到有说<strong>大小端存储</strong>的问题，那么字符应该全部<strong>反过来读取</strong>。</p>
+</li>
+<li>
+<p>重新提交，正确了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;mercedes&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="题目：jeb">题目：jeb</h3>
+<ul>
+<li>题目就是 jeb，下载是个安卓软件。</li>
+<li>用 JEB 打开，找到主要的逻辑判断的地方（看注释，有 ”错误“”恭喜你“之类的词）</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/REV-T2-2.png" alt="T2-2" style="zoom:60%;" /> 
+<ul>
+<li>发现是 和 <code>edit_userName</code>进行比较，那就<strong>找到 <code>edit_userName</code> 是 <code>Tenshine</code></strong></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/REV-T2-3.png" alt="T2-3" style="zoom:60%;" /> 
+<ul>
+<li>后续代码逻辑在 <code>checkSN</code> 函数里</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/REV-T2-4.png" alt="T2-4" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>checkSN逻辑：</p>
+<p><strong>计算userName的md5 值，然后只取下标偶数的字符，包上 <code>flag&#123;&#125;</code>就是答案</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">字符：Tenshine</span><br><span class="line">md5: b9c77224ff234f27ac6badf83b855c76</span><br><span class="line">取偶数下标：</span><br><span class="line">flag&#123;bc72f242a6af3857&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>测试一下，正确。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/REV-T2-6.png" alt="T2-6" style="zoom:60%;" /> 
+</li>
+</ul>
+<h2 id="三、PWN">三、PWN</h2>
+<h3 id="题目：cat2">题目：cat2</h3>
+<ul>
+<li>
+<p>nc 连接上</p>
+</li>
+<li>
+<p>测试了一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`ls`</span><br></pre></td></tr></table></figure>
+<p>发现有输出</p>
+</li>
+<li>
+<p>那就直接获取了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`cat flag`</span><br></pre></td></tr></table></figure>
+<p>成功获取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d1ec102aa389e7c7aa5796af5fe6039a&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/PWN-T1-1.png" alt="T1-1" style="zoom:60%;" /> 
+<h2 id="四、CRYPTO">四、CRYPTO</h2>
+<h3 id="题目：enemy-command">题目：enemy_command</h3>
+<ul>
+<li>
+<p>打开发现 似乎只有三种可能：<code>45/46/32</code></p>
+</li>
+<li>
+<p>猜测应该是 <strong>摩斯电码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">45 45 45 45 45 32 45 46 46 45 32 45 45 46 46 46 32 46 46 46 45 45 32 45 45 46 46 46 32 45 45 45 45 46 32 45 46 46 46 46 32 46 32 45 45 46 46 46 32 46 46 46 46 45 32 45 45 46 46 46 32 45 46 46 46 32 45 46 46 46 46 32 46 45 32 46 46 46 46 45 32 45 45 45 46 46 32 46 46 46 46 45 32 45 45 45 46 46 32 46 46 46 45 45 32 46 46 46 45 45 32 45 46 46 46 46 32 45 46 46 46 32 46 46 46 46 45 32 46 32 46 46 46 46 46 32 45 46 46 46 46 32 46 46 46 46 45 32 45 46 46 32 46 46 46 46 45 32 45 46 46 32 46 46 46 46 46 32 45 45 46 46 46 32 46 46 46 45 45 32 46 46 46 45 45 32 45 46 46 46 46 32 45 46 46 46 46 32 46 46 46 45 45 32 45 45 45 45 45 32 46 46 46 46 45 32 46 46 45 45 45 32 45 46 46 46 46 32 46 46 46 45 45 32 45 46 46 46 46 32 46 45 45 45 45 32 45 45 46 46 46 32 45 46 46 </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>同时，查了一下 ASCII 码，也证实了这一点：</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T1-1.png" alt="T1-1" style="zoom:50%;" /> 
+<ul>
+<li>
+<p>写python脚本获取转换为摩斯电码的形式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">allnum = <span class="string">&#x27;45 45 45 45 45 32 45 46 46 45 32 45 45 46 46 46 32 46 46 46 45 45 32 45 45 46 46 46 32 45 45 45 45 46 32 45 46 46 46 46 32 46 32 45 45 46 46 46 32 46 46 46 46 45 32 45 45 46 46 46 32 45 46 46 46 32 45 46 46 46 46 32 46 45 32 46 46 46 46 45 32 45 45 45 46 46 32 46 46 46 46 45 32 45 45 45 46 46 32 46 46 46 45 45 32 46 46 46 45 45 32 45 46 46 46 46 32 45 46 46 46 32 46 46 46 46 45 32 46 32 46 46 46 46 46 32 45 46 46 46 46 32 46 46 46 46 45 32 45 46 46 32 46 46 46 46 45 32 45 46 46 32 46 46 46 46 46 32 45 45 46 46 46 32 46 46 46 45 45 32 46 46 46 45 45 32 45 46 46 46 46 32 45 46 46 46 46 32 46 46 46 45 45 32 45 45 45 45 45 32 46 46 46 46 45 32 46 46 45 45 45 32 45 46 46 46 46 32 46 46 46 45 45 32 45 46 46 46 46 32 46 45 45 45 45 32 45 45 46 46 46 32 45 46 46&#x27;</span></span><br><span class="line">allnums = allnum.split()</span><br><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> allnums:</span><br><span class="line">    <span class="keyword">if</span> c == <span class="string">&#x27;45&#x27;</span>:</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">&#x27;-&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> c == <span class="string">&#x27;46&#x27;</span>:</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">&#x27;.&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> c == <span class="string">&#x27;32&#x27;</span>:</span><br><span class="line">        <span class="built_in">str</span> += <span class="string">&#x27;/&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>摩斯电码解码</strong>，仍然继续使用<strong>十六进制解码</strong> ，得到如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">synt&#123;jHH3kNVMMW3f0Bca&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T1-3.png" alt="T1-3" style="zoom:67%;" />
+ <img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T1-4.png" alt="T1-4" style="zoom:67%;" /> 
+</li>
+<li>
+<p>这还不是答案，因为不是<code>flag&#123;&#125;</code>形式，猜测可能是<strong>移位密码</strong>（凯撒密码）</p>
+</li>
+<li>
+<p>写个脚本看一下。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cf = <span class="string">&#x27;synt&#123;jHH3kNVMMW3f0Bca&#125;&#x27;</span></span><br><span class="line">ai = <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">Ai = <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">26</span>):</span><br><span class="line">    <span class="built_in">str</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> cf:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(c) &gt;= <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>) <span class="keyword">and</span> <span class="built_in">ord</span>(c) &lt;= <span class="built_in">ord</span>(<span class="string">&#x27;z&#x27;</span>):</span><br><span class="line">            <span class="built_in">str</span> += <span class="built_in">chr</span>((<span class="built_in">ord</span>(c)-ai+i)%<span class="number">26</span> + ai)</span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">ord</span>(c) &gt;= <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>) <span class="keyword">and</span> <span class="built_in">ord</span>(c) &lt;= <span class="built_in">ord</span>(<span class="string">&#x27;Z&#x27;</span>):</span><br><span class="line">            <span class="built_in">str</span> += <span class="built_in">chr</span>((<span class="built_in">ord</span>(c) - Ai + i) % <span class="number">26</span> + Ai)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">str</span> += c</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>如下图，看到有一个是 <code>flag&#123;&#125;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;wUU3xAIZZJ3s0Opn&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T1-5.png" alt="T1-5" style="zoom:60%;" /> 
+<h3 id="题目：rwx">题目：rwx</h3>
+<ul>
+<li>Hash是 分段hash的</li>
+<li>因此可以分段爆破，最终复原明文。</li>
+<li>python脚本如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">f=<span class="built_in">open</span>(<span class="string">&quot;output&quot;</span>,<span class="string">&quot;rb&quot;</span>).readlines()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(f)/<span class="number">3</span>)</span><br><span class="line">random1=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">43</span>):</span><br><span class="line">    random1.append(f[i].strip().decode(<span class="string">&quot;hex&quot;</span>))</span><br><span class="line">targethash=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">43</span>,<span class="number">86</span>):</span><br><span class="line">    targethash.append(f[i].strip())</span><br><span class="line">lasthash=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">86</span>,<span class="number">129</span>):</span><br><span class="line">    lasthash.append(f[i].strip())</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">b1s</span>(<span class="params"><span class="built_in">hash</span></span>):</span><br><span class="line">    <span class="keyword">for</span> i1 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0xff</span>):</span><br><span class="line">        <span class="keyword">for</span> i2 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0xff</span>):</span><br><span class="line">            <span class="keyword">for</span> xx <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">                <span class="keyword">if</span> hashlib.sha256(<span class="built_in">str</span>(xx)+<span class="built_in">chr</span>(i1)+<span class="built_in">chr</span>(i2)).hexdigest()==<span class="built_in">hash</span>:</span><br><span class="line">                    <span class="keyword">return</span> xx</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">brutehash</span>(<span class="params">lasthash</span>):</span><br><span class="line">    e=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> lasthash:</span><br><span class="line">        <span class="built_in">print</span>(i)</span><br><span class="line">        e.append(b1s(i))</span><br><span class="line">    <span class="keyword">return</span> e</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes,bytes_to_long</span><br><span class="line">x=[]</span><br><span class="line">w=[]</span><br><span class="line">r=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">43</span>):</span><br><span class="line">    <span class="keyword">for</span> i1 <span class="keyword">in</span> [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>]:</span><br><span class="line">        <span class="keyword">for</span> i2 <span class="keyword">in</span> [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>]:</span><br><span class="line">            <span class="keyword">for</span> i3 <span class="keyword">in</span> [<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>]:</span><br><span class="line">                <span class="keyword">if</span> hashlib.sha256(long_to_bytes(<span class="built_in">int</span>(<span class="built_in">bin</span>(bytes_to_long(random1[i]))[<span class="number">2</span>:]+i1+i2+i3,<span class="number">2</span>))).hexdigest()==targethash[i]:</span><br><span class="line">                    r.append(i1)</span><br><span class="line">                    w.append(i2)</span><br><span class="line">                    x.append(i3)</span><br><span class="line">e=brutehash(lasthash)</span><br><span class="line"><span class="built_in">print</span>(r)</span><br><span class="line"><span class="built_in">print</span>(w)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(e)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">43</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="built_in">int</span>(<span class="built_in">bin</span>(e[i])[<span class="number">2</span>:]+x[i]+w[i]+r[i],<span class="number">2</span>)))</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行得到：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;8uuuuu_dd_3yyyui_like_the_internet_g0&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T2-1.png" alt="T2-1" style="zoom:60%;" /> 
+<h3 id="题目：easy-code">题目：easy_code</h3>
+<ul>
+<li>
+<p>打开看到是 三层加密，</p>
+</li>
+<li>
+<p>很简单，反过来三层解密即可。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decode1</span>(<span class="params">code</span>):</span><br><span class="line">    res = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> code:</span><br><span class="line">        x = i - <span class="number">24</span></span><br><span class="line">        x = x ^ <span class="number">31</span></span><br><span class="line">        res += <span class="built_in">bytes</span>([x])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decode2</span>(<span class="params">code</span>):</span><br><span class="line">    res = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> code:</span><br><span class="line">        x = i ^ <span class="number">31</span></span><br><span class="line">        x = x - <span class="number">31</span></span><br><span class="line">        res += <span class="built_in">bytes</span>([x])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decode3</span>(<span class="params">code</span>):</span><br><span class="line">    <span class="keyword">return</span> base64.b32decode(code)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">encoded_flag = <span class="string">&#x27;V622VMEEVWVEC7FMPV7265VLPN7X25T5V2XKW5VLVZBKY5TZPN4UA7CBIKX2U6NKVODA====&#x27;</span></span><br><span class="line">decoded_flag = decode1(decode2(decode3(encoded_flag)))</span><br><span class="line"><span class="built_in">print</span>(decoded_flag.decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行得到 flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;da83c46f-b264-4eeb-be9c-0207389fa0ab&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T3-1.png" alt="T3-1" style="zoom:60%;" /> 
+<h3 id="题目：HASH">题目：HASH</h3>
+<ul>
+<li>
+<p>缺失部分值而已，爆破即可，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符集</span></span><br><span class="line">dic = <span class="string">&quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-/&quot;</span></span><br><span class="line">passwd_template = <span class="string">&quot;*ha*i*_go*d&quot;</span></span><br><span class="line">sha_template = <span class="string">&quot;2aa90dc*46aa5d0*baedc4a*13e4c0a6*91bf6*2&quot;</span></span><br><span class="line">placeholders = [i <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(passwd_template) <span class="keyword">if</span> c == <span class="string">&#x27;*&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 尝试所有可能</span></span><br><span class="line"><span class="keyword">for</span> combo <span class="keyword">in</span> itertools.product(dic, repeat=<span class="built_in">len</span>(placeholders)):</span><br><span class="line">    <span class="comment"># 构造候选</span></span><br><span class="line">    candidate_passwd = <span class="built_in">list</span>(passwd_template)</span><br><span class="line">    <span class="keyword">for</span> char, pos <span class="keyword">in</span> <span class="built_in">zip</span>(combo, placeholders):</span><br><span class="line">        candidate_passwd[pos] = char</span><br><span class="line">    candidate_passwd = <span class="string">&#x27;&#x27;</span>.join(candidate_passwd)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算 SHA-1</span></span><br><span class="line">    sha_candidate = hashlib.sha1(candidate_passwd.encode(<span class="string">&#x27;ascii&#x27;</span>)).hexdigest()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查匹配</span></span><br><span class="line">    <span class="keyword">if</span> sha_template[:<span class="number">7</span>].replace(<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;&#x27;</span>) == sha_candidate[:<span class="number">7</span>]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;SHA-1 = <span class="subst">&#123;sha_candidate&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Password = <span class="subst">&#123;candidate_passwd&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行拿到值后，包上flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;sha1is_good&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/CRYPTO-T4-1.png" alt="T4-1" style="zoom:60%;" /> 
+<h2 id="五、MISC">五、MISC</h2>
+<h3 id="题目：seeyouagain">题目：seeyouagain</h3>
+<ul>
+<li>
+<p>这题，我真的是想破脑袋了！！！！</p>
+<p>还好做出来了，要不然我要气死了。</p>
+</li>
+<li>
+<p>前面的流程很正常，一路顺风</p>
+<p>用 foremost 把 zip 压缩包分离出来；</p>
+<p>压缩包密码在图片中，修改图片高度 为 FF 就能看到密码是<code>flag@abc</code></p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T1-1.png" alt="T1-1" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>好，这里开始，开始我的痛苦了</p>
+<p>我一看 <code>flag.txt</code> 这不显然是 Base64 编码吗！（因为末尾有<code>=</code>故猜测）</p>
+<p>又是一通 Base 解码。</p>
+<p>结果是 《See You Again》的歌词。</p>
+<p>我就不懂了？？？题目就是答案？？？</p>
+<p>我试了很多遍，各种姿势，就是不对。。。。</p>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T1-3.png" alt="T1-3" style="zoom: 50%;" /> 
+</li>
+<li>
+<p>后面查询 Base64 编码原理，看到有个人提及“Base64隐写”</p>
+<p>Base64 不是编码原理吗？还能隐写？</p>
+<p>了解原理会发现， <strong>Base64 末尾为了能够使得位数为 6 的倍数，</strong></p>
+<p><strong>当不是 6 的倍数时，会自动填充0 进来</strong>。</p>
+</li>
+<li>
+<p><strong>但是</strong>！！！这表明这里填充的内容是不会影响解码和编码的，</p>
+<p>它<strong>就是填充作用</strong>，仅此而已。</p>
+<p>也就是说，<strong>不论填0填1都可以</strong>！</p>
+</li>
+<li>
+<p>好的，至此，隐写原理也就浮出水面了，就是<strong>利用这个填充位置来存储真实信息</strong>。</p>
+</li>
+<li>
+<p>不得不说，确实挺好的一题。的的确确达到隐写效果了。</p>
+<p>无论我是怎么编码解码，看到的都不会是隐写的内容！！！</p>
+</li>
+<li>
+<p>下面的python脚本获取隐写内容：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">all</span> = f.read()</span><br><span class="line"><span class="built_in">list</span> = <span class="built_in">all</span>.splitlines()</span><br><span class="line">binstr = <span class="string">&quot;&quot;</span></span><br><span class="line">base64 = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">list</span>:</span><br><span class="line">    <span class="keyword">if</span> i.find(<span class="string">&quot;==&quot;</span>)&gt;<span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 取倒数第3个字符，在base64找到对应的索引数（就是编码数），取低4位，再转换为二进制字符</span></span><br><span class="line">        temp = <span class="built_in">bin</span>((base64.find(i[-<span class="number">3</span>])&amp;<span class="number">15</span>))[<span class="number">2</span>:]</span><br><span class="line">        binstr = binstr + <span class="string">&quot;0&quot;</span>*(<span class="number">4</span>-<span class="built_in">len</span>(temp))+temp <span class="comment">#二进制字符补高位0后，连接字符到binstr</span></span><br><span class="line">        <span class="built_in">print</span>(i, temp)</span><br><span class="line">    <span class="keyword">elif</span> i.find(<span class="string">&quot;=&quot;</span>)&gt;<span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 取倒数第2个字符，在base64找到对应的索引数（就是编码数），取低2位，再转换为二进制字符</span></span><br><span class="line">        temp = <span class="built_in">bin</span>((base64.find(i[-<span class="number">2</span>])&amp;<span class="number">3</span>))[<span class="number">2</span>:]</span><br><span class="line">        binstr = binstr + <span class="string">&quot;0&quot;</span>*(<span class="number">2</span>-<span class="built_in">len</span>(temp))+temp <span class="comment">#二进制字符补高位0后，连接字符到binstr</span></span><br><span class="line">        <span class="built_in">print</span>(i, temp)</span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(binstr),<span class="number">8</span>):</span><br><span class="line">    <span class="built_in">str</span> = <span class="built_in">str</span> + <span class="built_in">chr</span>(<span class="built_in">int</span>(binstr[i:i+<span class="number">8</span>],<span class="number">2</span>)) <span class="comment">#从左到右，每取8位转换为ascii字符，连接字符到字符串</span></span><br><span class="line"><span class="built_in">print</span>(binstr)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>运行得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;da6ac101b05b6974&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T1-2.png" alt="T1-2" style="zoom:60%;" /> 
+<h3 id="题目：Pirate-king-steganography">题目：Pirate king steganography</h3>
+<ul>
+<li>
+<p>解压得到很多图片，只有一个是无法显示的，很简单，就是压缩包（也可以二进制打开查看文件头就知道是什么了）</p>
+</li>
+<li>
+<p>修改后缀名，解压打开即可里面有一个flag.txt 就是答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;7e8eee62-508e-4421-a28b-baa12d0b6aa9&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T3-1.png" alt="T3-1" style="zoom:60%;" /> 
+<h3 id="题目：password">题目：password</h3>
+<ul>
+<li>题目提示可以通过现有信息获取到什么？</li>
+<li>
+<ol>
+<li>CRC值</li>
+<li>字节长度</li>
+</ol>
+</li>
+<li>可以看到里面的三个 password.txt文件很短，只有 4 大小。</li>
+<li>直接 CRC 碰撞即可。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">CrackCrc</span>(<span class="params">crc</span>):</span><br><span class="line">    dic = string.ascii_letters + string.digits + <span class="string">&#x27;_+/=&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> dic:</span><br><span class="line">            <span class="keyword">for</span> p <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">for</span> q <span class="keyword">in</span> dic:</span><br><span class="line">                    s = i + j + p + q</span><br><span class="line">                    s_bytes = s.encode(<span class="string">&#x27;utf-8&#x27;</span>)  <span class="comment"># 将字符串转换为字节串</span></span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(s_bytes) &amp; <span class="number">0xffffffff</span>):</span><br><span class="line">                        <span class="built_in">print</span>(s)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">CrackZip</span>():</span><br><span class="line">    crcs = [<span class="built_in">int</span>(<span class="string">&quot;0x49629A97&quot;</span>, <span class="number">16</span>), <span class="built_in">int</span>(<span class="string">&quot;0xCE70D424&quot;</span>, <span class="number">16</span>), <span class="built_in">int</span>(<span class="string">&quot;0xC3F17511&quot;</span>, <span class="number">16</span>)]</span><br><span class="line">    <span class="keyword">for</span> crc <span class="keyword">in</span> crcs:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">hex</span>(crc))</span><br><span class="line">        CrackCrc(crc)</span><br><span class="line"></span><br><span class="line">CrackZip()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>运行得到字符串，连起来，就是压缩包密码。</p>
+</li>
+<li>
+<p>输入密码打开压缩包，得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;fb39358b-6c2e-ddb4-56e0-0f026663058d&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T2-2.png" alt="T2-2" style="zoom:60%;" /> 
+<h3 id="题目：中国菜刀">题目：中国菜刀</h3>
+<ul>
+<li>
+<p>打开流量分析</p>
+</li>
+<li>
+<p>过滤只看 HTTP/TCP</p>
+</li>
+<li>
+<p>所有数据都看了下，最后是这个 209 bytes 的包比较可能。</p>
+<p>下载下来。</p>
+</li>
+<li>
+<p>打开看到有 <code>X@Y</code> ，把头尾的这个数据去掉</p>
+<p>使用压缩包方式打开，得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key&#123;8769fe393f2b998fa6a11afe2bfcd65e&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T4-2.png" alt="T4-2" style="zoom:60%;" />  
+<h3 id="题目：Basic-type">题目：Basic type</h3>
+<ul>
+<li>打开，一眼就是像素点</li>
+<li>写个 python 脚本恢复为文件。</li>
+<li>但是图片长宽不知道，长 * 宽 = 像素点个数（135000）</li>
+<li>挨个猜，试一下即可。</li>
+<li>发现在 900 * 150 是对的。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="comment"># 乘积为 135000 </span></span><br><span class="line">width = <span class="number">900</span></span><br><span class="line">height = <span class="number">150</span></span><br><span class="line"></span><br><span class="line">img = Image.new(<span class="string">&#x27;RGB&#x27;</span>, (width, height))</span><br><span class="line">pixel_index = <span class="number">0</span> <span class="comment"># 计数器，用于跟踪当前像素的索引</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;basic/basic.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> file:</span><br><span class="line">        rgb = line.strip().strip(<span class="string">&#x27;()&#x27;</span>).split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        rgb = <span class="built_in">tuple</span>(<span class="built_in">int</span>(color) <span class="keyword">for</span> color <span class="keyword">in</span> rgb)</span><br><span class="line">        x = pixel_index % width</span><br><span class="line">        y = pixel_index // width</span><br><span class="line">        img.putpixel((x, y), rgb)</span><br><span class="line">        pixel_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">img.show()</span><br><span class="line">img.save(<span class="string">&#x27;output.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>运行打开图片如下，得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;RGB_1s_e4sY&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-output.png" alt="output" style="zoom:67%;" /> 
+</li>
+</ul>
+<h3 id="题目：Only-one-picture">题目：Only one picture</h3>
+<ul>
+<li>常规操作</li>
+<li>放入 notepad++ 发现有 flag.txt ，说明肯定有藏文本或者压缩包</li>
+<li>使用 foremost 分离出来，有一个压缩包</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T6-1.png" alt="T6-1" style="zoom:60%;" /> 
+<ul>
+<li>解压密码在 图片属性的作者 有写<code>4UEXBD0Q</code></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T6-3.png" alt="T6-3" style="zoom:60%;" /> 
+<ul>
+<li>
+<p>解压得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d349bd48-5e00-4159-8b4a-008bb48502c5&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/MISC-T6-2.png" alt="T6-2" style="zoom:60%;" /> 
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://isSeymour.github.io/butterflyblog">isSeymour</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://isseymour.github.io/butterflyblog/2024/05/12/WP-TJ2024/">https://isseymour.github.io/butterflyblog/2024/05/12/WP-TJ2024/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://isSeymour.github.io/butterflyblog" target="_blank">isSeymour</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/butterflyblog/tags/CTF/">CTF</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY1.jpg" alt="微信支付"/></a><div class="post-qr-code-desc">微信支付</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/pay/PAY2.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/butterflyblog/2024/05/09/ISP-Lab/" title="《信息安全工程》实验内容"><img class="cover" src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/ISP-Lab/Page0.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">《信息安全工程》实验内容</div></div></a></div><div class="next-post pull-right"><a href="/butterflyblog/2024/05/15/CVDL-0-intro/" title="CVDL - 前言、简介"><img class="cover" src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/CVDL-bupt/P0.avif" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CVDL - 前言、简介</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/T6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">isSeymour</div><div class="author-info__description">志之所趋，无远弗届，穷山距海，不能限也。</div></div><div class="card-info-data site-data is-center"><a href="/butterflyblog/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/butterflyblog/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/butterflyblog/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/isSeymour/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://isSeymour.github.io/profile/" target="_blank" title="学术主页"><i class="fa-regular fa-address-card" style="color: #000000;"></i></a><a class="social-icon" href="https://github.com/isSeymour/" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="https://space.bilibili.com/79699613/" target="_blank" title="B站"><i class="fa-brands fa-bilibili" style="color: #000000;"></i></a><a class="social-icon" href="https://blog.csdn.net/m0_63205991/" target="_blank" title="CSDN"><i class="fa-solid fa-code" style="color: #000000;"></i></a><a class="social-icon" href="mailto:isSeymour@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">同济@复旦第一届网络安全竞赛 Write up</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%89%8B"><span class="toc-text">选手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81WEB"><span class="toc-text">一、WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9A%E6%B8%B8%E6%88%8F"><span class="toc-text">题目：游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Alaohuji"><span class="toc-text">题目：laohuji</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81REVERSE"><span class="toc-text">二、REVERSE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9AJust-met"><span class="toc-text">题目：Just met</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Ajeb"><span class="toc-text">题目：jeb</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81PWN"><span class="toc-text">三、PWN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Acat2"><span class="toc-text">题目：cat2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81CRYPTO"><span class="toc-text">四、CRYPTO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Aenemy-command"><span class="toc-text">题目：enemy_command</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Arwx"><span class="toc-text">题目：rwx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Aeasy-code"><span class="toc-text">题目：easy_code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9AHASH"><span class="toc-text">题目：HASH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81MISC"><span class="toc-text">五、MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Aseeyouagain"><span class="toc-text">题目：seeyouagain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9APirate-king-steganography"><span class="toc-text">题目：Pirate king steganography</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9Apassword"><span class="toc-text">题目：password</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9A%E4%B8%AD%E5%9B%BD%E8%8F%9C%E5%88%80"><span class="toc-text">题目：中国菜刀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9ABasic-type"><span class="toc-text">题目：Basic type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9AOnly-one-picture"><span class="toc-text">题目：Only one picture</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2025/04/27/LLM4Rec_abc_5/" title="大模型推荐系统 (应用)"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/llm4rec_abc/5/llm4rec-abc-5-Page.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="大模型推荐系统 (应用)"/></a><div class="content"><a class="title" href="/butterflyblog/2025/04/27/LLM4Rec_abc_5/" title="大模型推荐系统 (应用)">大模型推荐系统 (应用)</a><time datetime="2025-04-27T08:00:00.000Z" title="发表于 2025-04-27 16:00:00">2025-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2025/04/26/LLM4Rec_abc_4/" title="大模型推荐系统（4）直接推荐范式"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/llm4rec_abc/4/llm4rec-abc-4-Page.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="大模型推荐系统（4）直接推荐范式"/></a><div class="content"><a class="title" href="/butterflyblog/2025/04/26/LLM4Rec_abc_4/" title="大模型推荐系统（4）直接推荐范式">大模型推荐系统（4）直接推荐范式</a><time datetime="2025-04-26T10:00:00.000Z" title="发表于 2025-04-26 18:00:00">2025-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/butterflyblog/2025/04/26/LLM4Rec_abc_3/" title="大模型推荐系统（3）微调范式"><img src="https://cdn.jsdelivr.net/gh/isSeymour/PicGo/posts/llm4rec_abc/3/llm4rec-abc-3-Page.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/blog/page_img/404.jpg'" alt="大模型推荐系统（3）微调范式"/></a><div class="content"><a class="title" href="/butterflyblog/2025/04/26/LLM4Rec_abc_3/" title="大模型推荐系统（3）微调范式">大模型推荐系统（3）微调范式</a><time datetime="2025-04-26T09:00:00.000Z" title="发表于 2025-04-26 17:00:00">2025-04-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Seymour0314/PicGo/posts/WP-TJ2024/Page0.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By isSeymour</div><div class="footer_custom_text">欢迎乘坐我的生活地铁！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/butterflyblog/js/utils.js"></script><script src="/butterflyblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liAZxomGv7Hapw8g',
+      clientSecret: 'f7cafde192c4ada8bef4b76952c422d90575cf8b',
+      repo: 'gitalk',
+      owner: 'isSeymour',
+      admin: ['isSeymour'],
+      id: 'e2663a8eb347b4eadcc4a7ed9e761d8d',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/butterflyblog/js/search/local-search.js"></script></div></div></body></html>

@@ -17,42 +17,58 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. Suspendisse condimentum, libero vel tempus mattis, risus risus vulputate libero, elementum fermentum mi neque vel nisl. Maecenas facilisis maximus dignissim. Curabitur mattis vulputate dui, tincidunt varius libero luctus eu. Mauris mauris nulla, scelerisque eget massa id, tincidunt congue felis. Sed convallis tempor ipsum rhoncus viverra. Pellentesque nulla orci, accumsan volutpat fringilla vitae, maximus sit amet tortor. Aliquam ultricies odio ut volutpat scelerisque. Donec nisl nisl, porttitor vitae pharetra quis, fringilla sed mi. Fusce pretium dolor ut aliquam consequat. Cras volutpat, tellus accumsan mattis molestie, nisl lacus tempus massa, nec malesuada tortor leo vel quam. Aliquam vel ex consectetur, vehicula leo nec, efficitur eros. Donec convallis non urna quis feugiat.
-
-My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).
+I am an undergraduate student in Information Security at the School of Computer Science and Technology, <a href='https://www.tongji.edu.cn'>Tongji University</a>. My research focuses on AI security, LLM, and graph representation learning. I previously worked with <a href='http://cs1.tongji.edu.cn/~dawei/'>Prof. Cheng</a>’s Financial Big Data Lab, where I took my first steps into research and contributed as a second author on a paper submitted to *TKDE* (a CCF-A journal), co-developing a fraud detection framework with generative graph representations.
 
 
-# 🔥 News
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
-# 📝 Publications 
+# 🔥 News  
+- *2025.05*: &nbsp;🎉🎉 Proposed a VAE-based IPv6 active address prediction framework, enabling efficient large-scale network scanning.  
+- *2024.11*: &nbsp;🎉🎉 Developed an adversarial attack pipeline for facial recognition systems with masked momentum PGD, achieving controllable perturbation generation.  
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+
+
+# 📝 Publications  
+
+<!-- 大框显示paper介绍 -->
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">TKDE 2025</div>
+      <img src='images/500x300.png' alt="sym" width="100%">
+    </div>
+  </div>
 <div class='paper-box-text' markdown="1">
 
-[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
+[Defending Attacks on Anti-fraud Model with Generative Graph Representations](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
 
-**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.
 
 [**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- Proposed GSRGNN framework with generative feature reconstruction and structural enhancement modules
+- Achieved dual defense against local adversarial perturbations through adaptive fusion mechanism
+- Demonstrated SOTA robustness on Web Chat Pay and commercial datasets
+
 </div>
 </div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+- **[TKDE (Under Review, CCF-A)]** [Defending Attacks on Anti-fraud Model with Generative Graph Representations](https://github.com), Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.  
 
-# 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
-# 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
+# 🎖 Honors and Awards  
+- *2024.12* National Endeavor Scholarship
+- *2024.12* Tongji University Outstanding Student Scholarship (Second Class)  
+- *2023.12* National Endeavor Scholarship 
+- *2024.11* The 8th in the finals, AI Security Track - 7th StrongNet Mimic Defense International Challenge  
+- *2024.03* Provincial 2nd Prize, C++ Group - 16th Lanqiao Cup Programming Contest  
 
-# 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+
+
+# 📖 Educations  
+- *2021.09 - Present* <a href='https://cs.tongji.edu.cn'>B.Eng. in Information Security</a>, School of Computer Science and Technology, Tongji University.
+
+
+
+# 💻 Internships  
+- *2024.09 - Present* <a href='http://cs1.tongji.edu.cn/~dawei/'>Research Assistant</a>, Financial Big Data Lab, Tongji University  
+  `Advisor`: Prof. Dawei Cheng | `Focus`: Graph-based Anti-fraud Systems  
