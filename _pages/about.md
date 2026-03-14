@@ -22,9 +22,8 @@ I am an undergraduate student in Information Security at the School of Computer 
 For more information, please visit my : <a href='https://isseymour.github.io/butterflyblog/'>Personal Blog</a>.
 
 
-# 🔥 News  
-- *2025.11*: &nbsp;🎉🎉 Proposed a VAE-based IPv6 active address prediction framework, enabling efficient large-scale network scanning.  
-
+# 🔥 News   
+- *2025.11*: &nbsp;🎉🎉 Our paper "Defending Attacks on Anti-fraud Model with Generative Graph Representations" (as the second author) has been submitted to *IEEE Transactions on Knowledge and Data Engineering* (CCF-A).
 
 
 # 📝 Publications  
@@ -51,7 +50,7 @@ Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.
 <!-- </div>
 </div> -->
 
-- 2025.11, **[IEEE TKDE (CCF-A)]** [Defending Attacks on Anti-fraud Model with Generative Graph Representations](https://ieeexplore.ieee.org/abstract/document/11278752), Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.  
+- 2025.11, **[TKDE (CCF-A)]** [Defending Attacks on Anti-fraud Model with Generative Graph Representations](https://ieeexplore.ieee.org/abstract/document/11278752), Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.  
 
 
 
