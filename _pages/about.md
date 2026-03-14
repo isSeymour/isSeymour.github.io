@@ -19,7 +19,7 @@ redirect_from:
 
 I am an undergraduate student in Information Security at the School of Computer Science and Technology, <a href='https://www.tongji.edu.cn'>Tongji University</a>. My research focuses on LLM, Recommendation System, and graph representation learning. I previously worked with <a href='http://cs1.tongji.edu.cn/~dawei/'>Prof. Cheng</a>’s Financial Big Data Lab, where I took my first steps into research and contributed as a second author on a paper submitted to *TKDE* (a CCF-A journal), co-developing a fraud detection framework with generative graph representations.
 
-For more information, please visit my : <a href='https://isseymour.github.io/butterflyblog/'>Personal Blog</a>.
+For more information, please visit my <a href='https://isseymour.github.io/butterflyblog/'>Personal Blog</a>.
 
 
 # 🔥 News   
@@ -50,7 +50,7 @@ Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.
 <!-- </div>
 </div> -->
 
-- 2025.11, **[TKDE (CCF-A)]** [Defending Attacks on Anti-fraud Model with Generative Graph Representations](https://ieeexplore.ieee.org/abstract/document/11278752), Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.  
+- 2025.11, **[TKDE (CCF-A)]** [Defending Attacks on Anti-fraud Model with Generative Graph Representations](https://ieeexplore.ieee.org/abstract/document/11278752), J. Wu, **X. Wang**, J. Yang, D. Cheng, G. Yang and B. Wang
 
 
 
