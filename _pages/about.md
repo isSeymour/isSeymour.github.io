@@ -17,7 +17,9 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am an undergraduate student in Information Security at the School of Computer Science and Technology, <a href='https://www.tongji.edu.cn'>Tongji University</a>. My research focuses on LLM, Recommendation System, and graph representation learning. I previously worked with <a href='http://cs1.tongji.edu.cn/~dawei/'>Prof. Cheng</a>’s Financial Big Data Lab, where I took my first steps into research and contributed as a second author on a paper submitted to *TKDE* (a CCF-A journal), co-developing a fraud detection framework with generative graph representations.
+I am currently pursuing an M.S. in Artificial Intelligence at the School of Artificial Intelligence, <a href='https://www.sjtu.edu.cn'>Shanghai Jiao Tong University</a>. I received my B.S. in Information Security from the School of Computer Science and Technology, <a href='https://www.tongji.edu.cn'>Tongji University</a>.
+
+My research focuses on Agentic RL. I previously worked with <a href='http://cs1.tongji.edu.cn/~dawei/'>Prof. Cheng</a>’s Financial Big Data Lab, where I took my first steps into research and contributed as a second author on a paper submitted to *TKDE* (a CCF-A journal), co-developing a fraud detection framework with generative graph representations.
 
 For more information, please visit my <a href='https://isseymour.github.io/butterflyblog/'>Personal Blog</a>.
 
@@ -64,5 +66,6 @@ Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.
 
 
 # 📖 Educations  
-- *2021.09 - Present* <a href='https://cs.tongji.edu.cn'>B.Eng. in Information Security</a>, School of Computer Science and Technology, Tongji University.
+- *2026.09 - Present* <a href='https://sai.sjtu.edu.cn'>M.S. in Electronic Information</a>, School of Artificial Intelligence, Tongji University.
+- *2021.09 - 2026.06* <a href='https://cs.tongji.edu.cn'>B.Eng. in Information Security</a>, School of Computer Science and Technology, Tongji University.
 

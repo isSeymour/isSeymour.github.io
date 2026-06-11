@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Xincheng Wang"
-description              : "Happiness Is All U Need"
+description              : "Restless heart find joy in chasing."
 repository               : "isSeymour/isSeymour.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -23,7 +23,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Xincheng Wang"
   avatar           : "images/512x512-avatar.jpg"
-  bio              : "Tongji University"
+  bio              : "Shanghai Jiao Tong University"
   location         : "Shanghai, China"
   employer         :
   pubmed           : 
