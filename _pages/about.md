@@ -19,7 +19,7 @@ redirect_from:
 
 I am currently pursuing an M.S. in Artificial Intelligence at the School of Artificial Intelligence, <a href='https://www.sjtu.edu.cn'>Shanghai Jiao Tong University</a>. I received my B.S. in Information Security from the School of Computer Science and Technology, <a href='https://www.tongji.edu.cn'>Tongji University</a>.
 
-My research focuses on Agentic RL. I previously worked with <a href='http://cs1.tongji.edu.cn/~dawei/'>Prof. Cheng</a>’s Financial Big Data Lab, where I took my first steps into research and contributed as a second author on a paper submitted to *TKDE* (a CCF-A journal), co-developing a fraud detection framework with generative graph representations.
+My research focuses on Agentic RL. I am currently with <a href='http://www.zhanglinfeng.tech/'>Prof. Zhang Linfeng</a>'s EPIC Lab. Before that, I worked with <a href='http://cs1.tongji.edu.cn/~dawei/'>Prof. Cheng Dawei</a>'s Financial Big Data Lab.
 
 For more information, please visit my <a href='https://isseymour.github.io/butterflyblog/'>Personal Blog</a>.
 
