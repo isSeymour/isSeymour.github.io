@@ -66,6 +66,6 @@ Jiasheng Wu, **Xincheng Wang**, Dawei Cheng et al.
 
 
 # 📖 Educations  
-- *2026.09 - Present* <a href='https://sai.sjtu.edu.cn'>M.S. in Electronic Information</a>, School of Artificial Intelligence, Tongji University.
+- *2026.09 - Present* <a href='https://sai.sjtu.edu.cn'>M.S. in Electronic Information</a>, School of Artificial Intelligence, Shanghai Jiao Tong University.
 - *2021.09 - 2026.06* <a href='https://cs.tongji.edu.cn'>B.Eng. in Information Security</a>, School of Computer Science and Technology, Tongji University.
 
